@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 
 public class Map {
     // map size
@@ -10,15 +12,18 @@ public class Map {
     public int getSize_y() {
         return size_y;
     }
+    // map location
+    int location_x;
+    int location_y;
 
-    // 2d array 150*80
-    Unit[,] mapp;
+    // 2d jagged array 150*80. first dimension y. second dimension x
+    Thing[,] mapp;
     // get map reference
-    public Unit[,] getMap() {
+    public Thing[,] getMap() {
         return mapp;
     }
     // get unit in map
-    public Unit getMap(int pos_x, int pos_y) {
+    public Thing getMap(int pos_x, int pos_y) {
         if(!checkLocation(pos_x, pos_y)) {
             return null;
         }
@@ -42,5 +47,24 @@ public class Map {
             return false;
         }
         return true;
+    }
+
+    // print and erase
+    public void printTo(int pos_x, int pos_y, string code, ConsoleColor fcolor, ConsoleColor bcolor) {
+        printer.PrintText(code, pos_x, pos_y, bcolor);
+    }
+    public void eraseFrom(int pos_x, int pos_y, ConsoleColor bcolor) {
+        printer.PrintText(" ", pos_x, pos_y, bcolor);
+    }
+    // reference to printer
+    Printer printer;
+
+    // constructor
+    // map size and location as parameter
+    public Map(int _size_x, int _size_y, int location_x, int location_y) {
+        size_x = _size_x;
+        size_y = _size_y;
+        mapp = new Thing[size_x, size_y];
+        printer = new Printer(location_x, location_y);
     }
 }
