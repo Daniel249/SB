@@ -15,6 +15,12 @@ public class Map {
     // map location
     int location_x;
     int location_y;
+    public int getLocation_x() {
+        return location_x;
+    }
+    public int getLocation_y() {
+        return location_y;
+    }
 
     // 2d jagged array 150*80. first dimension y. second dimension x
     Thing[,] mapp;
@@ -30,7 +36,7 @@ public class Map {
         return mapp[pos_x, pos_y];
     }
     // set unit in map
-    public void setMap(Unit u, int pos_x, int pos_y) {
+    public void setMap(Thing u, int pos_x, int pos_y) {
         if(!checkLocation(pos_x, pos_y)) {
             return;
         }
@@ -48,23 +54,16 @@ public class Map {
         }
         return true;
     }
-
-    // print and erase
-    public void printTo(int pos_x, int pos_y, string code, ConsoleColor fcolor, ConsoleColor bcolor) {
-        printer.PrintText(code, pos_x, pos_y, bcolor);
-    }
-    public void eraseFrom(int pos_x, int pos_y, ConsoleColor bcolor) {
-        printer.PrintText(" ", pos_x, pos_y, bcolor);
-    }
     // reference to printer
     Printer printer;
 
     // constructor
     // map size and location as parameter
-    public Map(int _size_x, int _size_y, int location_x, int location_y) {
+    public Map(int _size_x, int _size_y, int loc_x, int loc_y) {
         size_x = _size_x;
         size_y = _size_y;
+        location_x = loc_x;
+        location_y = loc_y;
         mapp = new Thing[size_x, size_y];
-        printer = new Printer(location_x, location_y);
     }
 }
