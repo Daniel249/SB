@@ -1,8 +1,9 @@
-
+using System.Collections.Generic;
 public class Battle {
     Map map;
     Queue queue;
     Player player;
+    List<Thing> list = new List<Thing>();
     
     // get set
     public Queue getQueue() {
@@ -10,6 +11,9 @@ public class Battle {
     }
     public Map getMap() {
         return map;
+    }
+    public List<Thing> getList() {
+        return list;
     }
     // run battle
     public bool turn() {
@@ -31,11 +35,15 @@ public class Battle {
     void endGame() {
 
     }
+    public void spawnThing(int pos_x, int pos_y) {
+        Thing thi = new Unit(pos_x, pos_y);
+        list.Add(thi);
+    }
     // constructor
-    public Battle() {
-        player = new Player();
-        map = new Map(100, 60, 5, 5);
+    public Battle(int size_x, int size_y) {
+        map = new Map(size_x, size_y, 5, 5);
         queue = new Queue();
-        
+        Game.setBattle(this);        
+        player = new Player();
     }
 }
