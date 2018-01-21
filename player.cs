@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 public class Player {
     Unit ship;
-    // 0: iddle. 1: left. 2: right
-    int direction;
+    int vertDirection;
+    int horDirection;
     bool constantMove;
+    // main player method. runs once per battle cycle
     public void runTurn() {
         if(Console.KeyAvailable) {
             ConsoleKeyInfo letter = Console.ReadKey(true);
@@ -15,32 +16,37 @@ public class Player {
             moveShip();
         }
     }
+    // process input key
     void proKey(ConsoleKeyInfo key) {
         if(Game.processKey(key)) {
             return;
         }
-        if(key.Key == ConsoleKey.LeftArrow) {
-            direction = 1;
-            Console.WriteLine("izq");
-            Console.WriteLine("nonstop");
-        } else if(key.Key == ConsoleKey.RightArrow) {
-            direction = 2;
-            Console.WriteLine("der");
-        } else if(key.Key == ConsoleKey.DownArrow) {
-            direction = 0;
-            Console.WriteLine("stop");
-        }
         switch(key.Key) {
+            // left arrow
             case ConsoleKey.LeftArrow:
-                direction = 1;
-                goto case ConsoleKey.RightArrow;
-            case ConsoleKey.RightArrow:
-                direction = 2;
-                goto case ConsoleKey.DownArrow;
-            case ConsoleKey.DownArrow:
-                direction = 0;
+                horDirection = 0;
+                vertDirection = 0;
+                Console.WriteLine("izq");
                 goto case ConsoleKey.Backspace;
-            // if any of the above
+            // right arrow
+            case ConsoleKey.RightArrow:
+                
+                Console.WriteLine("der");
+                goto case ConsoleKey.Backspace;
+            // down arrow
+            case ConsoleKey.DownArrow:
+                vertDirection = -1;
+                Console.WriteLine("stop");
+                goto case ConsoleKey.Backspace;
+            // up arrow
+            case ConsoleKey.UpArrow:
+                vertDirection = 1;
+                goto case ConsoleKey.Backspace;
+            // letter m. toogle constantMove
+            case ConsoleKey.M:
+                constantMove = !constantMove;
+                goto case ConsoleKey.Backspace;
+            // if any of the above, move ship
             case ConsoleKey.Backspace:
                 if(!constantMove) {
                     moveShip();
@@ -49,6 +55,14 @@ public class Player {
         }
     }
     void moveShip() {
-
+        ship.move(horDirection, vertDirection);
+    }
+    // constructor
+    public Player() {
+        ship = new Unit(0, Game.getMap().getSize_y()/2);
+        Game.getBattle().getList().Add(ship);
+        constantMove = false;
+        vertDirection = 0;
+        horDirection = 0;
     }
 }
