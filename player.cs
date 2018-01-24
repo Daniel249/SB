@@ -31,16 +31,14 @@ public class Player {
             // right arrow
             case ConsoleKey.RightArrow:
                 
-                Console.WriteLine("der");
                 goto case ConsoleKey.Backspace;
             // down arrow
             case ConsoleKey.DownArrow:
-                vertDirection = -1;
-                Console.WriteLine("stop");
+                vertDirection = 1;
                 goto case ConsoleKey.Backspace;
             // up arrow
             case ConsoleKey.UpArrow:
-                vertDirection = 1;
+                vertDirection = -1;
                 goto case ConsoleKey.Backspace;
             // letter m. toogle constantMove
             case ConsoleKey.M:
@@ -56,6 +54,8 @@ public class Player {
     }
     void moveShip() {
         ship.move(horDirection, vertDirection);
+        vertDirection = 0;
+        horDirection = 0;
     }
     // constructor
     public Player() {
