@@ -20,23 +20,56 @@ public class Printer {
         Map map = Game.getMap();
         int console_x = pos_x + map.getLocation_x();
         int console_y = pos_y + map.getLocation_y();
-        // code dimensions
-        int size_x = reference.getCode().GetLength(0);
-        int size_y = reference.getCode().GetLength(1);
-        for(int y = 0; y < size_y; y++) {
-        for(int x = 0; x < size_x; x++) {
-            char codechar = reference.getCode()[x,y];
-            // if something to print and print(vs delete)
-            if(codechar != '\0') {
-                if(!print) {
-                    codechar = ' ';
+        // loop and limit start as a normal for loop. 
+        // equal to 0 and max value respectively
+        // they change based on offset to only print code inside map
+        int loop_x = 0;
+        int loop_y = 0;
+        int limit_x = reference.getCode().GetLength(0);
+        int limit_y = reference.getCode().GetLength(1);
+        // calc offset
+        int offset_x = calcOffset(map.getSize_x(), pos_x, limit_x);
+        int offset_y = calcOffset(map.getSize_y(), pos_y, limit_y);
+        // offset applied to loop and limit
+        if(offset_x < 0) {
+            loop_x = (-1)*offset_x;
+        } else if(offset_x > 0) {
+            limit_x -= offset_x;
+        }
+        if(offset_y < 0) {
+            loop_y = (-1)*offset_y;
+        } else if(offset_y > 0) {
+            limit_y -= offset_y;
+        }
+        for(int y = loop_y; y < limit_y; y++) {
+            for(int x = loop_x; x < limit_x; x++) {
+                char codechar = reference.getCode()[loop_x, loop_y];
+                // if something to print and print(vs delete)
+                if(codechar != '\0') {
+                    if(!print) {
+                        codechar = ' ';
+                    }
+                    map.setMap(printThing, pos_x + x, pos_y + y);
+                    Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
                 }
-                map.setMap(printThing, pos_x + x, pos_y + y);
-                Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
             }
         }
-        }
     }
+
+    // cut parts of code[,] which are out of map
+    // offset<0 => out of map to the left
+    static int calcOffset(int mapSize, int thingLocation, int thingSize) {
+        int offset = 0;
+        int outBound = thingLocation + thingSize - mapSize;
+        if(thingLocation < 0){
+            offset = thingLocation;
+        } else if(outBound > 0) {
+            offset = outBound;
+        }
+        return offset;
+    }
+
+
     // print and erase
     public static void PrintText(string msg, int pos_x, int pos_y, ConsoleColor bcolor) {
 
