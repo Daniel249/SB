@@ -15,10 +15,7 @@ public class Battle {
     public List<Thing> getList() {
         return list;
     }
-    // run battle
-    public bool turn() {
-        return queue.run();
-    }
+    // main battle method on loop
     public void run() {
         while(true) {
             if(!Game.getContinueGame()) {
@@ -27,10 +24,14 @@ public class Battle {
             }
             // run player and AI turn
             player.runTurn();
-            Game.runTurn();
-
             turn();
+            // run gameplay extras
+            // Game.runTurn();
         }
+    }
+    // run queue
+    public bool turn() {
+        return queue.run();
     }
     void endGame() {
 

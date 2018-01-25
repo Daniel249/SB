@@ -26,7 +26,7 @@ public static class Game {
     static void endGame() {
         continueGame = false;
     }
-    // map and battle references
+    // map battle queue references
     static Battle battle;
     public static Battle getBattle() {
         return battle;
@@ -36,5 +36,8 @@ public static class Game {
     }
     public static Map getMap() {
         return battle.getMap();
+    }
+    public static Queue getQueue() {
+        return battle.getQueue();
     }
 }
