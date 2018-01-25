@@ -53,15 +53,16 @@ public class Player {
         }
     }
     void moveShip() {
-        ship.move(horDirection, vertDirection);
-        vertDirection = 0;
-        horDirection = 0;
+        ship.printMove(horDirection, vertDirection);
+        // vertDirection = 0;
+        // horDirection = 0;
     }
     // constructor
     public Player() {
         ship = new Unit(0, Game.getMap().getSize_y()/2);
+        Weapon.loadUnit(ship, 5);
         Game.getBattle().getList().Add(ship);
-        constantMove = false;
+        constantMove = true;
         vertDirection = 0;
         horDirection = 0;
     }
