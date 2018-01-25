@@ -41,6 +41,7 @@ public class Printer {
         } else if(offset_y > 0) {
             limit_y -= offset_y;
         }
+        // loop from loop_x to limit. at most on changes based on offset 
         for(int y = loop_y; y < limit_y; y++) {
             for(int x = loop_x; x < limit_x; x++) {
                 char codechar = reference.getCode()[loop_x, loop_y];
@@ -49,7 +50,10 @@ public class Printer {
                     if(!print) {
                         codechar = ' ';
                     }
-                    map.setMap(printThing, pos_x + x, pos_y + y);
+                    // if print and bullet, then dont print reference
+                    if(!(print && reference is Bullet)) {
+                        map.setMap(printThing, pos_x + x, pos_y + y);
+                    }
                     Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
                 }
             }
