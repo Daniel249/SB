@@ -54,8 +54,6 @@ public class Map {
         }
         return true;
     }
-    // reference to printer
-    Printer printer;
 
     // constructor
     // map size and location as parameter
