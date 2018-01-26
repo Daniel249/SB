@@ -4,54 +4,81 @@ public class Unit : Thing {
     int moveSpeed = 1;
     Weapon weapon;
 
+    
     public void setWeapon(Weapon _weapon) {
         weapon = _weapon;
     }
+
     public void fireWeapon() {
         weapon.fire();
     }
+
+
     // constructor
     public Unit(int pos_x, int pos_y) : base(pos_x, pos_y) {
         
     }
 }
+// bullets are Things in constant movement
+// they are printed but not referenced in map, so nothing interacts with them
+// they do interact with other things through references in map
 public class Bullet : Thing {
     int attackDamage;
     // used in queue 
     int moveSpeed;
     // triangular opposite and adjacent
-    int vertSpeed; // opposite
-    int horSpeed; // adjacent
+    int verticalSpeed; // opposite
+    int horizontalSpeed; // adjacent
+
+    // return veritcal- or horizontalSpeed based on bool parameter
     public int getMS(bool isHorizontal) {
         if(isHorizontal) {
-            return horSpeed;
+            return horizontalSpeed;
         } else {
-            return vertSpeed;
+            return verticalSpeed;
         }
     }
+
+
     // move bullet. rn only to the right
+    // change to include angled travel
     public void travel() {
         printMove(1,0);
     }
+
+
+    // constructor
     public Bullet(int pos_x, int pos_y) : base(pos_x, pos_y) {
         attackDamage = 1;
         moveSpeed = 1;
-        horSpeed = 1;
-        vertSpeed = 0;
+        horizontalSpeed = 1;
+        verticalSpeed = 0;
         setCode(new char[1,1] {{'o'}});
         Game.getQueue().bulletQueue.Add(this);
     }
 }
-public abstract class Thing {
 
+// can be referenced in map
+// inherited by Unit and Bullet
+public abstract class Thing {
     // position in map
     protected int position_x;
     protected int position_y;
+    // get set
+    public int getPos_x() {
+        return position_x;
+    }
+    public int getPos_y() {
+        return position_y;
+    }
+    
     // pointing direcion. true to the right for player
     bool direction = true;
+
     // color
     ConsoleColor bcolor = ConsoleColor.Cyan;
     ConsoleColor fcolor;
+    // get set
     public ConsoleColor getBColor() {
         return bcolor;
     }
@@ -64,22 +91,19 @@ public abstract class Thing {
     public void setFColor(ConsoleColor _fcolor) {
         fcolor = _fcolor;
     }
+
     // ascii code
+    // non '\0' spaces printed and deleted
     char[,] code;
+    // get set
     public char[,] getCode() {
         return code;
     }
     public void setCode(char[,] newCode) {
         code = newCode;
     }
-    //printer
-    // protected Printer printer;
-    public int getPos_x() {
-        return position_x;
-    }
-    public int getPos_y() {
-        return position_y;
-    }
+
+    
 
     // methods
     // movement

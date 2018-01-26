@@ -1,9 +1,12 @@
 using System;
 public class Filereader {
+    // path to file 
     string path;
+    // holds each line of file
     string[] textureFile;
-    // methods
-    // print
+
+
+    // print whole file to console
     public void printTexture(string identifier) {
         try {
             foreach(string line in textureFile) {
@@ -17,6 +20,8 @@ public class Filereader {
     void processTextures() {
 
     }
+
+    
     // constructor
     public Filereader(string _path) {
         path = _path;

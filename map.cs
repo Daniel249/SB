@@ -12,6 +12,8 @@ public class Map {
     public int getSize_y() {
         return size_y;
     }
+
+
     // map location
     int location_x;
     int location_y;
@@ -22,12 +24,14 @@ public class Map {
         return location_y;
     }
 
+
     // 2d jagged array 150*80. first dimension y. second dimension x
     Thing[,] mapp;
     // get map reference
     public Thing[,] getMap() {
         return mapp;
     }
+
     // get unit in map
     public Thing getMap(int pos_x, int pos_y) {
         if(!checkLocation(pos_x, pos_y)) {
@@ -35,6 +39,7 @@ public class Map {
         }
         return mapp[pos_x, pos_y];
     }
+
     // set unit in map
     public void setMap(Thing u, int pos_x, int pos_y) {
         if(!checkLocation(pos_x, pos_y)) {
@@ -54,6 +59,7 @@ public class Map {
         }
         return true;
     }
+
 
     // constructor
     // map size and location as parameter

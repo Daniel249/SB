@@ -6,16 +6,22 @@ public class Queue {
     List<Thing> unitsQueue;
     public List<Bullet> bulletQueue;
     public List<Weapon> weaponQueue;
+
     // turn length in ms
     int turnDuration = 50;
     // number of cycles to reset to 0
     int intervalDelay = 30;
+
     // generics test
     public void addQueue<T>(List<T> list) {
         if(typeof(T) == typeof(Bullet)) {
 
         }
     }
+
+
+
+
     public bool run() {
     // iterate through copy of queue
     // if unit still on original queue run turn on unit
@@ -29,27 +35,29 @@ public class Queue {
                 if(modCounter(u.getMS(true))) {
                     u.travel();
                 }
-            
         }
+
         // weapon fire
         for(int i = 0; i < weaponQueue.Count; i++) {
             Weapon u = weaponQueue[i];
-                // check if atackspeed 
-                // if(modCounter(u.getAS())) {
-                    u.checkFire();
-                // }
-            
+            u.checkFire();
         }
+
         passTime();
         return true;
     }
+
+
     int timeUnit = 30;
+
     public bool modCounter(int AS) {
         if(timeUnit % AS == 0) {
             return true;
         }
         return false;
     }
+
+
     void passTime() {
         timeUnit++;
         if(timeUnit == intervalDelay) {
@@ -57,6 +65,7 @@ public class Queue {
         }
     }
     
+
     // constructor
     public Queue() {
         unitsQueue = new List<Thing>();
@@ -64,6 +73,8 @@ public class Queue {
         weaponQueue = new List<Weapon>();
     }
 }
+
+
 // attackSpeed mechanic
 public class Cronometer {
     // number of cycles to reset to 0
@@ -71,6 +82,8 @@ public class Cronometer {
     // present number of cycles
     int timeUnit;
     // return true when timeUnit reaches intervalDelay
+
+
     public bool tick() {
         timeUnit++;
         if(timeUnit == intervalDelay) {
@@ -79,6 +92,7 @@ public class Cronometer {
         }
         return false;
     }
+
 
     // contructor
     public Cronometer(int delay) {
