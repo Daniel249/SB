@@ -2,6 +2,7 @@
 Console based shooter arcade game  
 [Executable in repository](https://github.com/Daniel249/SB/raw/master/SBattle.exe "SBattle.exe download")
 
+Move with up down keys, stop with left key
 
 TO DO  
 bool direction en Thing. player/enemy  
@@ -22,7 +23,9 @@ bind unit or player speed and battle cycles
 
 create outter bounds of map and clear references to things leaving it
 
-
+HI  
+rework constantFire mechanic  
+move functionality to cronometer. if isTicking != true there's no firing
 
 LI  
 Player.runturn probar con y sin if(console.KeyAvailable)
