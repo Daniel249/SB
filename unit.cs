@@ -1,22 +1,30 @@
 using System;
+using System.Collections.Generic;
+
 public class Unit : Thing {
     int health = 100;
     int moveSpeed = 1;
-    Weapon weapon;
+    // reference to weapon
+    List<Weapon> weapons;
+    // reference toeither player or AI
 
     
-    public void setWeapon(Weapon _weapon) {
-        weapon = _weapon;
+    public void setWeapon(Weapon weapon) {
+        weapons.Add(weapon);
     }
-
-    public void fireWeapon() {
-        weapon.fire();
+    public List<Weapon> getWeapon() {
+        return weapons;
+    }
+    public void toggleWeapon(bool isFiring) {
+        foreach(Weapon w in weapons) {
+            w.toggleFire();
+        }
     }
 
 
     // constructor
     public Unit(int pos_x, int pos_y) : base(pos_x, pos_y) {
-        
+        weapons = new List<Weapon>();
     }
 }
 // bullets are Things in constant movement
