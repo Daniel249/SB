@@ -104,8 +104,6 @@ public abstract class Thing {
     }
 
     
-
-    // methods
     // movement
     public void move(int dir_x, int dir_y) {
         position_x += dir_x;
