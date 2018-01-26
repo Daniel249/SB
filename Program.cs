@@ -7,7 +7,7 @@ class Program {
         Console.WriteLine("Hello World!");
 
         Terminal.setSize();
-        Battle bat = new Battle(100, 60);
+        Battle bat = new Battle(200, 60);
         foreach(Thing thi in bat.getList()) {
             Printer.printThing(thi);
         }

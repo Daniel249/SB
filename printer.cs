@@ -2,7 +2,7 @@ using System;
 
 public class Printer {
     // print and delete methods
-    // both use printdelete targeted at certain point to print a char o space
+    // both use printdelete targeted at certain point to print either a char o a space
     public static void deleteThing(Thing thi) {
         printdelete(thi, false, Terminal.getDefaultBack(), Terminal.getDefaultFore());
     }
