@@ -34,7 +34,6 @@ public class Player {
             case ConsoleKey.LeftArrow:
                 horDirection = 0;
                 vertDirection = 0;
-                Console.WriteLine("izq");
                 goto case ConsoleKey.Backspace;
                 
             // right arrow
@@ -77,6 +76,7 @@ public class Player {
         // instantiate ship and load a weapon to it
         ship = new Unit(0, Game.getMap().getSize_y()/2);
         Weapon.loadUnit(ship, 5);
+        ship.toggleWeapon(true);
         Game.getBattle().getList().Add(ship);
         
         // set movement variable defaults

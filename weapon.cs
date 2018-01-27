@@ -6,7 +6,7 @@ public class Weapon {
     // reference to unit
     Unit ship;
     int attackDamage;
-    // attackSpeed mechanic
+    // timer. attackSpeed mechanic
     Cronometer cronometer;
 
 
@@ -17,10 +17,15 @@ public class Weapon {
     }
     // check cronometer to fire
     public void checkFire() {
+        // check constantFire first
         if(cronometer.tick()) {
             fire();
         }
     }
+    public void toggleFire(bool toggle) {
+        cronometer.toggle(toggle);
+    }
+
 
     // set reference to this weapon in a unit
     public static void loadUnit(Unit u, int AS) {
@@ -28,6 +33,7 @@ public class Weapon {
         u.setWeapon(w);
         w.ship = u;
     }
+
 
     // constructor
     public Weapon(int pos_x, int pos_y, int AS) {

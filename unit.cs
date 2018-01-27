@@ -17,7 +17,7 @@ public class Unit : Thing {
     }
     public void toggleWeapon(bool isFiring) {
         foreach(Weapon w in weapons) {
-            w.toggleFire();
+            w.toggleFire(isFiring);
         }
     }
 
@@ -34,6 +34,7 @@ public class Bullet : Thing {
     int attackDamage;
     // used in queue 
     int moveSpeed;
+
     // triangular opposite and adjacent
     int verticalSpeed; // opposite
     int horizontalSpeed; // adjacent
@@ -61,7 +62,7 @@ public class Bullet : Thing {
         moveSpeed = 1;
         horizontalSpeed = 1;
         verticalSpeed = 0;
-        setCode(new char[1,1] {{'o'}});
+        setCode(new char[,] {{'o'}});
         Game.getQueue().bulletQueue.Add(this);
     }
 }
@@ -125,6 +126,8 @@ public abstract class Thing {
     public void turn() {
         
     }
+
+
     //constructor
     #region
     public Thing(int pos_x, int pos_y) {
