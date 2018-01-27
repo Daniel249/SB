@@ -6,9 +6,11 @@ public class Player {
     // save movement direction until movement method
     int vertDirection;
     int horDirection;
+    // is actively firing
+    bool constantFire;
 
     // if constantMove holding key not needed for movement
-    bool constantMove;
+    //bool constantMove;
     
     
     // main player method. runs once per battle cycle
@@ -17,9 +19,7 @@ public class Player {
             ConsoleKeyInfo letter = Console.ReadKey(true);
             proKey(letter);
         }
-        if(constantMove) {
             moveShip();
-        }
     }
 
 
@@ -30,38 +30,32 @@ public class Player {
         }
         
         switch(key.Key) {
-            // left arrow
+            // left arrow : stop moving
             case ConsoleKey.LeftArrow:
                 horDirection = 0;
                 vertDirection = 0;
-                goto case ConsoleKey.Backspace;
+                break;
                 
             // right arrow
             case ConsoleKey.RightArrow:
                 
-                goto case ConsoleKey.Backspace;
+                break;
 
-            // down arrow
+            // down arrow : move down
             case ConsoleKey.DownArrow:
                 vertDirection = 1;
-                goto case ConsoleKey.Backspace;
+                break;
                 
-            // up arrow
+            // up arrow : move up
             case ConsoleKey.UpArrow:
                 vertDirection = -1;
-                goto case ConsoleKey.Backspace;
-                
-            // letter m. toogle constantMove
-            case ConsoleKey.M:
-                constantMove = !constantMove;
-                goto case ConsoleKey.Backspace;
-                
-            // if any of the above, move ship
-            case ConsoleKey.Backspace:
-                if(!constantMove) {
-                    moveShip();
-                }
-            break;
+                break;
+
+            // f key : togle fire
+            case ConsoleKey.F:
+                constantFire = !constantFire;
+                ship.toggleWeapon(constantFire);
+                break;
         }
     }
 
@@ -72,15 +66,17 @@ public class Player {
 
 
     // constructor
-    public Player() {
+    public Player(bool fire) {
         // instantiate ship and load a weapon to it
         ship = new Unit(0, Game.getMap().getSize_y()/2);
-        Weapon.loadUnit(ship, 5);
-        ship.toggleWeapon(true);
+        // load weapon to ship. shoots every 15 cronometer ticks
+        Weapon.loadUnit(ship, 15);
+        // start shooting
+        constantFire = fire;
+        ship.toggleWeapon(constantFire);
         Game.getBattle().getList().Add(ship);
         
         // set movement variable defaults
-        constantMove = true;
         vertDirection = 0;
         horDirection = 0;
     }

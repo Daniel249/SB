@@ -51,6 +51,6 @@ public class Battle {
         map = new Map(size_x, size_y, 5, 5);
         queue = new Queue();
         Game.setBattle(this);        
-        player = new Player();
+        player = new Player(true);
     }
 }
