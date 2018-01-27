@@ -7,8 +7,8 @@ public class Queue {
     public List<Bullet> bulletQueue;
     public List<Weapon> weaponQueue;
 
-    // turn length in ms
-    int turnDuration = 50;
+    // turn length in ms. Process sleeps that ammoung once per run
+    int sleepDuration = 50;
     // number of cycles to reset to 0
     int intervalDelay = 30;
 
@@ -26,7 +26,9 @@ public class Queue {
     // unit might have died or something idk
         
         // turn Length
-        Thread.Sleep(turnDuration);
+        Thread.Sleep(sleepDuration);
+
+        // all bullets move
         for(int i = 0; i < bulletQueue.Count; i++) {
             Bullet u = bulletQueue[i];
                 // check if atackspeed 
@@ -35,7 +37,7 @@ public class Queue {
                 }
         }
 
-        // weapon fire
+        //all active weapons fire
         for(int i = 0; i < weaponQueue.Count; i++) {
             Weapon u = weaponQueue[i];
             u.checkFire();
@@ -69,32 +71,5 @@ public class Queue {
         unitsQueue = new List<Thing>();
         bulletQueue = new List<Bullet>();
         weaponQueue = new List<Weapon>();
-    }
-}
-
-
-// attackSpeed mechanic
-public class Cronometer {
-    // number of cycles to reset to 0
-    int intervalDelay;
-    // present number of cycles
-    int timeUnit;
-    // return true when timeUnit reaches intervalDelay
-
-
-    public bool tick() {
-        timeUnit++;
-        if(timeUnit == intervalDelay) {
-            timeUnit = 0;
-            return true;
-        }
-        return false;
-    }
-
-
-    // contructor
-    public Cronometer(int delay) {
-        intervalDelay = delay;
-        timeUnit = 0;
     }
 }
