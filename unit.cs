@@ -62,7 +62,13 @@ public class Bullet : Thing {
         moveSpeed = 1;
         horizontalSpeed = 1;
         verticalSpeed = 0;
-        setCode(new char[,] {{'o'}});
+        setCode(new char[,] {
+            {'a','b','c'}, 
+        });
+        // char[,] c = new char[2,1];
+        // c[0,0] = 'a';
+        // c[1,0] = 'b';
+        // setCode(c);
         Game.getQueue().bulletQueue.Add(this);
     }
 }

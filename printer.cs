@@ -30,8 +30,8 @@ public class Printer {
         // they change based on offset to only print code inside map
         int loop_x = 0;
         int loop_y = 0;
-        int limit_x = reference.getCode().GetLength(0);
-        int limit_y = reference.getCode().GetLength(1);
+        int limit_x = reference.getCode().GetLength(1);
+        int limit_y = reference.getCode().GetLength(0);
 
         // calc offset
         // negative when
@@ -53,7 +53,7 @@ public class Printer {
         // loop from loop_x to limit. at most on changes based on offset 
         for(int y = loop_y; y < limit_y; y++) {
             for(int x = loop_x; x < limit_x; x++) {
-                char codechar = reference.getCode()[loop_x, loop_y];
+                char codechar = reference.getCode()[y, x];
 
                 // if something to print and print(vs delete)
                 if(codechar != '\0') {
@@ -63,7 +63,7 @@ public class Printer {
                     }
 
                     // if print and bullet, then dont print reference
-                    if(!(print && reference is Bullet)) {
+                    if(reference is Bullet) {
                         map.setMap(printThing, pos_x + x, pos_y + y);
                     }
 

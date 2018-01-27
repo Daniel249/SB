@@ -29,7 +29,7 @@ public class Weapon {
 
     // set reference to this weapon in a unit
     public static void loadUnit(Unit u, int AS) {
-        Weapon w = new Weapon(u.getCode().GetLength(0), 0, AS);
+        Weapon w = new Weapon(u.getCode().GetLength(1), 0, AS);
         u.setWeapon(w);
         w.ship = u;
     }
