@@ -37,8 +37,8 @@ public class Battle {
         return queue.run();
     }
 
-    public void spawnThing(int pos_x, int pos_y) {
-        Thing thi = new Unit(pos_x, pos_y);
+    public void spawnThing(int pos_x, int pos_y, int moveDelay) {
+        Thing thi = new Unit(pos_x, pos_y, moveDelay);
         list.Add(thi);
     }
 
@@ -50,7 +50,8 @@ public class Battle {
     public Battle(int size_x, int size_y) {
         map = new Map(size_x, size_y, 5, 5);
         queue = new Queue();
-        Game.setBattle(this);        
+        Game.setBattle(this);
+        // toggle shooting to true
         player = new Player(true);
     }
 }

@@ -6,8 +6,6 @@ public class Player {
     // save movement direction until movement method
     int vertDirection;
     int horDirection;
-    // is actively firing
-    bool constantFire;
 
     // if constantMove holding key not needed for movement
     //bool constantMove;
@@ -53,27 +51,25 @@ public class Player {
 
             // f key : togle fire
             case ConsoleKey.F:
-                constantFire = !constantFire;
-                ship.toggleWeapon(constantFire);
+                ship.toggleWeapon();
                 break;
         }
     }
 
 
     void moveShip() {
-        ship.printMove(horDirection, vertDirection);
+        ship.move(horDirection, vertDirection);
     }
 
 
     // constructor
     public Player(bool fire) {
         // instantiate ship and load a weapon to it
-        ship = new Unit(0, Game.getMap().getSize_y()/2);
+        ship = new Unit(0, Game.getMap().getSize_y()/2, 1);
         // load weapon to ship. shoots every 15 cronometer ticks
-        Weapon.loadUnit(ship, 15);
+        Weapon.loadUnit(ship, 1, 15);
         // start shooting
-        constantFire = fire;
-        ship.toggleWeapon(constantFire);
+        ship.toggleWeapon(fire);
         Game.getBattle().getList().Add(ship);
         
         // set movement variable defaults

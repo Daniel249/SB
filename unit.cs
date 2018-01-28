@@ -3,12 +3,11 @@ using System.Collections.Generic;
 
 public class Unit : Thing {
     int health = 100;
-    int moveSpeed = 1;
-    // reference to weapon
-    List<Weapon> weapons;
     // reference toeither player or AI
 
     
+    // reference to weapon
+    List<Weapon> weapons;
     public void setWeapon(Weapon weapon) {
         weapons.Add(weapon);
     }
@@ -17,13 +16,18 @@ public class Unit : Thing {
     }
     public void toggleWeapon(bool isFiring) {
         foreach(Weapon w in weapons) {
-            w.toggleFire(isFiring);
+            w.toggle(isFiring);
+        }
+    }
+    public void toggleWeapon() {
+        foreach(Weapon w in weapons) {
+            w.toggle();
         }
     }
 
 
     // constructor
-    public Unit(int pos_x, int pos_y) : base(pos_x, pos_y) {
+    public Unit(int pos_x, int pos_y, int delay) : base(pos_x, pos_y, delay) {
         weapons = new List<Weapon>();
     }
 }
@@ -35,9 +39,7 @@ public class Bullet : Thing {
     // used in queue 
     int moveSpeed;
 
-    // triangular opposite and adjacent
-    int verticalSpeed; // opposite
-    int horizontalSpeed; // adjacent
+    
 
     // return veritcal- or horizontalSpeed based on bool parameter
     public int getMS(bool isHorizontal) {
@@ -49,17 +51,10 @@ public class Bullet : Thing {
     }
 
 
-    // move bullet. rn only to the right
-    // change to include angled travel
-    public void travel() {
-        printMove(1,0);
-    }
-
 
     // constructor
-    public Bullet(int pos_x, int pos_y) : base(pos_x, pos_y) {
+    public Bullet(int pos_x, int pos_y) : base(pos_x, pos_y, 1) {
         attackDamage = 1;
-        moveSpeed = 1;
         horizontalSpeed = 1;
         verticalSpeed = 0;
         setCode(new char[,] {
@@ -69,13 +64,12 @@ public class Bullet : Thing {
         // c[0,0] = 'a';
         // c[1,0] = 'b';
         // setCode(c);
-        Game.getQueue().bulletQueue.Add(this);
     }
 }
 
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Thing {
+public abstract class Thing : IChronometric{
     // position in map
     protected int position_x;
     protected int position_y;
@@ -110,6 +104,7 @@ public abstract class Thing {
     // ascii code
     // non '\0' spaces printed and deleted
     char[,] code;
+
     // get set
     public char[,] getCode() {
         return code;
@@ -120,43 +115,44 @@ public abstract class Thing {
 
     
     // movement
+    // triangular opposite and adjacent
+    protected int verticalSpeed; // opposite
+    protected int horizontalSpeed; // adjacent
     public void move(int dir_x, int dir_y) {
-        position_x += dir_x;
-        position_y += dir_y;
+        horizontalSpeed = dir_x;
+        verticalSpeed = dir_y;
     }
-    public void printMove(int dir_x, int dir_y) {
+    public void printMove() {
         Printer.deleteThing(this);
-        move(dir_x, dir_y);
+        position_x += horizontalSpeed;
+        position_y += verticalSpeed;
         Printer.printThing(this);
     }
     public void turn() {
         
     }
 
+    // implementation of IChronometric
+    Cronometer cronometro;
+    public override bool tick() {
+        if(_tick()) {
+            printMove();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     //constructor
     #region
-    public Thing(int pos_x, int pos_y) {
+    public Thing(int pos_x, int pos_y, int moveDelay) :
+    base(moveDelay) {
         position_x = pos_x;
         position_y = pos_y;
         // remove test
         test(3, 3);   
     }
-    public Thing(int pos_x, int pos_y, ConsoleColor _bcolor) {
-        position_x = pos_x;
-        position_y = pos_y;
-        bcolor = _bcolor;
-        // remove test
-        test(3, 3);   
-    }
-    public Thing(int pos_x, int pos_y, ConsoleColor _bcolor, ConsoleColor _fcolor) {
-        position_x = pos_x;
-        position_y = pos_y;
-        bcolor = _bcolor;
-        fcolor = _fcolor;
-        // remove test
-        test(3, 3);   
-    }
+
     void test(int x, int y) {
         code = new char[x,y];
         for (int i = 0; i < y; i++) {

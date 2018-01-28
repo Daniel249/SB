@@ -2,54 +2,37 @@ using System.Collections.Generic;
 using System.Threading;
 
 public class Queue {
-    // unit bullet and weapon lists
-    List<Thing> unitsQueue;
-    public List<Bullet> bulletQueue;
-    public List<Weapon> weaponQueue;
-
+    // list of units, bullets and weapons
+    List<IChronometric> chronoQueue;
     // turn length in ms. Process sleeps that ammoung once per run
-    int sleepDuration = 50;
+    int sleepDuration = 10;
     // number of cycles to reset to 0
     int intervalDelay = 30;
 
-    // generics test
-    public void addQueue<T>(List<T> list) {
-        if(typeof(T) == typeof(Bullet)) {
-
-        }
+    public void addToQueue(IChronometric chrono) {
+        chronoQueue.Add(chrono);
+    }
+    public bool removeFromQueue(IChronometric chrono) {
+        return chronoQueue.Remove(chrono);
     }
 
-
     public bool run() {
-    // iterate through copy of queue
-    // if unit still on original queue run turn on unit
-    // unit might have died or something idk
-        
         // turn Length
         Thread.Sleep(sleepDuration);
 
         // all bullets move
-        for(int i = 0; i < bulletQueue.Count; i++) {
-            Bullet u = bulletQueue[i];
-                // check if atackspeed 
-                if(modCounter(u.getMS(true))) {
-                    u.travel();
-                }
+        for(int i = 0; i < chronoQueue.Count; i++) {
+            IChronometric u = chronoQueue[i];
+            // check chronometer
+            u.tick();
+                
         }
-
-        //all active weapons fire
-        for(int i = 0; i < weaponQueue.Count; i++) {
-            Weapon u = weaponQueue[i];
-            u.checkFire();
-        }
-
         passTime();
         return true;
     }
 
 
     int timeUnit = 30;
-
     public bool modCounter(int AS) {
         if(timeUnit % AS == 0) {
             return true;
@@ -68,8 +51,6 @@ public class Queue {
 
     // constructor
     public Queue() {
-        unitsQueue = new List<Thing>();
-        bulletQueue = new List<Bullet>();
-        weaponQueue = new List<Weapon>();
+        chronoQueue = new List<IChronometric>();
     }
 }
