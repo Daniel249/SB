@@ -12,10 +12,6 @@ public class Battle {
     public Map getMap() {
         return map;
     }
-    public List<Thing> getList() {
-        return list;
-    }
-
 
 
     // main battle method on loop
@@ -37,19 +33,11 @@ public class Battle {
         return queue.run();
     }
 
-    public void spawnThing(int pos_x, int pos_y, int moveDelay) {
-        Thing thi = new Unit(pos_x, pos_y, moveDelay);
-        list.Add(thi);
-    }
 
     void endGame() {
 
     }
-    List<Thing> list = new List<Thing>();
-    public void deleteList() {
-        list = new List<Thing>();
-    }
-    
+
     // constructor
     public Battle(int size_x, int size_y) {
         map = new Map(size_x, size_y, 5, 5);

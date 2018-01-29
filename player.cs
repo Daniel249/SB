@@ -70,7 +70,6 @@ public class Player {
         Weapon.loadUnit(ship, 1, 15);
         // start shooting
         ship.toggleWeapon(fire);
-        Game.getBattle().getList().Add(ship);
         
         // set movement variable defaults
         vertDirection = 0;

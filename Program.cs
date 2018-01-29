@@ -7,12 +7,7 @@ class Program {
         Console.WriteLine("Hello World!");
 
         Terminal.setSize();
-        Battle bat = new Battle(200, 60);
-        foreach(Thing thi in bat.getList()) {
-            Printer.printThing(thi);
-        }
-        bat.deleteList();
-        // remove test
+        Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
         test(5);
         bat.run();
 
@@ -32,11 +27,10 @@ class Program {
         int limit_x = Game.getMap().getSize_x() - 5;
         int limit_y = Game.getMap().getSize_y() - 5;
 
-        int x = generator.Next(0, limit_x);
+        int x = generator.Next(10, limit_x);
         int y = generator.Next(0, limit_y);
 
         Unit u = new Unit(x, y, 1);
-        Game.getBattle().getList().Add(u);
     }
 }
 
