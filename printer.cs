@@ -63,7 +63,7 @@ public class Printer {
                     }
 
                     // if print and bullet, then dont print reference
-                    if(reference is Bullet) {
+                    if(reference is Unit) {
                         map.setMap(printThing, pos_x + x, pos_y + y);
                     }
 

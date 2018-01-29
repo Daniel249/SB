@@ -6,6 +6,16 @@ public class Unit : Thing {
     // reference toeither player or AI
 
     
+    public void receiveDamage(int damage) {
+        health -= damage;
+        if(health <= 0) {
+            delete();
+            Program.spawn();
+        }
+    }
+
+
+
     // reference to weapon
     List<Weapon> weapons;
     public void setWeapon(Weapon weapon) {
@@ -25,6 +35,9 @@ public class Unit : Thing {
         }
     }
 
+    // IChronometric implementation
+    protected override void everyTime() {}
+    protected override void everyTick() {}
 
     // constructor
     public Unit(int pos_x, int pos_y, int delay) : base(pos_x, pos_y, delay) {
@@ -39,22 +52,29 @@ public class Bullet : Thing {
     // used in queue 
     int moveSpeed;
 
-    
 
-    // return veritcal- or horizontalSpeed based on bool parameter
-    public int getMS(bool isHorizontal) {
-        if(isHorizontal) {
-            return horizontalSpeed;
+    public bool checkCollision() {
+        Thing target = Game.getMap().getMap(position_x, position_y);
+        // map populated only by units, no bullets
+        if(target != null) {
+            ((Unit)target).receiveDamage(attackDamage);
+            delete();
+            return true;
         } else {
-            return verticalSpeed;
+            return false;
         }
     }
 
 
-
+    // IChronometric implementation
+    protected override void everyTime() {}
+    protected override void everyTick() {
+        checkCollision();
+    }
+ 
     // constructor
-    public Bullet(int pos_x, int pos_y) : base(pos_x, pos_y, 1) {
-        attackDamage = 1;
+    public Bullet(int pos_x, int pos_y, int attackDmg) : base(pos_x, pos_y, 1) {
+        attackDamage = attackDmg;
         horizontalSpeed = 1;
         verticalSpeed = 0;
         setCode(new char[,] {
@@ -128,6 +148,10 @@ public abstract class Thing : IChronometric{
         position_y += verticalSpeed;
         Printer.printThing(this);
     }
+    public void delete() {
+        Printer.deleteThing(this);
+        removeFromQueue();
+    }
     public void turn() {
         
     }
@@ -135,13 +159,18 @@ public abstract class Thing : IChronometric{
     // implementation of IChronometric
     Cronometer cronometro;
     public override bool tick() {
+        everyTime();
         if(_tick()) {
             printMove();
+            everyTick();
             return true;
         } else {
             return false;
         }
     }
+    protected abstract void everyTime();
+    protected abstract void everyTick();
+
 
     //constructor
     #region
