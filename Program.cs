@@ -27,8 +27,8 @@ class Program {
         }
     }
     // used on test and on unit death
+    static Random generator = new Random();
     public static void spawn() {
-        Random generator = new Random();
         int limit_x = Game.getMap().getSize_x() - 5;
         int limit_y = Game.getMap().getSize_y() - 5;
 
