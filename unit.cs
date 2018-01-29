@@ -42,6 +42,7 @@ public class Unit : Thing {
     // constructor
     public Unit(int pos_x, int pos_y, int delay) : base(pos_x, pos_y, delay) {
         weapons = new List<Weapon>();
+        Printer.printThing(this);
     }
 }
 // bullets are Things in constant movement
@@ -143,10 +144,12 @@ public abstract class Thing : IChronometric{
         verticalSpeed = dir_y;
     }
     public void printMove() {
-        Printer.deleteThing(this);
-        position_x += horizontalSpeed;
-        position_y += verticalSpeed;
-        Printer.printThing(this);
+        if(horizontalSpeed != 0 || verticalSpeed != 0) {
+            Printer.deleteThing(this);
+            position_x += horizontalSpeed;
+            position_y += verticalSpeed;
+            Printer.printThing(this);
+        }
     }
     public void delete() {
         Printer.deleteThing(this);
