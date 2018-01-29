@@ -27,10 +27,6 @@ public class Map {
 
     // 2d jagged array 150*80. first dimension y. second dimension x
     Thing[,] mapp;
-    // get map reference
-    public Thing[,] getMap() {
-        return mapp;
-    }
 
     // get unit in map
     public Thing getMap(int pos_x, int pos_y) {
