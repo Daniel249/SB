@@ -9,6 +9,8 @@ public class Unit : Thing {
         health -= damage;
         if(health <= 0) {
             die();
+        } else {
+            Printer.printThing(this);
         }
     }
     void die() {
@@ -81,7 +83,6 @@ public class Bullet : Thing {
  
     // constructor
     public Bullet(int pos_x, int pos_y, int attackDmg, bool team) : base(pos_x, pos_y, 1, team) {
-        bounded = true;
         attackDamage = attackDmg;
         verticalSpeed = 0;
         setCode(new char[,] {
@@ -147,7 +148,6 @@ public abstract class Thing : IChronometric{
     
     // movement
     // triangular opposite and adjacent
-    public bool bounded = false;
     protected int verticalSpeed; // opposite
     protected int horizontalSpeed; // adjacent
     public void move(int dir_x, int dir_y) {
@@ -170,9 +170,11 @@ public abstract class Thing : IChronometric{
     bool checkBounded() {
         int new_x = position_x + horizontalSpeed;
         int new_y = position_y + verticalSpeed;
+        int dimension_y = code.GetLength(0);
         if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
             return false;
-        } else if(new_y < 0 || new_y >= Game.getMap().getSize_y()) {
+        } else if(new_y < 0 || new_y + dimension_y - 1>= Game.getMap().getSize_y()) {
+            // main ship will stop before lower part of code
             return false;
         } else {
             return true;
