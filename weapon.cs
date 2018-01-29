@@ -7,6 +7,7 @@ public class Weapon : IChronometric {
     Unit ship;
     int attackDamage;
 
+    bool direction;
 
     // implementation of IChronometric
     public override bool tick() {
@@ -21,13 +22,13 @@ public class Weapon : IChronometric {
 
     // spawn bullet. can be accessed directly altough build for checkFire with cronometer
     void fire() {
-        Bullet bl = new Bullet(position_x + ship.getPos_x(), position_y + ship.getPos_y(), 20);
+        Bullet bl = new Bullet(position_x + ship.getPos_x(), position_y + ship.getPos_y(), attackDamage, direction);
     }
 
 
     // set reference to this weapon in a unit
-    public static void loadUnit(Unit u, int attackDamage, int attackDelay) {
-        Weapon w = new Weapon(u.getCode().GetLength(1), 0, attackDelay);
+    public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction) {
+        Weapon w = new Weapon(u.getCode().GetLength(1), 0, attackDelay, direction);
         w.attackDamage = attackDamage;
         u.setWeapon(w);
         w.ship = u;
@@ -35,10 +36,11 @@ public class Weapon : IChronometric {
 
 
     // constructor
-    public Weapon(int pos_x, int pos_y, int attackDelay) : 
+    public Weapon(int pos_x, int pos_y, int attackDelay, bool dir) : 
     base(attackDelay) {
         position_x = pos_x;
         position_y = pos_y;
+        direction = dir;
     }
 }
 // change
