@@ -3,7 +3,7 @@ public class Battle {
     Map map;
     Queue queue;
     Player player;
-    List<Thing> list = new List<Thing>();
+
     
     // get set
     public Queue getQueue() {
@@ -44,6 +44,10 @@ public class Battle {
 
     void endGame() {
 
+    }
+    List<Thing> list = new List<Thing>();
+    public void deleteList() {
+        list = new List<Thing>();
     }
     
     // constructor
