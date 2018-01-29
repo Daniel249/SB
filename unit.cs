@@ -156,10 +156,26 @@ public abstract class Thing : IChronometric{
     }
     public void printMove() {
         if(horizontalSpeed != 0 || verticalSpeed != 0) {
+            if(checkBounded()) {
                 Printer.deleteThing(this);
                 position_x += horizontalSpeed;
                 position_y += verticalSpeed;
                 Printer.printThing(this);
+            } else if(this is Bullet) {
+                // if it would fall off map. and is a bullet destroy
+                delete();
+            }
+        }
+    }
+    bool checkBounded() {
+        int new_x = position_x + horizontalSpeed;
+        int new_y = position_y + verticalSpeed;
+        if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
+            return false;
+        } else if(new_y < 0 || new_y >= Game.getMap().getSize_y()) {
+            return false;
+        } else {
+            return true;
         }
     }
     public void delete() {
