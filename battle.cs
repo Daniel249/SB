@@ -4,7 +4,6 @@ public class Battle {
     Queue queue;
     Player player;
 
-    
     // get set
     public Queue getQueue() {
         return queue;
@@ -12,7 +11,6 @@ public class Battle {
     public Map getMap() {
         return map;
     }
-
 
     // main battle method on loop
     public void run() {
@@ -24,15 +22,12 @@ public class Battle {
             // run player and AI turn
             player.runTurn();
             turn();
-            // run gameplay extras
-            // Game.runTurn();
         }
     }
     // run queue
     public bool turn() {
         return queue.run();
     }
-
 
     void endGame() {
 

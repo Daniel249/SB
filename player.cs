@@ -6,9 +6,6 @@ public class Player {
     // save movement direction until movement method
     int vertDirection;
     int horDirection;
-
-    // if constantMove holding key not needed for movement
-    //bool constantMove;
     
     
     // main player method. runs once per battle cycle

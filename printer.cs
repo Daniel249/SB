@@ -34,7 +34,7 @@ public class Printer {
         int limit_y = reference.getCode().GetLength(0);
 
         // calc offset
-        // negative when
+        // negative when left/upper part should not be drawn
         int offset_x = calcOffset(map.getSize_x(), pos_x, limit_x);
         int offset_y = calcOffset(map.getSize_y(), pos_y, limit_y);
 
@@ -62,11 +62,11 @@ public class Printer {
                         codechar = ' ';
                     }
 
-                    // if print and bullet, then dont print reference
+                    // if unit print reference
                     if(reference is Unit) {
                         map.setMap(printThing, pos_x + x, pos_y + y);
                     }
-
+                    // print to console
                     Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
                 }
             }

@@ -25,7 +25,7 @@ public class Map {
     }
 
 
-    // 2d jagged array 150*80. first dimension y. second dimension x
+    // 2d array first dimension y. second dimension x
     Thing[,] mapp;
 
     // get unit in map

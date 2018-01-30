@@ -25,24 +25,11 @@ static class Terminal {
         // set buffer automatically
         Console.SetWindowSize(size_x, size_y);
         Console.SetBufferSize(size_x, size_y);
-        // ShowWindow(ThisConsole, MAXIMIZE);
+
         Console.Clear();
         Console.CursorVisible = false;
         //Console.SetWindowPosition(0, 0);
     }
-
-// [DllImport("kernel32.dll", ExactSpelling = true)]
-// private static extern IntPtr GetConsoleWindow();
-// private static IntPtr ThisConsole = GetConsoleWindow();
-
-// //[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-
-// private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-// private const int HIDE = 0;
-// private const int MAXIMIZE = 3;
-// private const int MINIMIZE = 6;
-// private const int RESTORE = 9;
 
 
     // main print to console method

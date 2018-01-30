@@ -24,8 +24,7 @@ public class Queue {
         for(int i = 0; i < chronoQueue.Count; i++) {
             IChronometric u = chronoQueue[i];
             // check chronometer
-            u.tick();
-                
+            u.tick();               
         }
         passTime();
         return true;

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 class Program {
     static void Main(string[] args) {
-        Console.WriteLine("Hello World!");
 
         Terminal.setSize();
         Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
@@ -17,6 +16,8 @@ class Program {
         // Filereader f = new Filereader("./textures.txt");
         // f.printTexture("main");
     }
+
+    
     // used on Main
     public static void test(int num) {
         for(int i = 0; i < num; i++) {
