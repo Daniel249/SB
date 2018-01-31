@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Unit : Thing {
+public class Unit : Entity {
     int health = 100;
     // reference toeither player or AI
     
@@ -10,7 +10,7 @@ public class Unit : Thing {
         if(health <= 0) {
             die();
         } else {
-            Printer.printThing(this);
+            Printer.printEntity(this);
         }
     }
     void die() {
@@ -50,17 +50,17 @@ public class Unit : Thing {
     // constructor
     public Unit(int pos_x, int pos_y, int delay, bool team) : base(pos_x, pos_y, delay, team) {
         weapons = new List<Weapon>();
-        Printer.printThing(this);
+        Printer.printEntity(this);
     }
 }
-// bullets are Things in constant movement
+// bullets are Entitys in constant movement
 // they are printed but not referenced in map, so nothing interacts with them
 // they do interact with other things through references in map
-public class Bullet : Thing {
+public class Bullet : Entity {
     readonly int attackDamage;
 
     public bool checkCollision() {
-        Thing target = Game.getMap().getMap(position_x, position_y);
+        Entity target = Game.getMap().getMap(position_x, position_y);
         // map populated only by units, no bullets
         if(target != null && target.getTeam() != this.getTeam()) {
             ((Unit)target).receiveDamage(attackDamage);

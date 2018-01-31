@@ -43,7 +43,7 @@ public class Cronometer {
 
 
 // has a chronometer with a certain interval
-// aplicable to Things and weapons. all of which are referenced in Queue.List<IChronometric>
+// aplicable to Entitys and weapons. all of which are referenced in Queue.List<IChronometric>
 public abstract class IChronometric {
     Cronometer cronometro;
     // main method of IChronometrics

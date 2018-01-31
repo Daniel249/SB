@@ -3,18 +3,18 @@ using System;
 public class Printer {
     // print and delete methods
     // both use printdelete targeted at certain point to print either a char o a space
-    public static void deleteThing(Thing entity) {
+    public static void deleteEntity(Entity entity) {
         printdelete(entity, false);
     }
-    public static void printThing(Thing entity) {
+    public static void printEntity(Entity entity) {
         printdelete(entity, true);
     }
 
     // main print method
-    static void printdelete(Thing entity, bool print) {
+    static void printdelete(Entity entity, bool print) {
         // defines reference and colors to print
         // color and reference
-        Thing reference;
+        Entity reference;
         ConsoleColor bcolor;
         ConsoleColor fcolor;
 

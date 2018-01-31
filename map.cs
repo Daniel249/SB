@@ -26,10 +26,10 @@ public class Map {
 
 
     // 2d array first dimension y. second dimension x
-    readonly Thing[,] mapp;
+    readonly Entity[,] mapp;
 
     // get unit in map
-    public Thing getMap(int pos_x, int pos_y) {
+    public Entity getMap(int pos_x, int pos_y) {
         if(!checkLocation(pos_x, pos_y)) {
             return null;
         }
@@ -37,7 +37,7 @@ public class Map {
     }
 
     // set unit in map
-    public void setMap(Thing u, int pos_x, int pos_y) {
+    public void setMap(Entity u, int pos_x, int pos_y) {
         if(!checkLocation(pos_x, pos_y)) {
             return;
         }
@@ -64,6 +64,6 @@ public class Map {
         size_y = _size_y;
         location_x = loc_x;
         location_y = loc_y;
-        mapp = new Thing[size_x, size_y];
+        mapp = new Entity[size_x, size_y];
     }
 }

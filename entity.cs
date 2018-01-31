@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Thing : IChronometric{
+public abstract class Entity : IChronometric{
     // position in map
     protected int position_x;
     protected int position_y;
@@ -46,10 +46,10 @@ public abstract class Thing : IChronometric{
     public void printMove() {
         if(horizontalSpeed != 0 || verticalSpeed != 0) {
             if(checkBounded()) {
-                Printer.deleteThing(this);
+                Printer.deleteEntity(this);
                 position_x += horizontalSpeed;
                 position_y += verticalSpeed;
-                Printer.printThing(this);
+                Printer.printEntity(this);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
@@ -70,7 +70,7 @@ public abstract class Thing : IChronometric{
         }
     }
     public void delete() {
-        Printer.deleteThing(this);
+        Printer.deleteEntity(this);
         removeFromQueue();
     }
 
@@ -95,7 +95,7 @@ public abstract class Thing : IChronometric{
 
     //constructor
     #region
-    protected Thing(int pos_x, int pos_y, int moveDelay, bool team) :
+    protected Entity(int pos_x, int pos_y, int moveDelay, bool team) :
     base(moveDelay) {
         position_x = pos_x;
         position_y = pos_y;
