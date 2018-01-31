@@ -40,6 +40,14 @@ static class Terminal {
         Console.Write(cha);
         Console.ResetColor();
     }
+    // print strings
+    public static void PrintString(string str, int pos_x, int pos_y, ConsoleColor bcolor, ConsoleColor fcolor) {
+        Console.SetCursorPosition(pos_x, pos_y);
+        Console.ForegroundColor = fcolor;
+        Console.BackgroundColor = bcolor;
+        Console.Write(str);
+        Console.ResetColor();
+    }
 
 
     // default console colors

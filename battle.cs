@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 public class Battle {
-    Map map;
-    Queue queue;
-    Player player;
+    readonly Map map;
+    readonly Queue queue;
+    readonly Player player;
 
     // get set
     public Queue getQueue() {
@@ -30,7 +30,7 @@ public class Battle {
     }
 
     void endGame() {
-
+        // run at end game
     }
 
     // constructor

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 public class Player {
-    Unit ship;
+    readonly Unit ship;
     // save movement direction until movement method
     int vertDirection;
     int horDirection;
@@ -49,6 +49,9 @@ public class Player {
             // f key : togle fire
             case ConsoleKey.F:
                 ship.toggleWeapon();
+                break;
+            default:
+                Terminal.PrintString("unsupportd kek", 30, 0, ConsoleColor.Black, ConsoleColor.White);
                 break;
         }
     }

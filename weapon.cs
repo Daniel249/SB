@@ -1,13 +1,13 @@
 
 public class Weapon : IChronometric {
     // position in unit
-    int position_x;
-    int position_y;
+    readonly int position_x;
+    readonly int position_y;
     // reference to unit
     Unit ship;
     int attackDamage;
 
-    bool direction;
+    readonly bool direction;
 
     // implementation of IChronometric
     public override bool tick() {

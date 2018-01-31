@@ -3,11 +3,11 @@ using System.Threading;
 
 public class Queue {
     // list of units, bullets and weapons
-    List<IChronometric> chronoQueue;
+    readonly List<IChronometric> chronoQueue;
     // turn length in ms. Process sleeps that ammoung once per run
-    int sleepDuration = 10;
+    const int sleepDuration = 10;
     // number of cycles to reset to 0
-    int intervalDelay = 30;
+    const int intervalDelay = 30;
 
     public void addToQueue(IChronometric chrono) {
         chronoQueue.Add(chrono);

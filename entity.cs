@@ -15,8 +15,8 @@ public abstract class Thing : IChronometric{
         return position_y;
     }
     
-    // pointing direcion. true to the right for player
-    bool direction = false;
+    // pointing direction. true to the right for player
+    readonly bool direction = false;
     public bool getTeam() {
         return direction;
     }
@@ -95,7 +95,7 @@ public abstract class Thing : IChronometric{
 
     //constructor
     #region
-    public Thing(int pos_x, int pos_y, int moveDelay, bool team) :
+    protected Thing(int pos_x, int pos_y, int moveDelay, bool team) :
     base(moveDelay) {
         position_x = pos_x;
         position_y = pos_y;

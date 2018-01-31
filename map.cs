@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class Map {
     // map size
-    int size_x;
-    int size_y;
+    readonly int size_x;
+    readonly int size_y;
     // get set
     public int getSize_x() {
         return size_x;
@@ -15,8 +15,8 @@ public class Map {
 
 
     // map location
-    int location_x;
-    int location_y;
+    readonly int location_x;
+    readonly int location_y;
     public int getLocation_x() {
         return location_x;
     }
@@ -26,7 +26,7 @@ public class Map {
 
 
     // 2d array first dimension y. second dimension x
-    Thing[,] mapp;
+    readonly Thing[,] mapp;
 
     // get unit in map
     public Thing getMap(int pos_x, int pos_y) {

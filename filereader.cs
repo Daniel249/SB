@@ -1,7 +1,7 @@
 using System;
 public class Filereader {
     // path to file 
-    string path;
+    readonly string path;
     // holds each line of file
     string[] textureFile;
 
@@ -16,9 +16,9 @@ public class Filereader {
             Console.WriteLine(e.Message);
         }
     }
-    // process textures
-    void processTextures() {
 
+    void processTextures() {
+    // process textures
     }
 
     

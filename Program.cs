@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 
 
-class Program {
+static class Program {
     static void Main(string[] args) {
 
         Terminal.setSize();
         Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
         test(5);
-        Console.SetCursorPosition(0,0);
-        Console.WriteLine("move: up down keys, left key to stop    toggle fire: F    exit: esc");
+        Terminal.PrintString("move: up down keys, left key to stop    toggle fire: F    exit: esc", 10, 0, ConsoleColor.Black, ConsoleColor.White);
         bat.run();
 
         // test reader

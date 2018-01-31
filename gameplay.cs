@@ -2,14 +2,13 @@ using System;
 // holds map battle and queue references
 // sets up  and ends the game. runs gameplay skripts
 public static class Game {
-    // run algorithm avery battle cycle
+    
     public static void runTurn() {
-
+        // run algorithm avery battle cycle
     }
-    // change
-    // start of game set up
     public static void setUp() {
-        
+        // change
+        // start of game set up
     }
     // change
     // read textures.txt and process data

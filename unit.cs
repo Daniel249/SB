@@ -25,7 +25,7 @@ public class Unit : Thing {
     }
 
     // reference to weapon
-    List<Weapon> weapons;
+    readonly List<Weapon> weapons;
     public void setWeapon(Weapon weapon) {
         weapons.Add(weapon);
     }
@@ -57,7 +57,7 @@ public class Unit : Thing {
 // they are printed but not referenced in map, so nothing interacts with them
 // they do interact with other things through references in map
 public class Bullet : Thing {
-    int attackDamage;
+    readonly int attackDamage;
 
     public bool checkCollision() {
         Thing target = Game.getMap().getMap(position_x, position_y);
