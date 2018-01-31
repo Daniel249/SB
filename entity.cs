@@ -45,6 +45,7 @@ public abstract class Entity : IChronometric{
 
     public void printMove() {
         if(horizontalSpeed != 0 || verticalSpeed != 0) {
+            // if inside bounds
             if(checkBounded()) {
                 Printer.deleteEntity(this);
                 position_x += horizontalSpeed;
@@ -62,7 +63,7 @@ public abstract class Entity : IChronometric{
         int dimension_y = texture.GetLength(0);
         if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
             return false;
-        } else if(new_y < 0 || new_y + dimension_y - 1>= Game.getMap().getSize_y()) {
+        } else if(new_y < 0 || new_y + dimension_y > Game.getMap().getSize_y()) {
             // main ship will stop before lower part of texture
             return false;
         } else {
@@ -94,7 +95,6 @@ public abstract class Entity : IChronometric{
 
 
     //constructor
-    #region
     protected Entity(int pos_x, int pos_y, int moveDelay, bool team) :
     base(moveDelay) {
         position_x = pos_x;
@@ -107,31 +107,8 @@ public abstract class Entity : IChronometric{
             bcolor = ConsoleColor.Magenta;
         }
         // remove test
-        texture = new Texture(test(3, 3), bcolor, fcolor);   
+        texture = new Texture(Test.test(this, 3, 3), bcolor, fcolor);   
         direction = team;
 
     }
-
-    char[,] test(int x, int y) {
-        char [,] testCode;
-        // test code for units. 3x3 asterisks
-        if(this is Unit) {
-            testCode = new char[x,y];
-            for (int i = 0; i < y; i++) {
-                for (int j = 0; j < x; j++) {
-                    testCode[j,i] = '*';
-                }
-            }
-            return testCode;
-        } else if(this is Bullet) {
-        // test code for bullets 'abc'
-            testCode = new char[,] {
-            {'a','b','c'} 
-        };
-        } else {
-            testCode = new char[,] { {'O'} };
-        }
-        return testCode;
-    }
-#endregion
 }
