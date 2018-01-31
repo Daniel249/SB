@@ -81,9 +81,7 @@ public class Bullet : Thing {
     public Bullet(int pos_x, int pos_y, int attackDmg, bool team) : base(pos_x, pos_y, 1, team) {
         attackDamage = attackDmg;
         verticalSpeed = 0;
-        setCode(new char[,] {
-            {'a','b','c'} 
-        });
+
         if(team) {
             horizontalSpeed = 1;
         } else {

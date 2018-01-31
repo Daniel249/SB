@@ -21,33 +21,14 @@ public abstract class Thing : IChronometric{
         return direction;
     }
 
-    // color
-    ConsoleColor bcolor;
-    ConsoleColor fcolor;
-    // get set
-    public ConsoleColor getBColor() {
-        return bcolor;
-    }
-    public ConsoleColor getFColor() {
-        return fcolor;
-    } 
-    public void setBColor(ConsoleColor _bcolor) {
-        bcolor = _bcolor;
-    }
-    public void setFColor(ConsoleColor _fcolor) {
-        fcolor = _fcolor;
-    }
 
-    // ascii code
-    // non '\0' spaces printed and deleted
-    char[,] code;
+    // ascii image
+    // stored in 2d char array
+    protected Texture texture; 
 
     // get set
-    public char[,] getCode() {
-        return code;
-    }
-    public void setCode(char[,] newCode) {
-        code = newCode;
+    public Texture getTexture() {
+        return texture;
     }
 
     
@@ -55,10 +36,13 @@ public abstract class Thing : IChronometric{
     // triangular opposite and adjacent
     protected int verticalSpeed; // opposite
     protected int horizontalSpeed; // adjacent
+    // set
     public void move(int dir_x, int dir_y) {
         horizontalSpeed = dir_x;
         verticalSpeed = dir_y;
     }
+
+
     public void printMove() {
         if(horizontalSpeed != 0 || verticalSpeed != 0) {
             if(checkBounded()) {
@@ -75,11 +59,11 @@ public abstract class Thing : IChronometric{
     bool checkBounded() {
         int new_x = position_x + horizontalSpeed;
         int new_y = position_y + verticalSpeed;
-        int dimension_y = code.GetLength(0);
+        int dimension_y = texture.GetLength(0);
         if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
             return false;
         } else if(new_y < 0 || new_y + dimension_y - 1>= Game.getMap().getSize_y()) {
-            // main ship will stop before lower part of code
+            // main ship will stop before lower part of texture
             return false;
         } else {
             return true;
@@ -89,11 +73,12 @@ public abstract class Thing : IChronometric{
         Printer.deleteThing(this);
         removeFromQueue();
     }
+
     public void turn() {
         
     }
 
-
+    // IChronometric implementation
     public override bool tick() {
         everyTime();
         if(_tick()) {
@@ -114,24 +99,39 @@ public abstract class Thing : IChronometric{
     base(moveDelay) {
         position_x = pos_x;
         position_y = pos_y;
-        // remove test
-        test(3, 3);   
-        direction = team;
+        ConsoleColor bcolor;
+        ConsoleColor fcolor = ConsoleColor.Black;
         if(team) {
             bcolor = ConsoleColor.Cyan;
         } else {
             bcolor = ConsoleColor.Magenta;
         }
+        // remove test
+        texture = new Texture(test(3, 3), bcolor, fcolor);   
+        direction = team;
 
     }
 
-    void test(int x, int y) {
-        code = new char[x,y];
-        for (int i = 0; i < y; i++) {
-            for (int j = 0; j < x; j++) {
-                code[j,i] = '*';
+    char[,] test(int x, int y) {
+        char [,] testCode;
+        // test code for units. 3x3 asterisks
+        if(this is Unit) {
+            testCode = new char[x,y];
+            for (int i = 0; i < y; i++) {
+                for (int j = 0; j < x; j++) {
+                    testCode[j,i] = '*';
+                }
             }
+            return testCode;
+        } else if(this is Bullet) {
+        // test code for bullets 'abc'
+            testCode = new char[,] {
+            {'a','b','c'} 
+        };
+        } else {
+            testCode = new char[,] { {'O'} };
         }
+        return testCode;
     }
 #endregion
 }

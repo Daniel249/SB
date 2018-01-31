@@ -29,7 +29,7 @@ public class Weapon : IChronometric {
 
     // set reference to this weapon in a unit
     public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction) {
-        Weapon w = new Weapon(u.getCode().GetLength(1), 0, attackDelay, direction);
+        Weapon w = new Weapon(u.getTexture().GetLength(1), 0, attackDelay, direction);
         w.attackDamage = attackDamage;
         u.setWeapon(w);
         w.ship = u;
