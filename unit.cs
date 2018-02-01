@@ -54,7 +54,7 @@ public class Unit : Entity {
     }
     // with texture
     public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey) : 
-            base(pos_x, pos_y, delay, team, textureKey) {
+    base(pos_x, pos_y, delay, team, textureKey) {
         weapons = new List<Weapon>();
         Printer.printEntity(this);
     }
@@ -84,7 +84,8 @@ public class Bullet : Entity {
     }
  
     // constructor
-    public Bullet(int pos_x, int pos_y, int attackDmg, bool team) : base(pos_x, pos_y, 1, team) {
+    public Bullet(int pos_x, int pos_y, int attackDmg, bool team, string textureKey) : 
+    base(pos_x, pos_y, 1, team, textureKey) {
         attackDamage = attackDmg;
         verticalSpeed = 0;
 

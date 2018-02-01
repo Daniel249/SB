@@ -23,7 +23,7 @@ public class Weapon : IChronometric {
     // spawn bullet. can be accessed directly altough build for checkFire with cronometer
     void fire() {
         Bullet bl = new Bullet(position_x + ship.getPos_x(), position_y + ship.getPos_y(),
-                                attackDamage, direction);
+                                attackDamage, direction, "bullet");
     }
 
 

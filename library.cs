@@ -49,4 +49,8 @@ static class Test {
         Unit u = new Unit(x, y, 1, false, "minor");
         Weapon.loadUnit(u, 0, 45, false);
     }
+    // spawn a single enemy
+    public static void spawn(string textureKey) {
+        Unit u = new Unit(Game.getMap().getSize_x() - 50, Game.getMap().getSize_y()/2, 1, false, "major");
+    }
 }
