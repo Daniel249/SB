@@ -23,7 +23,7 @@ Otherwise textures will reset to defaults
     - Toggle firing
   - Projectile and hitbox collision
   - Print texture to console
-  - Infinite minigame
+  - Endless minigame
 - Texture loading and processing
   - Read texture file
   - Determine texture size and key
