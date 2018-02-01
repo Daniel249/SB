@@ -82,7 +82,10 @@ public class Texture {
     static char[,] defaultTexture = new char[,] {
         {'*','*','*'},
         {'*','*','*'},
-        {'*','*','*'},
+        {'*','*','*'}
+    };
+    static char[,] defaultBullet = new char[,] {
+        {'a','b','c'}
     };
     // constructor
     public Texture(char[,] _code, ConsoleColor bcolor, ConsoleColor fcolor) {
