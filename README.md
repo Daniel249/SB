@@ -4,6 +4,9 @@ Console based shooter arcade game
 
 Move with up down keys, stop with left key
 
+Textures.txt needs to be on the same folder as executable  
+Otherwise unit textures will reset to defaults
+
 TO DO  
 
 rework travel() en Bullet to either,  
