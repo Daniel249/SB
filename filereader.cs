@@ -8,7 +8,7 @@ static class Filereader {
     // holds each line of file
     // static string[] textureFile;
     // holds textures
-    static Dictionary<string, List<string>> rawTextures = new Dictionary<string, List<string>>();
+    static Dictionary<string, List<string>> rawTextures;
 
 
     // search in dictionary. if not found, return null
@@ -20,8 +20,13 @@ static class Filereader {
     // main method. called in gameplay
     // reads and then processes text file. output is saved in dictionary
     public static void processTextures() {
-        string[] textureFile = readFile();
+        // initialize dictionary
+        rawTextures = new Dictionary<string, List<string>>();
 
+        string[] textureFile = readFile();
+        if(textureFile == null) {
+            return;
+        }
         string actualName = null;
         List<string> loadingTexture = new List<string>();
 
@@ -54,7 +59,7 @@ static class Filereader {
         try {
             code = System.IO.File.ReadAllLines(@path);
         } catch(Exception e) {
-            Terminal.PrintString(e.Message, 30, 0);
+            Terminal.PrintString(e.Message, 0, 1);
         }
         return code;
     }

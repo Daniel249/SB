@@ -49,6 +49,8 @@ public class Texture {
          // if rawText
          if(rawTexture != null) {
              newTexture = parseTexture(rawTexture);
+         } else if(addressName == "bullet") {
+             newTexture = defaultBullet;
          }
          return newTexture;
      }
