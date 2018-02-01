@@ -8,8 +8,31 @@ Move with up down keys, stop with left key
 Textures.txt needs to be on the same folder as executable  
 Otherwise textures will reset to defaults
 
-TO DO  
+&nbsp;
 
+&nbsp;
+## In a nutshell
+- Basic engine
+  - Game set up
+  - Game loop
+  - Map boundaries
+  - Unit movement
+  - Weapon loading
+  - Chronometric objects
+    - Attack- and MoveSpeed mechanics
+    - Toggle firing
+  - Projectile and hitbox collision
+  - Print texture to console
+  - Infinite minigame
+- Texture loading and processing
+  - Read texture file
+  - Determine texture size and key
+  - Storage in texture book
+&nbsp;  
+&nbsp;  
+
+&nbsp;  
+### TO DO
 rework travel() en Bullet to either,  
 have a direction based on (TO DO)Thing.direction,  1*  
 or base it completely on (non positive only) coordinate direction
