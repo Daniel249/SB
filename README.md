@@ -5,8 +5,6 @@ Console based shooter arcade game
 Move with up down keys, stop with left key
 
 TO DO  
-bool direction en Thing. player/enemy  
-enemies have their textures turned around on construction
 
 rework travel() en Bullet to either,  
 have a direction based on (TO DO)Thing.direction,  1*  
@@ -16,24 +14,20 @@ contructor en Bullet
 Bullet base values (rn they're test values only true for player)  
 contructor en Weapon to include direction (if 1*) and position in Unit
 
-rework textures to be self contained in a class outside thing  
+bullet printing pattern based on direction. this will make the bullets head (hitbox) more accurate
+
 support either individual color per pixel or per horizontal line
 
-bind unit or player speed and battle cycles
-
-create outter bounds of map and clear references to things leaving it
-
 HI  
-rework constantFire mechanic  
-move functionality to cronometer. if isTicking != true there's no firing
 
 LI  
 Player.runturn probar con y sin if(console.KeyAvailable)
 
 posibles optimizaciones en printer.cs  
 print- y deleteThing no se basan en printdelete.
+calc second offset based on last position and new position
 
-
+change to jagged array texture for performance
 
 AI
 

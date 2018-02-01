@@ -6,6 +6,7 @@ static class Program {
     static void Main(string[] args) {
 
         Terminal.setSize();
+        Game.setUp();
         Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
         test(5);
         Terminal.PrintString("move: up down keys, left key to stop    toggle fire: F    exit: esc", 10, 0, ConsoleColor.Black, ConsoleColor.White);

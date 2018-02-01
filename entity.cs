@@ -109,6 +109,21 @@ public abstract class Entity : IChronometric{
         // remove test
         texture = new Texture(Test.test(this, 3, 3), bcolor, fcolor);   
         direction = team;
-
+    }
+    // with texture
+    protected Entity(int pos_x, int pos_y, int moveDelay, bool team, char[,] _texture) :
+    base(moveDelay) {
+        position_x = pos_x;
+        position_y = pos_y;
+        ConsoleColor bcolor;
+        ConsoleColor fcolor = ConsoleColor.Black;
+        if(team) {
+            bcolor = ConsoleColor.Cyan;
+        } else {
+            bcolor = ConsoleColor.Magenta;
+        }
+        // remove test
+        texture = new Texture(_texture, bcolor, fcolor); 
+        direction = team;
     }
 }

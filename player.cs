@@ -65,7 +65,7 @@ public class Player {
     // constructor
     public Player(bool fire) {
         // instantiate ship and load a weapon to it
-        ship = new Unit(0, Game.getMap().getSize_y()/2, 1, true);
+        ship = new Unit(0, Game.getMap().getSize_y()/2, 1, true, Texture.assignTexture("main"));
         // load weapon to ship. shoots every 15 cronometer ticks
         Weapon.loadUnit(ship, 20, 15, true);
         // start shooting

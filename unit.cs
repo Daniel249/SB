@@ -52,6 +52,12 @@ public class Unit : Entity {
         weapons = new List<Weapon>();
         Printer.printEntity(this);
     }
+    // with texture
+    public Unit(int pos_x, int pos_y, int delay, bool team, char[,] _texture) : 
+            base(pos_x, pos_y, delay, team, _texture) {
+        weapons = new List<Weapon>();
+        Printer.printEntity(this);
+    }
 }
 // bullets are Entitys in constant movement
 // they are printed but not referenced in map, so nothing interacts with them

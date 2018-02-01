@@ -48,6 +48,10 @@ static class Terminal {
         Console.Write(str);
         Console.ResetColor();
     }
+    // print with defult colors
+    public static void PrintString(string str, int pos_x, int pos_y) {
+        PrintString(str, pos_x, pos_y, bcolor, fcolor);
+    }
 
 
     // default console colors

@@ -7,13 +7,12 @@ public static class Game {
         // run algorithm avery battle cycle
     }
     public static void setUp() {
-        // change
-        // start of game set up
+        loadGraphics();
     }
-    // change
-    // read textures.txt and process data
-    public static bool loadGraphics() {
 
+    // read textures.txt and process data
+    static bool loadGraphics() {
+        Filereader.processTextures();
         return true;
     }
 
