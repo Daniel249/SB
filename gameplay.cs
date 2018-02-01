@@ -8,6 +8,11 @@ public static class Game {
     }
     public static void setUp() {
         loadGraphics();
+        // print instructions
+        Terminal.PrintString(
+            "move: up down keys, left key to stop    toggle fire: F    exit: esc", 
+            10, 0, ConsoleColor.Black, ConsoleColor.White
+        );
     }
 
     // read textures.txt and process data

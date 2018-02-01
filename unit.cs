@@ -20,7 +20,7 @@ public class Unit : Entity {
         weapons.Clear();
         delete();
         if(!getTeam()) {
-            Program.spawn();
+            Test.spawn();
         }
     }
 
@@ -53,8 +53,8 @@ public class Unit : Entity {
         Printer.printEntity(this);
     }
     // with texture
-    public Unit(int pos_x, int pos_y, int delay, bool team, char[,] _texture) : 
-            base(pos_x, pos_y, delay, team, _texture) {
+    public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey) : 
+            base(pos_x, pos_y, delay, team, textureKey) {
         weapons = new List<Weapon>();
         Printer.printEntity(this);
     }

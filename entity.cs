@@ -99,31 +99,31 @@ public abstract class Entity : IChronometric{
     base(moveDelay) {
         position_x = pos_x;
         position_y = pos_y;
-        ConsoleColor bcolor;
-        ConsoleColor fcolor = ConsoleColor.Black;
+        ConsoleColor fcolor;
+        ConsoleColor bcolor = ConsoleColor.Black;
         if(team) {
-            bcolor = ConsoleColor.Cyan;
+            fcolor = ConsoleColor.Cyan;
         } else {
-            bcolor = ConsoleColor.Magenta;
+            fcolor = ConsoleColor.Magenta;
         }
         // remove test
         texture = new Texture(Test.test(this, 3, 3), bcolor, fcolor);   
         direction = team;
     }
     // with texture
-    protected Entity(int pos_x, int pos_y, int moveDelay, bool team, char[,] _texture) :
+    protected Entity(int pos_x, int pos_y, int moveDelay, bool team, string textureKey) :
     base(moveDelay) {
         position_x = pos_x;
         position_y = pos_y;
-        ConsoleColor bcolor;
-        ConsoleColor fcolor = ConsoleColor.Black;
+        ConsoleColor fcolor;
+        ConsoleColor bcolor = ConsoleColor.Black;
         if(team) {
-            bcolor = ConsoleColor.Cyan;
+            fcolor = ConsoleColor.Cyan;
         } else {
-            bcolor = ConsoleColor.Magenta;
+            fcolor = ConsoleColor.Magenta;
         }
         // remove test
-        texture = new Texture(_texture, bcolor, fcolor); 
+        texture = new Texture(Texture.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
     }
 }
