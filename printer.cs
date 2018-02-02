@@ -6,6 +6,9 @@ public class Printer {
     public static void deleteEntity(Entity entity) {
         printdelete(entity, false);
     }
+    public static void partialDelete(Entity entity, int speed_x, int speed_y) {
+
+    }
     public static void printEntity(Entity entity) {
         printdelete(entity, true);
     }
@@ -45,28 +48,17 @@ public class Printer {
         int limit_y = entity.getTexture().GetLength(0);
 
         // calc offset
-        // negative when left/upper part should not be drawn
-        int offset_x = calcOffset(map.getSize_x(), pos_x, limit_x);
-        int offset_y = calcOffset(map.getSize_y(), pos_y, limit_y);
+        // apply it directly
+        calcOffset(map.getSize_x(), pos_x, ref limit_x, out loop_x);
+        calcOffset(map.getSize_y(), pos_y, ref limit_y, out loop_y);
 
-        // offset applied to loop and limit
-        if(offset_x < 0) {
-            loop_x = (-1)*offset_x;
-        } else if(offset_x > 0) {
-            limit_x -= offset_x;
-        }
-        if(offset_y < 0) {
-            loop_y = (-1)*offset_y;
-        } else if(offset_y > 0) {
-            limit_y -= offset_y;
-        }
         
         // loop from loop_x to limit. changes based on offset 
         for(int y = loop_y; y < limit_y; y++) {
             for(int x = loop_x; x < limit_x; x++) {
                 char codechar = entity.getTexture().getCode(y, x);
 
-                // if someentityng to print and print(vs delete)
+                // if something to print and print(vs delete)
                 if(codechar != '\0') {
                     // delete instead if !print
                     if(!print) {
@@ -87,16 +79,25 @@ public class Printer {
 
     // cut parts of code[,] which are out of map
     // offset<0 => out of map to the left
-    static int calcOffset(int mapSize, int entityngLocation, int entityngSize) {
+    static void calcOffset(int mapSize, int entityLocation, 
+        ref int entitySize, out int loopStart) {
+        loopStart = 0;
+        
         int offset = 0;
-        int outBound = entityngLocation + entityngSize - mapSize;
-
-        if(entityngLocation < 0){
-            offset = entityngLocation;
+        int outBound = entityLocation + entitySize - mapSize;
+        // calc offset
+        if(entityLocation < 0){
+            offset = entityLocation;
         } else if(outBound > 0) {
             offset = outBound;
         }
-        return offset;
+
+        // offset applied to loop and limit
+        if(offset < 0) {
+            loopStart = (-1)*offset;
+        } else if(offset > 0) {
+            entitySize -= offset;
+        }
     }
 
 
