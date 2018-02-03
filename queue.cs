@@ -18,7 +18,7 @@ public class Queue {
 
     public bool run() {
         // turn Length
-        Thread.Sleep(sleepDuration);
+        // Thread.Sleep(sleepDuration);
 
         // all bullets move
         for(int i = 0; i < chronoQueue.Count; i++) {
@@ -44,7 +44,7 @@ public class Queue {
         timeUnit++;
         if(timeUnit == intervalDelay) {
             timeUnit = 0;
-            Terminal.PrintString(watch.getTime(), 200, 0, Terminal.getDefaultBack(), Terminal.getDefaultFore());
+            Terminal.PrintString(watch.getTime(), Terminal.getSize_x()-40, 0, Terminal.getDefaultBack(), Terminal.getDefaultFore());
 
         }
     }
