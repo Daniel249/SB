@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 public class Printer {
     // print and delete methods
@@ -35,48 +36,75 @@ public class Printer {
         // other values and references
         int pos_x = entity.getPos_x();
         int pos_y = entity.getPos_y();
-        Map map = Game.getMap();
-        int console_x = pos_x + map.getLocation_x();
-        int console_y = pos_y + map.getLocation_y();
+        int map_x = Game.getMap().getSize_x();
+        int map_y = Game.getMap().getSize_y();
+        int console_x = pos_x + Game.getMap().getLocation_x();
+        int console_y = pos_y + Game.getMap().getLocation_y();
+        Texture texture = entity.getTexture();
 
         // loop and limit start as values for a normal for-loop,
         // equal to 0 and max value respectively.
         // they change based on offset to only print code inside map
         int loop_x = 0;
         int loop_y = 0;
-        int limit_x = entity.getTexture().GetLength(1);
-        int limit_y = entity.getTexture().GetLength(0);
+        int limit_x = entity.getTexture().GetLength(true);
+        int limit_y = entity.getTexture().GetLength(false);
 
         // calc offset
         // apply it directly
-        calcOffset(map.getSize_x(), pos_x, ref limit_x, out loop_x);
-        calcOffset(map.getSize_y(), pos_y, ref limit_y, out loop_y);
+        calcOffset(map_x, pos_x, ref limit_x, out loop_x);
+        calcOffset(map_y, pos_y, ref limit_y, out loop_y);
 
         
         // loop from loop_x to limit. changes based on offset 
         for(int y = loop_y; y < limit_y; y++) {
-            for(int x = loop_x; x < limit_x; x++) {
-                char codechar = entity.getTexture().getCode(y, x);
+        // print each line to console on outter loop
+            // both x and y locations are based off of current loop_x/y. but loop_x stays 0
+            int printLocation_x = console_x + loop_x;
+            int printLocation_y = console_y + y /* current loop_y */;
 
-                // if something to print and print(vs delete)
-                if(codechar != '\0') {
-                    // delete instead if !print
-                    if(!print) {
-                        codechar = ' ';
-                    }
-
-                    // if unit print reference
-                    if(entity is Unit) {
-                        map.setMap(reference, pos_x + x, pos_y + y);
-                    }
-                    // print to console
-                    Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
-                }
+            string printLine;
+            if(print) {
+                printLine = getPrintable(entity.getTexture().getCode()[y], loop_x, limit_x);
+            } else {
+                printLine = new string(new char[limit_x - loop_x]);
             }
+            Terminal.PrintString(printLine, printLocation_x, printLocation_y, bcolor, fcolor);
+            // for(int x = loop_x; x < limit_x; x++) {
+            //     char codechar = entity.getTexture().getCode(y, x);
+
+            //     // if something to print and print(vs delete)
+            //     if(codechar != '\0') {
+            //         // delete instead if !print
+            //         if(!print) {
+            //             codechar = ' ';
+            //         }
+
+            //         // if unit print reference
+            //         if(entity is Unit) {
+            //             Game.getMap().setMap(reference, pos_x + x, pos_y + y);
+            //         }
+            //         // print to console
+            //         Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
+            //     }
+            // }
         }
     }
 
+    static string getPrintable(char[] material, int start, int limit) {
+        // if not out of map. return as is
+        if(start == 0 && limit >= material.Length) {
+            return new string(material);
+        }
+        // else make array of right size and copy printable range to it
+        char[] toPrint = new char[limit - start];
+        Array.Copy(material, start, toPrint, 0, limit);
+        return new string(toPrint);
+    }
 
+    static void calcOffset(int entityLocation, int entitySize) {
+
+    }
     // cut parts of code[,] which are out of map
     // offset<0 => out of map to the left
     static void calcOffset(int mapSize, int entityLocation, 
