@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 static class Terminal {
     // numbers based on testing
     // not in use
-    static int size_x = 273;
+    static int size_x = 240;
     static int size_y = 72;
 
     // get set

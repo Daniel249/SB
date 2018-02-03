@@ -9,17 +9,54 @@ static class Filereader {
     // static string[] textureFile;
     // holds textures
     static Dictionary<string, List<string>> rawTextures;
+    // static Dictionary<string, char[,]> textures;
 
-
-    // search in dictionary. if not found, return null
-    static public List<string> getRawTexture(string name) {
-        List<string> returnString;
-        rawTextures.TryGetValue(name, out returnString);
-        return returnString;
-    }
-    // main method. called in gameplay
-    // reads and then processes text file. output is saved in dictionary
+    // called in gameplay set up
     public static void processTextures() {
+        processFileData();
+        processRawTextures();
+    }
+
+    // processes rawTextures to a char[] dictionary
+    // output to static in Texture
+    static void processRawTextures() {
+        Dictionary<string, char[,]> textures = new Dictionary<string, char[,]>();
+        // get key and value and loop through them
+        foreach(KeyValuePair<string, List<string>> pair in rawTextures) {
+            textures.Add(key: pair.Key, value: parseTexture(pair.Value));
+        }
+        Texture.setTextures(textures);
+    }
+    // transform string array to 2d char array
+    static char[,] parseTexture(List<string> stringList) {
+         char[,] newCode;
+         int dimension_x = 0;
+         int dimension_y = stringList.Count;
+         // set horizontal length
+         foreach(string str in stringList) {
+             if(str.Length > dimension_x) {
+                 dimension_x = str.Length;
+             }
+         }
+        newCode = new char[dimension_y, dimension_x];
+
+        for (int y = 0; y < dimension_y; y++) {
+            char[] actualString = stringList[y].ToCharArray();
+            for(int x = 0; x < dimension_x; x++) {
+                // set char array location to a character or '\0'
+                if(x >= actualString.Length || actualString[x] == ' ') {
+                    newCode[y,x] = '\0';
+                } else {
+                    newCode[y,x] = actualString[x];
+                }
+            }
+        }
+         return newCode;
+     }
+
+
+    // reads and then processes text file. output is saved in rawTextures dictionary
+    public static void processFileData() {
         // initialize dictionary
         rawTextures = new Dictionary<string, List<string>>();
 
@@ -48,6 +85,7 @@ static class Filereader {
                 // save texture name
                 actualName = actual;
             } else {
+                // add to current texture
                 loadingTexture.Add(actual);
             }
         }
@@ -62,6 +100,16 @@ static class Filereader {
             Terminal.PrintString(e.Message, 0, 1);
         }
         return code;
+    }
+
+
+
+    // not in use
+    // search in rawTextures. if not found, return null
+    static public List<string> getRawTexture(string name) {
+        List<string> returnString;
+        rawTextures.TryGetValue(name, out returnString);
+        return returnString;
     }
     // read and then print whole file to console
     static public void printTexture(string identifier) {

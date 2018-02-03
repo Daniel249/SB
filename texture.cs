@@ -41,45 +41,29 @@ public class Texture {
         return code.GetLength(dimension);
     }
 
+    // statics
+    // textures dictionary
+    static Dictionary<string, char[,]> textures;
+    public static void setTextures(Dictionary<string, char[,]> _textures) {
+        textures = _textures;
+    }
+
+
      // main texture finder
      public static char[,] assignTexture(string addressName) {
          // search name on dictionary
-         List<string> rawTexture = Filereader.getRawTexture(addressName);
-         char[,] newTexture = defaultTexture;
-         // if rawText
-         if(rawTexture != null) {
-             newTexture = parseTexture(rawTexture);
+         char[,] newTexture;
+         if(textures.TryGetValue(addressName, out newTexture)) {
+             return newTexture;
          } else if(addressName == "bullet") {
-             newTexture = defaultBullet;
+             return defaultBullet;
+         } else {
+             return defaultTexture;
          }
-         return newTexture;
      }
-    // transform string array to 2d char array
-    static char[,] parseTexture(List<string> stringList) {
-         char[,] newCode;
-         int dimension_x = 0;
-         int dimension_y = stringList.Count;
-         // set horizontal length
-         foreach(string str in stringList) {
-             if(str.Length > dimension_x) {
-                 dimension_x = str.Length;
-             }
-         }
-        newCode = new char[dimension_y, dimension_x];
-        for (int y = 0; y < dimension_y; y++) {
-            char[] actualString = stringList[y].ToCharArray();
-            for(int x = 0; x < dimension_x; x++) {
-                // set char array location to a character or '\0'
-                if(x >= actualString.Length || actualString[x] == ' ') {
-                    newCode[y,x] = '\0';
-                } else {
-                    newCode[y,x] = actualString[x];
-                }
-            }
-        }
-         return newCode;
-     }
+    
 
+    
     // default texture. used when no name found on texture dictionary
     static char[,] defaultTexture = new char[,] {
         {'*','*','*'},
