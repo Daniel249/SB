@@ -45,7 +45,7 @@ public class Queue {
         if(timeUnit == intervalDelay) {
             timeUnit = 0;
             Terminal.PrintString(watch.getTime(), Terminal.getSize_x()-40, 0, Terminal.getDefaultBack(), Terminal.getDefaultFore());
-
+            Terminal.PrintString("healt: " + Game.getPlayer().getHealth(), Terminal.getSize_x()-80, 0, Terminal.getDefaultBack(), Terminal.getDefaultFore());
         }
     }
     

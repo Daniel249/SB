@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 
 public class Unit : Entity {
-    int health = 100;
+    int healthPoints;
+    public int getHealth() {
+        return healthPoints;
+    }
     // reference toeither player or AI
     
     public void receiveDamage(int damage) {
-        health -= damage;
-        if(health <= 0) {
+        healthPoints -= damage;
+        if(healthPoints <= 0) {
             die();
         } else {
             Printer.printEntity(this);
@@ -20,7 +23,7 @@ public class Unit : Entity {
         weapons.Clear();
         delete();
         if(!getTeam()) {
-            Test.spawn();
+            Test.check();
         }
     }
 
@@ -49,10 +52,12 @@ public class Unit : Entity {
 
     // constructor
     // with texture
-    public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey) : 
+    public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey, int health) : 
     base(pos_x, pos_y, delay, team, textureKey) {
         weapons = new List<Weapon>();
         Printer.printEntity(this);
+        healthPoints = health;
+
     }
 }
 // bullets are Entitys in constant movement

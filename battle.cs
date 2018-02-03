@@ -11,6 +11,9 @@ public class Battle {
     public Map getMap() {
         return map;
     }
+    public Player GetPlayer() {
+        return player;
+    }
 
     // main battle method on loop
     public void run() {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class Player {
     readonly Unit ship;
+    public int getHealth() {
+        return ship.getHealth();
+    }
     // save movement direction until movement method
     int vertDirection;
     int horDirection;
@@ -51,7 +54,7 @@ public class Player {
                 ship.toggleWeapon();
                 break;
             default:
-                Terminal.PrintString("unsupportd key", 80, 0, ConsoleColor.Black, ConsoleColor.White);
+                // Terminal.PrintString("unsupportd key", 80, 0, ConsoleColor.Black, ConsoleColor.White);
                 break;
         }
     }
@@ -65,7 +68,7 @@ public class Player {
     // constructor
     public Player(bool fire) {
         // instantiate ship and load a weapon to it
-        ship = new Unit(0, Game.getMap().getSize_y()/2, 5, true, "main");
+        ship = new Unit(0, Game.getMap().getSize_y()/2, 5, true, "main", 1000);
         // load weapon to ship. shoots every 15 cronometer ticks
         Weapon.loadUnit(ship, 20, 15, true, 3);
         // start shooting

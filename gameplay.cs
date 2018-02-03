@@ -42,6 +42,9 @@ public static class Game {
     
     // map battle queue references
     static Battle battle;
+    public static Player getPlayer() {
+        return battle.GetPlayer();
+    }
     public static Battle getBattle() {
         return battle;
     }
