@@ -18,7 +18,7 @@ static class Filereader {
     // processes rawTextures to a char[] dictionary
     // output to static in Texture
     static void processRawTextures() {
-        Dictionary<string, char[,]> textures = new Dictionary<string, char[,]>();
+        Dictionary<string, char[][]> textures = new Dictionary<string, char[][]>();
         // get key and value and loop through them
         foreach(KeyValuePair<string, List<string>> pair in rawTextures) {
             textures.Add(key: pair.Key, value: parseTexture(pair.Value));
@@ -26,28 +26,13 @@ static class Filereader {
         Texture.setTextures(textures);
     }
     // transform string array to 2d char array
-    static char[,] parseTexture(List<string> stringList) {
-         char[,] newCode;
-         int dimension_x = 0;
-         int dimension_y = stringList.Count;
-         // set horizontal length
-         foreach(string str in stringList) {
-             if(str.Length > dimension_x) {
-                 dimension_x = str.Length;
-             }
-         }
-        newCode = new char[dimension_y, dimension_x];
-
+    static char[][] parseTexture(List<string> stringList) {
+        // char dimension_y equals to list length
+        int dimension_y = stringList.Count;
+        char[][] newCode = new char[dimension_y][/*dimension_x*/];
+        // set references in char[][]
         for (int y = 0; y < dimension_y; y++) {
-            char[] actualString = stringList[y].ToCharArray();
-            for(int x = 0; x < dimension_x; x++) {
-                // set char array location to a character or '\0'
-                if(x >= actualString.Length || actualString[x] == ' ') {
-                    newCode[y,x] = '\0';
-                } else {
-                    newCode[y,x] = actualString[x];
-                }
-            }
+            newCode[y] = stringList[y].ToCharArray(); 
         }
          return newCode;
      }
