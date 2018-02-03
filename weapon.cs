@@ -28,11 +28,11 @@ public class Weapon : IChronometric {
 
 
     // set reference to new weapon in a unit
-    public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction) {
+    public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction, int verticalPosition) {
         // if enemy unit place weapon on left side
         int horizontalPosition = -3;
         if(direction) {
-            horizontalPosition = u.getTexture().GetLength(1);
+            horizontalPosition = u.getTexture().GetLength(verticalPosition);
         }
         Weapon w = new Weapon(horizontalPosition, 1, attackDelay, direction);
         w.attackDamage = attackDamage;
