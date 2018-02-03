@@ -53,7 +53,8 @@ public class Texture {
      public static char[,] assignTexture(string addressName) {
          // search name on dictionary
          char[,] newTexture;
-         if(textures.TryGetValue(addressName, out newTexture)) {
+         // if textre dictinoary initialized, search it
+         if(textures != null && textures.TryGetValue(addressName, out newTexture)) {
              return newTexture;
          } else if(addressName == "bullet") {
              return defaultBullet;

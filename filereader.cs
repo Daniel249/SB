@@ -5,11 +5,9 @@ using System.Collections.Generic;
 static class Filereader {
     // path to file 
     const string path = "./textures.txt";
-    // holds each line of file
-    // static string[] textureFile;
     // holds textures
     static Dictionary<string, List<string>> rawTextures;
-    // static Dictionary<string, char[,]> textures;
+
 
     // called in gameplay set up
     public static void processTextures() {
