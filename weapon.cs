@@ -34,7 +34,7 @@ public class Weapon : IChronometric {
         if(direction) {
             horizontalPosition = u.getTexture().GetLength(verticalPosition);
         }
-        Weapon w = new Weapon(horizontalPosition, 1, attackDelay, direction);
+        Weapon w = new Weapon(horizontalPosition, verticalPosition, attackDelay, direction);
         w.attackDamage = attackDamage;
         u.setWeapon(w);
         w.ship = u;
