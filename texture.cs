@@ -30,13 +30,15 @@ public class Texture {
         code = newCode;
     }
     public char[][] getCode() {
+        // not used
         return code;
     }
-    // not used
     // get at certain coordinates
     public char getCode(int coord_y, int coord_x) {
-        throw new System.NotSupportedException();
-        //return code[coord_y][coord_x];
+        return code[coord_y][coord_x];
+    }
+    public char[] getCode(int coord_y) {
+        return code[coord_y];
     }
     // for compatibility with 2d char array times
     // horizontal length of texture

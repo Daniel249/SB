@@ -65,29 +65,20 @@ public class Printer {
 
             string printLine;
             if(print) {
-                printLine = getPrintable(entity.getTexture().getCode()[y], loop_x, limit_x);
+                printLine = getPrintable(entity.getTexture().getCode(y), loop_x, limit_x);
             } else {
                 printLine = new string(new char[limit_x - loop_x]);
             }
             Terminal.PrintString(printLine, printLocation_x, printLocation_y, bcolor, fcolor);
-            // for(int x = loop_x; x < limit_x; x++) {
-            //     char codechar = entity.getTexture().getCode(y, x);
-
-            //     // if something to print and print(vs delete)
-            //     if(codechar != '\0') {
-            //         // delete instead if !print
-            //         if(!print) {
-            //             codechar = ' ';
-            //         }
-
-            //         // if unit print reference
-            //         if(entity is Unit) {
-            //             Game.getMap().setMap(reference, pos_x + x, pos_y + y);
-            //         }
-            //         // print to console
-            //         Terminal.PrintChar(codechar, console_x + x, console_y + y, bcolor, fcolor);
-            //     }
-            // }
+            if(entity is Unit) {
+                // checks until custom length, because of shorter arrays
+                for(int x = loop_x; x < entity.getTexture().getCode(y).Length; x++) {
+                    if(entity.getTexture().getCode(y,x) != '\0') {
+                            Game.getMap().setMap(reference, pos_x + x, pos_y + y);
+                    }
+                }
+            }
+         
         }
     }
 
