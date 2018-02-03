@@ -44,7 +44,7 @@ public abstract class Entity : IChronometric{
 
 
     public void printMove() {
-        if(horizontalSpeed != 0 || verticalSpeed != 0) {
+        //if(horizontalSpeed != 0 || verticalSpeed != 0) {
             // if inside bounds
             if(checkBounded()) {
                 Printer.deleteEntity(this);
@@ -55,12 +55,12 @@ public abstract class Entity : IChronometric{
                 // if it would fall off map. and is a bullet destroy
                 delete();
             }
-        }
+       // }
     }
     bool checkBounded() {
         int new_x = position_x + horizontalSpeed;
         int new_y = position_y + verticalSpeed;
-        int dimension_y = texture.GetLength();
+        int dimension_y = texture.GetLength(false);
         if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
             return false;
         } else if(new_y < 0 || new_y + dimension_y > Game.getMap().getSize_y()) {

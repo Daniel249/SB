@@ -29,7 +29,7 @@ public class Texture {
     public void setCode(char[][]newCode) {
         code = newCode;
     }
-    public char[][]getCode() {
+    public char[][] getCode() {
         return code;
     }
     // not used
@@ -43,9 +43,16 @@ public class Texture {
     public int GetLength(int dimension_y) {
         return code[dimension_y].Length;
     }
-    public int GetLength() {
-        return code.Length;
+    int rank_x;
+    // return max x length or y length
+    public int GetLength(bool isRank) {
+        if(isRank) {
+            return rank_x;
+        } else {
+            return code.Length;
+        }
     }
+
 
     // statics
     // textures dictionary
@@ -68,6 +75,16 @@ public class Texture {
              return defaultTexture;
          }
      }
+
+    void calcRank() {
+        int maxRank = 0;
+        for(int y = 0; y < code.Length; y++) {
+            if(maxRank < code[y].Length) {
+                maxRank = code[y].Length;
+            }
+        }
+        rank_x =  maxRank;
+     }
     
 
     
@@ -83,6 +100,7 @@ public class Texture {
     // constructor
     public Texture(char[][]_code, ConsoleColor bcolor, ConsoleColor fcolor) {
         code = _code;
+        calcRank();
         ForegroundColor = fcolor;
         BackgroundColor = bcolor;
     }
