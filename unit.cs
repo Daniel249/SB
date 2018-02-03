@@ -48,10 +48,6 @@ public class Unit : Entity {
     protected override void everyTick() {}
 
     // constructor
-    public Unit(int pos_x, int pos_y, int delay, bool team) : base(pos_x, pos_y, delay, team) {
-        weapons = new List<Weapon>();
-        Printer.printEntity(this);
-    }
     // with texture
     public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey) : 
     base(pos_x, pos_y, delay, team, textureKey) {

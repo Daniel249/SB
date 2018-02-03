@@ -60,7 +60,7 @@ public abstract class Entity : IChronometric{
     bool checkBounded() {
         int new_x = position_x + horizontalSpeed;
         int new_y = position_y + verticalSpeed;
-        int dimension_y = texture.GetLength(0);
+        int dimension_y = texture.GetLength();
         if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
             return false;
         } else if(new_y < 0 || new_y + dimension_y > Game.getMap().getSize_y()) {
@@ -95,21 +95,6 @@ public abstract class Entity : IChronometric{
 
 
     //constructor
-    protected Entity(int pos_x, int pos_y, int moveDelay, bool team) :
-    base(moveDelay) {
-        position_x = pos_x;
-        position_y = pos_y;
-        ConsoleColor fcolor;
-        ConsoleColor bcolor = ConsoleColor.Black;
-        if(team) {
-            fcolor = ConsoleColor.Cyan;
-        } else {
-            fcolor = ConsoleColor.Magenta;
-        }
-        // remove test
-        texture = new Texture(Test.test(this, 3, 3), bcolor, fcolor);   
-        direction = team;
-    }
     // with texture
     protected Entity(int pos_x, int pos_y, int moveDelay, bool team, string textureKey) :
     base(moveDelay) {
@@ -122,7 +107,7 @@ public abstract class Entity : IChronometric{
         } else {
             fcolor = ConsoleColor.Magenta;
         }
-        // remove test
+        // initialize texture based on key and parameter colors
         texture = new Texture(Texture.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
     }
