@@ -7,28 +7,71 @@ interface IAgent {
 }
 
 static class Test {
-    // minigame. spawn 5 enemies
-        // used on Main
-    public static void test(int num) {
+    static wave[] levels = new wave[] {
+        new wave(8, "minor", 2, 80, 60),
+        new wave(5, "middle", 5, 40, 160),
+        new wave(2, "major", 10, 60, 300)
+    };
+    static int counter = 0;
+    static int left = 0;
+     // minigame. spawn 5 enemies
+    public static void miniGame() {
+        wave w = levels[counter];
+        left = w.num;
+        test(left, w);
+    }
+    // check if go to next phase
+    public static void check() {
+        left--;
+        if(left <= 0) {
+            miniGame();
+            counter++;
+            if(counter == levels.Length) {
+                counter = 0;
+            }
+        }
+    }
+    // used on Main
+    public static void test(int num, wave wave) {
         for(int i = 0; i < num; i++) {
-            spawn();
+            spawn(wave);
         }
     }
     // used on test and on unit death
     static Random generator = new Random();
-    public static void spawn() {
-        
+
+    public static void spawn(wave wave) {
+        // values
+        string type = wave.type;
+        int damage = wave.damage;
+        int AS = wave.attackSpeed;
+        int hp = wave.hp;
+
         int limit_x = Game.getMap().getSize_x() - 5;
         int limit_y = Game.getMap().getSize_y() - 5;
 
         int x = generator.Next(10, limit_x);
         int y = generator.Next(0, limit_y);
 
-        Unit u = new Unit(x, y, 1, false, "minor");
-        Weapon.loadUnit(u, 0, 45, false, 1);
+        Unit u = new Unit(x, y, 1, false, type, hp);
+        Weapon.loadUnit(u, damage, AS, false, 1);
     }
     // spawn a single enemy
     public static void spawn(string textureKey) {
-        Unit u = new Unit(Game.getMap().getSize_x() - 50, Game.getMap().getSize_y()/2, 1, false, "major");
+        Unit u = new Unit(Game.getMap().getSize_x() - 50, Game.getMap().getSize_y()/2, 1, false, "major", 2000);
+    }
+}
+class wave {
+    public int num;
+    public string type;
+    public int damage;
+    public int attackSpeed;
+    public int hp;
+    public wave(int _num, string _type, int _dmg, int AS, int _hp) {
+        num = _num;
+        type = _type;
+        damage = _dmg;
+        attackSpeed = AS;
+        hp = _hp;
     }
 }

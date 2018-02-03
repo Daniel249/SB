@@ -8,7 +8,7 @@ static class Program {
         Terminal.setSize();
         Game.setUp();
         Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
-        Test.test(5);
+        Test.check();
         bat.run();
 
         // test reader
