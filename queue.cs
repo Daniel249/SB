@@ -31,7 +31,7 @@ public class Queue {
     }
 
 
-    int timeUnit = 30;
+    int timeUnit = 0;
     public bool modCounter(int AS) {
         if(timeUnit % AS == 0) {
             return true;
@@ -44,12 +44,15 @@ public class Queue {
         timeUnit++;
         if(timeUnit == intervalDelay) {
             timeUnit = 0;
+            Terminal.PrintString(watch.getTime(), 200, 0, Terminal.getDefaultBack(), Terminal.getDefaultFore());
+
         }
     }
     
-
+    Watch watch;
     // constructor
     public Queue() {
         chronoQueue = new List<IChronometric>();
+        watch = new Watch();
     }
 }
