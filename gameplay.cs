@@ -7,7 +7,7 @@ public static class Game {
         // run algorithm avery battle cycle
     }
     public static void setUp() {
-        loadGraphics();
+        loadGraphics("./textures.txt");
         // print instructions
         Terminal.PrintString(
             "move: up down keys, left key to stop    toggle fire: F    exit: esc", 
@@ -16,8 +16,9 @@ public static class Game {
     }
 
     // read textures.txt and process data
-    static bool loadGraphics() {
-        Filereader.processTextures();
+    static bool loadGraphics(string address) {
+        Filereader filereader = new Filereader(address);
+        filereader.processTextures();
         return true;
     }
 

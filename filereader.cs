@@ -2,22 +2,22 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-static class Filereader {
+class Filereader {
     // path to file 
-    const string path = "./textures.txt";
+    readonly string path = "./textures.txt";
     // holds textures
-    static Dictionary<string, List<string>> rawTextures;
+    Dictionary<string, List<string>> rawTextures;
 
 
     // called in gameplay set up
-    public static void processTextures() {
+    public void processTextures() {
         processFileData();
         processRawTextures();
     }
 
     // processes rawTextures to a char[] dictionary
     // output to static in Texture
-    static void processRawTextures() {
+    void processRawTextures() {
         Dictionary<string, char[][]> textures = new Dictionary<string, char[][]>();
         // get key and value and loop through them
         foreach(KeyValuePair<string, List<string>> pair in rawTextures) {
@@ -26,7 +26,7 @@ static class Filereader {
         Texture.setTextures(textures);
     }
     // transform string array to 2d char array
-    static char[][] parseTexture(List<string> stringList) {
+    char[][] parseTexture(List<string> stringList) {
         // char dimension_y equals to list length
         int dimension_y = stringList.Count;
         char[][] newCode = new char[dimension_y][/*dimension_x*/];
@@ -39,7 +39,7 @@ static class Filereader {
 
 
     // reads and then processes text file. output is saved in rawTextures dictionary
-    public static void processFileData() {
+    public void processFileData() {
         // initialize dictionary
         rawTextures = new Dictionary<string, List<string>>();
 
@@ -75,7 +75,7 @@ static class Filereader {
     }
 
     // read file to string array
-    static string[] readFile() {
+    string[] readFile() {
         string[] code = null;
         try {
             code = System.IO.File.ReadAllLines(@path);
@@ -86,16 +86,19 @@ static class Filereader {
     }
 
 
+    public Filereader(string address) {
+        path = address;
+    }
 
     // not in use
     // search in rawTextures. if not found, return null
-    static public List<string> getRawTexture(string name) {
+    public List<string> getRawTexture(string name) {
         List<string> returnString;
         rawTextures.TryGetValue(name, out returnString);
         return returnString;
     }
     // read and then print whole file to console
-    static public void printTexture(string identifier) {
+    public void printTexture(string identifier) {
         string[] textureFile = readFile();
         try {
             foreach(string line in textureFile) {

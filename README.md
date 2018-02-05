@@ -140,5 +140,8 @@ Player.runturn probar con y sin if(console.KeyAvailable)
 dinamically load weapon to ship based on texture  
 adjust fire rate to not be op
 
+add chronometric stop and start
+start sets to one short of tick to tick as fast as posibble ( on moving and shooting)
+
 AI
 
