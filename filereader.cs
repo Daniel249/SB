@@ -7,6 +7,7 @@ class Filereader {
     readonly string path = "./textures.txt";
     // holds textures
     Dictionary<string, List<string>> rawTextures;
+    Dictionary<string, List<int>> weaponLocation;
 
 
     // called in gameplay set up
@@ -23,7 +24,7 @@ class Filereader {
         foreach(KeyValuePair<string, List<string>> pair in rawTextures) {
             textures.Add(key: pair.Key, value: parseTexture(pair.Value));
         }
-        Texture.setTextures(textures);
+        Texture.setTextures(textures, weaponLocation);
     }
     // transform string array to 2d char array
     char[][] parseTexture(List<string> stringList) {
@@ -42,13 +43,18 @@ class Filereader {
     public void processFileData() {
         // initialize dictionary
         rawTextures = new Dictionary<string, List<string>>();
+        weaponLocation = new Dictionary<string, List<int>>();
 
         string[] textureFile = readFile();
         if(textureFile == null) {
             return;
         }
+        // buffers
         string actualName = null;
+        int actualWeapon = 0;
+        // list of buffers to be eventually be saved in dictionary
         List<string> loadingTexture = new List<string>();
+        List<int> loadingWeaponLocation = new List<int>();
 
         for (int i = 0; i < textureFile.Length; i++) {
             string actual = textureFile[i];
@@ -59,18 +65,39 @@ class Filereader {
                     // save texture in dictionary only if it has name
                     if(actualName != "") {
                         rawTextures.Add(key: actualName, value: loadingTexture);
+                        if(loadingWeaponLocation.Count > 0) {
+                            weaponLocation.Add(actualName, value: loadingWeaponLocation);
+                        }
                     }
+                    // always reset
                     loadingTexture = new List<string>();
+                    loadingWeaponLocation = new List<int>();
                 }
-                // parse
+
+                // parse name
                 actual = actual.Replace(@"/", string.Empty);
                 actual = actual.Replace(" ", string.Empty);
                 // save texture name
                 actualName = actual;
+                actualWeapon = 0;
             } else {
+                // check if weapon marked
+                if(processRow(ref actual)) {
+                    loadingWeaponLocation.Add(actualWeapon);
+                }
+                actualWeapon++;
                 // add to current texture
-                loadingTexture.Add(actual);
+                loadingTexture.Add(actual.TrimEnd());
             }
+        }
+    }
+
+    bool processRow(ref string row) {
+        if(row.Contains("W")) {
+            row = row.Replace("W", string.Empty);
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -59,10 +59,11 @@ public class Texture {
     // statics
     // textures dictionary
     static Dictionary<string, char[][]> textures;
-    public static void setTextures(Dictionary<string, char[][]> _textures) {
+    static Dictionary<string, List<int>> weaponsLocation;
+    public static void setTextures(Dictionary<string, char[][]> _textures, Dictionary<string, List<int>> _weaponsLocation) {
         textures = _textures;
+        weaponsLocation = _weaponsLocation;
     }
-
 
      // main texture finder
      public static char[][]assignTexture(string addressName) {
