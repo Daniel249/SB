@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+// using System.Collections.Generic;
 
 public class Texture {
     // color
@@ -22,7 +22,7 @@ public class Texture {
 
 
     // ascii code
-    // nont '\0' spaces printed and deleted
+    // non '\0' spaces printed and deleted
     char[][] code;
 
     // get set
@@ -54,47 +54,6 @@ public class Texture {
             return code.Length;
         }
     }
-
-
-    // statics
-    // textures dictionary
-    static Dictionary<string, char[][]> textures;
-    // vertical positons of weapons in marked textures 
-    static Dictionary<string, List<int>> weaponsLocation;
-    public static void setTextures(Dictionary<string, char[][]> _textures, Dictionary<string, List<int>> _weaponsLocation) {
-        textures = _textures;
-        weaponsLocation = _weaponsLocation;
-    }
-
-    // where load weapons
-    public static List<int> assignWeaponLocation(string addressName) {
-        List<int> locations;
-
-        if(weaponsLocation != null && weaponsLocation.TryGetValue(addressName, out locations)) {
-            // dont do else
-        } else {
-            char[][] justInCase = assignTexture(addressName);
-            locations = new List<int>() {
-                justInCase.Length/2
-            };
-        }
-    return locations;
-    }
-
-     // main texture finder
-     public static char[][] assignTexture(string addressName) {
-         // search name on dictionary
-         char[][]newTexture;
-         // if textre dictinoary initialized, search it
-         if(textures != null && textures.TryGetValue(addressName, out newTexture)) {
-             return newTexture;
-         } else if(addressName == "bullet") {
-             return defaultBullet;
-         } else {
-             return defaultTexture;
-         }
-     }
-
     void calcRank() {
         int maxRank = 0;
         for(int y = 0; y < code.Length; y++) {
@@ -104,18 +63,8 @@ public class Texture {
         }
         rank_x =  maxRank;
      }
-    
 
-    
-    // default texture. used when no name found on texture dictionary
-    static char[][]defaultTexture = new char[][]{
-        new char[] {'*','*','*'},
-        new char[] {'*','*','*'},
-        new char[] {'*','*','*'}
-    };
-    static char[][]defaultBullet = new char[][]{
-        new char[] {'a','b','c'}
-    };
+
     // constructor
     public Texture(char[][]_code, ConsoleColor bcolor, ConsoleColor fcolor) {
         code = _code;

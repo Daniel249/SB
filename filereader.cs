@@ -24,7 +24,7 @@ class Filereader {
         foreach(KeyValuePair<string, List<string>> pair in rawTextures) {
             textures.Add(key: pair.Key, value: parseTexture(pair.Value));
         }
-        Texture.setTextures(textures, weaponLocation);
+        Database.setTextures(textures, weaponLocation);
     }
     // transform string array to 2d char array
     char[][] parseTexture(List<string> stringList) {
@@ -96,7 +96,7 @@ class Filereader {
             }
         }
     }
-
+    // checks for weapon mark in row
     bool processRow(ref string row) {
         if(row.Contains("W")) {
             row = row.Replace("W", string.Empty);

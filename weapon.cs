@@ -39,11 +39,14 @@ public class Weapon : IChronometric {
         u.setWeapon(w);
         w.ship = u;
     }
-
+    // main load weapon to unit. based on texture key
     public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction, string key) {
-        foreach(int verticalLocation in Texture.assignWeaponLocation(key)) {
+        // location book is static in Texture
+        foreach(int verticalLocation in Database.assignWeaponLocation(key)) {
+            // enemies spawn bullets away. not necessary
             int horizontalPosition = -3;
             if(direction) {
+                // player unit spawn furthest to the right on selected row
                 horizontalPosition = u.getTexture().GetLength(verticalLocation);
             }
             Weapon w = new Weapon(horizontalPosition, verticalLocation, attackDelay, direction);
