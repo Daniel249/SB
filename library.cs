@@ -7,12 +7,15 @@ interface IAgent {
 }
 
 static class Test {
+    // initialize phases
     static wave[] levels = new wave[] {
         new wave(8, "minor", 2, 80, 60),
         new wave(5, "middle", 5, 40, 160),
         new wave(2, "major", 10, 60, 300)
     };
+    // current phase. resets at levels.Length
     static int counter = 0;
+    // enemies left in current phase
     static int left = 0;
      // minigame. spawn 5 enemies
     public static void miniGame() {
@@ -20,7 +23,8 @@ static class Test {
         left = w.num;
         test(left, w);
     }
-    // check if go to next phase
+    // used in Main
+    // checks left enemies and moves to next phase
     public static void check() {
         left--;
         if(left <= 0) {
@@ -31,7 +35,7 @@ static class Test {
             }
         }
     }
-    // used on Main
+    // loop enemy spawn
     public static void test(int num, wave wave) {
         for(int i = 0; i < num; i++) {
             spawn(wave);
@@ -39,7 +43,7 @@ static class Test {
     }
     // used on test and on unit death
     static Random generator = new Random();
-
+    // spawn a single enemy based on wave properties
     public static void spawn(wave wave) {
         // values
         string type = wave.type;
@@ -56,11 +60,13 @@ static class Test {
         Unit u = new Unit(x, y, 1, false, type, hp);
         Weapon.loadUnit(u, damage, AS, false, wave.type);
     }
+    // not used 
     // spawn a single enemy
     public static void spawn(string textureKey) {
         Unit u = new Unit(Game.getMap().getSize_x() - 50, Game.getMap().getSize_y()/2, 1, false, "major", 2000);
     }
 }
+// wave properties
 class wave {
     public int num;
     public string type;

@@ -73,8 +73,9 @@ public class Printer {
             if(entity is Unit) {
                 // checks until custom length, because of shorter arrays
                 for(int x = loop_x; x < entity.getTexture().getCode(y).Length; x++) {
-                    if(entity.getTexture().getCode(y,x) != '\0') {
-                            Game.getMap().setMap(reference, pos_x + x, pos_y + y);
+                    char code = entity.getTexture().getCode(y,x);
+                    if(code != '\0' && code != ' ') {
+                        Game.getMap().setMap(reference, pos_x + x, pos_y + y);
                     }
                 }
             }
@@ -93,9 +94,6 @@ public class Printer {
         return new string(toPrint);
     }
 
-    static void calcOffset(int entityLocation, int entitySize) {
-
-    }
     // cut parts of code[,] which are out of map
     // offset<0 => out of map to the left
     static void calcOffset(int mapSize, int entityLocation, 

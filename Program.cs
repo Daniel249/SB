@@ -7,13 +7,10 @@ static class Program {
 
         Terminal.setSize();
         Game.setUp();
+        
         Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
         Test.check();
         bat.run();
-
-        // test reader
-        // Filereader f = new Filereader("./textures.txt");
-        // f.printTexture("main");
     }
 }
 

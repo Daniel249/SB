@@ -12,8 +12,6 @@ public class Unit : Entity {
         healthPoints -= damage;
         if(healthPoints <= 0) {
             die();
-        } else {
-            Printer.printEntity(this);
         }
     }
     void die() {
@@ -65,7 +63,7 @@ public class Unit : Entity {
 // they do interact with other things through references in map
 public class Bullet : Entity {
     readonly int attackDamage;
-
+    // check for reference in map
     public bool checkCollision() {
         Entity target = Game.getMap().getMap(position_x, position_y);
         // map populated only by units, no bullets
@@ -89,7 +87,7 @@ public class Bullet : Entity {
     base(pos_x, pos_y, 1, team, textureKey) {
         attackDamage = attackDmg;
         verticalSpeed = 0;
-
+        // movement to left or right
         if(team) {
             horizontalSpeed = 1;
         } else {

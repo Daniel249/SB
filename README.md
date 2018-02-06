@@ -122,23 +122,56 @@ bullet printing pattern based on direction. this will make bullet heads (hitbox)
 
 support either individual color per pixel or per horizontal line
 
-HP
+### HP
 
-rework printing to console to be frame based  
+- HS
 
-design GUI
-includes: health, damage, attack speed, tickrate
+  - rework printing to console to be frame based   
+somehow fix framerate
 
+  - implement event handler  
+hold for firing and moving
 
-LP  
+  - design GUI  
+includes: health, damage, attack speed, tickrate  
+list of current enemies, some of their stats and visual feedback when hit connects
 
-Player.runturn probar con y sin if(console.KeyAvailable)
+- LS
 
-dinamically load weapon to ship based on texture  
-adjust fire rate to not be op
+  - Weapon Loading  
+adjust fire rate or damage to not be op  
+alternate fire
 
-add chronometric stop and start
-start sets to one short of tick to tick as fast as posibble ( on moving and shooting)
+### LP  
 
-AI
+- HS
 
+  - modify texture ingame  
+write swap keys with other image  
+add weapon marks  
+write to .txt
+
+  - add chronometric stop and start  
+start sets to one tick short, to tick as fast as posibble (on moving and shooting)  
+
+  - eventually add game states   
+game menu, running, pause
+
+- LS 
+
+  - maybe add classes
+
+  - refactor processFileData in filereader
+
+  - Player.runturn probar con y sin if(console.KeyAvailable)
+
+### AI
+
+either chronometric or fired by an event
+
+when run, set a direction based on a target location  
+arriving can be an event. if chronometric, call and recalc direction
+
+friendly bullets go through friends, but still try to not be behind them
+
+control fire, similar to burst fire

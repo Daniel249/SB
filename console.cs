@@ -1,7 +1,4 @@
 using System;
-using System.IO;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 static class Terminal {
     // numbers based on testing
@@ -32,15 +29,7 @@ static class Terminal {
     }
 
 
-    // main print to console method
-    public static void PrintChar(char cha, int pos_x, int pos_y, ConsoleColor bcolor, ConsoleColor fcolor) {
-        Console.SetCursorPosition(pos_x, pos_y);
-        Console.ForegroundColor = fcolor;
-        Console.BackgroundColor = bcolor;
-        Console.Write(cha);
-        Console.ResetColor();
-    }
-    // print strings
+    // main print to console method. print strings
     public static void PrintString(string str, int pos_x, int pos_y, ConsoleColor bcolor, ConsoleColor fcolor) {
         Console.SetCursorPosition(pos_x, pos_y);
         Console.ForegroundColor = fcolor;
@@ -54,9 +43,18 @@ static class Terminal {
     }
 
 
+    public static void PrintChar(char cha, int pos_x, int pos_y, ConsoleColor bcolor, ConsoleColor fcolor) {
+        Console.SetCursorPosition(pos_x, pos_y);
+        Console.ForegroundColor = fcolor;
+        Console.BackgroundColor = bcolor;
+        Console.Write(cha);
+        Console.ResetColor();
+    }
+
+
     // default console colors
-    static ConsoleColor bcolor = ConsoleColor.Black;
-    static ConsoleColor fcolor = ConsoleColor.White;
+    const ConsoleColor bcolor = ConsoleColor.Black;
+    const ConsoleColor fcolor = ConsoleColor.White;
     
     // get set
     public static ConsoleColor getDefaultBack() {

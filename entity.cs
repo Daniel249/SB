@@ -57,6 +57,7 @@ public abstract class Entity : IChronometric{
             }
        // }
     }
+    // return false and move if it wouldnt leave map
     bool checkBounded() {
         int new_x = position_x + horizontalSpeed;
         int new_y = position_y + verticalSpeed;
@@ -70,6 +71,7 @@ public abstract class Entity : IChronometric{
             return true;
         }
     }
+    // end references
     public void delete() {
         Printer.deleteEntity(this);
         removeFromQueue();
@@ -108,7 +110,7 @@ public abstract class Entity : IChronometric{
             fcolor = ConsoleColor.Magenta;
         }
         // initialize texture based on key and parameter colors
-        texture = new Texture(Texture.assignTexture(textureKey), bcolor, fcolor); 
+        texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
     }
 }

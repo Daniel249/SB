@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 public class Battle {
+    // references
     readonly Map map;
     readonly Queue queue;
     readonly Player player;
