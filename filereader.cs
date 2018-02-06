@@ -64,9 +64,14 @@ class Filereader {
                 if(loadingTexture.Count > 0) {
                     // save texture in dictionary only if it has name
                     if(actualName != "") {
-                        rawTextures.Add(key: actualName, value: loadingTexture);
-                        if(loadingWeaponLocation.Count > 0) {
-                            weaponLocation.Add(actualName, value: loadingWeaponLocation);
+                        try {
+                            rawTextures.Add(key: actualName, value: loadingTexture);
+                            if(loadingWeaponLocation.Count > 0) {
+                                weaponLocation.Add(actualName, value: loadingWeaponLocation);
+                            }
+                        } catch (ArgumentException) {
+                            // if key already in dictionary
+                            // TODO communicate to user
                         }
                     }
                     // always reset

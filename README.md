@@ -61,7 +61,7 @@ rounded up for ships with even height
 Weapon locations *can* be manually marked on a texture image, as well as multiple weapons placed  
 This is done by putting an upper case 'W' on the desired rows of the texture image
 
-In this example the ship on top gets it's weapon relocated
+In this example the ship on top gets it's weapon relocated  
 The second ship gets 2 weapons in different locations to the default one
 ```
 //  
@@ -84,14 +84,11 @@ In the current game mode, one name/key is called in each of the 3 phases in this
 
 Empty lines will be visually included in images
 
-Names/keys must be referenced once. Failing to do so will crash the game on launch
-
-As images are delimited by a '//' above and *below* them. The last image in textures.txt must be followed by a '//' or else it won't be loaded (and assigned to a name/key) 
+The last image in textures.txt must be followed by a '//' or else it won't be loaded (and assigned to a name/key) 
 
 There is a limited number of name/keys, and images not assigned to one will simply be ignored  
 The textures(.txt) file can be used as a virtually unlimited storing place for images
 
-Placing a weapon mark outside an image's rows will create an emty line an include it on the texture image
 
 ## Simplified Game Architecture
 - Basic engine
@@ -108,8 +105,8 @@ Placing a weapon mark outside an image's rows will create an emty line an includ
   - Print game state to console
 - Texture loading and processing
   - Read texture file
-  - Determine texture size and key
-  - Storage in texture book
+  - Process texture image and weapon locations
+  - Determine key and store in texture book
 - Gameplay
   - Endless cycling minigame
 &nbsp;
