@@ -59,14 +59,30 @@ public class Texture {
     // statics
     // textures dictionary
     static Dictionary<string, char[][]> textures;
+    // vertical positons of weapons in marked textures 
     static Dictionary<string, List<int>> weaponsLocation;
     public static void setTextures(Dictionary<string, char[][]> _textures, Dictionary<string, List<int>> _weaponsLocation) {
         textures = _textures;
         weaponsLocation = _weaponsLocation;
     }
 
+    // where load weapons
+    public static List<int> assignWeaponLocation(string addressName) {
+        List<int> locations;
+
+        if(weaponsLocation != null && weaponsLocation.TryGetValue(addressName, out locations)) {
+            // dont do else
+        } else {
+            char[][] justInCase = assignTexture(addressName);
+            locations = new List<int>() {
+                justInCase.Length/2
+            };
+        }
+    return locations;
+    }
+
      // main texture finder
-     public static char[][]assignTexture(string addressName) {
+     public static char[][] assignTexture(string addressName) {
          // search name on dictionary
          char[][]newTexture;
          // if textre dictinoary initialized, search it

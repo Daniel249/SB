@@ -40,6 +40,19 @@ public class Weapon : IChronometric {
         w.ship = u;
     }
 
+    public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction, string key) {
+        foreach(int verticalLocation in Texture.assignWeaponLocation(key)) {
+            int horizontalPosition = -3;
+            if(direction) {
+                horizontalPosition = u.getTexture().GetLength(verticalLocation);
+            }
+            Weapon w = new Weapon(horizontalPosition, verticalLocation, attackDelay, direction);
+            w.attackDamage = attackDamage;
+            u.setWeapon(w);
+            w.ship = u;
+        }
+    }
+
 
     // constructor
     public Weapon(int pos_x, int pos_y, int attackDelay, bool dir) : 

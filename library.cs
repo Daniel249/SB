@@ -54,7 +54,7 @@ static class Test {
         int y = generator.Next(0, limit_y);
 
         Unit u = new Unit(x, y, 1, false, type, hp);
-        Weapon.loadUnit(u, damage, AS, false, 1);
+        Weapon.loadUnit(u, damage, AS, false, wave.type);
     }
     // spawn a single enemy
     public static void spawn(string textureKey) {
