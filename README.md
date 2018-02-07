@@ -1,7 +1,6 @@
 # SB SpaceBattle
 Console based shooter arcade game  
 [Latest release. Contains executable and texture file](https://github.com/Daniel249/SB/releases "Current Release")  
-[Standalone executable in repository](https://github.com/Daniel249/SB/raw/master/SBattle.exe "SBattle.exe download")
 
  ### Keybindings
 
@@ -150,9 +149,6 @@ alternate fire
 write swap keys with other image  
 add weapon marks  
 write to .txt
-
-  - add chronometric stop and start  
-start sets to one tick short, to tick as fast as posibble (on moving and shooting)  
 
   - eventually add game states   
 game menu, running, pause
