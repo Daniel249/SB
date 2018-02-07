@@ -9,9 +9,11 @@ public class Cronometer {
     
     // set isTicking
     public void toggle(bool isTick) {
+        timeUnit = intervalDelay - 1;
         isTicking = isTick;
     }
     public bool toggle() {
+        timeUnit = intervalDelay - 1;
         isTicking = !isTicking;
         return isTicking;
     }
