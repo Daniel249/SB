@@ -1,4 +1,5 @@
 using System;
+using GameLibrary;
 // holds map battle and queue references
 // sets up  and ends the game. runs gameplay skripts
 public static class Game {

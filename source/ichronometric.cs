@@ -1,3 +1,5 @@
+// might be implementable in GameLibrary
+
 // attackSpeed mechanic
 public class Cronometer {
     // number of cycles to reset to 0
