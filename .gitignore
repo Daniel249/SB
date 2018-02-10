@@ -14,7 +14,7 @@ $RECYCLE.BIN/
 /obj/*
 /.vscode/*
 *.csproj
-
+*exe
 # Windows Installer files
 *.cab
 *.msi
