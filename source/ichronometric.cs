@@ -1,5 +1,5 @@
 // might be implementable in GameLibrary
-
+namespace SB {
 // attackSpeed mechanic
 public class Cronometer {
     // number of cycles to reset to 0
@@ -78,4 +78,5 @@ public abstract class IChronometric {
         cronometro = new Cronometer(delay, true);
         addToQueue();
     }
+}
 }

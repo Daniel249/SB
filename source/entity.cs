@@ -4,6 +4,7 @@ using GameLibrary;
 using GameLibrary.User.Interface;
 using GameLibrary.Graphics.Printer;
 
+namespace SB {
 // can be referenced in map
 // inherited by Unit and Bullet
 public abstract class Entity : IChronometric{
@@ -58,7 +59,7 @@ public abstract class Entity : IChronometric{
                 // if it would fall off map. and is a bullet destroy
                 delete();
             }
-       // }
+    // }
     }
     // return false and move if it wouldnt leave map
     bool checkBounded() {
@@ -116,4 +117,5 @@ public abstract class Entity : IChronometric{
         texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
     }
+}
 }

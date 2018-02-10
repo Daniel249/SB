@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace SB {
+
 public class Map {
     // map size
     readonly int size_x;
@@ -66,4 +68,5 @@ public class Map {
         location_y = loc_y;
         mapp = new Entity[size_x, size_y];
     }
+}
 }

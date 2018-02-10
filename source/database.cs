@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+namespace SB {
 static class Database {
     // statics
     // textures dictionary
@@ -51,4 +52,5 @@ static class Database {
     static char[][]defaultBullet = new char[][]{
         new char[] {'a','b','c'}
     };
+}
 }

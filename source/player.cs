@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+namespace SB {
 public class Player {
     readonly Unit ship;
     public int getHealth() {
@@ -77,4 +77,5 @@ public class Player {
         vertDirection = 0;
         horDirection = 0;
     }
+}
 }

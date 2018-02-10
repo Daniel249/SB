@@ -1,6 +1,6 @@
 using System;
 // using System.Collections.Generic;
-
+namespace SB {
 public class Texture {
     // color
     ConsoleColor ForegroundColor;
@@ -72,4 +72,5 @@ public class Texture {
         ForegroundColor = fcolor;
         BackgroundColor = bcolor;
     }
+}
 }

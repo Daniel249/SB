@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using GameLibrary;
 using GameLibrary.User.Interface;
 using GameLibrary.Graphics.Printer;
-
+namespace SB {
 public class Unit : Entity {
     int healthPoints;
     public int getHealth() {
@@ -85,7 +85,7 @@ public class Bullet : Entity {
     protected override void everyTick() {
         checkCollision();
     }
- 
+
     // constructor
     public Bullet(int pos_x, int pos_y, int attackDmg, bool team, string textureKey) : 
     base(pos_x, pos_y, 1, team, textureKey) {
@@ -98,4 +98,5 @@ public class Bullet : Entity {
             horizontalSpeed = -1;
         }
     }
+}
 }

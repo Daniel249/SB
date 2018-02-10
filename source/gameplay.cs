@@ -3,6 +3,8 @@ using GameLibrary;
 using GameLibrary.User.Interface;
 using GameLibrary.IO.Reader;
 using GameLibrary.Graphics.Printer;
+
+namespace SB {
 // holds map battle and queue references
 // sets up  and ends the game. runs gameplay skripts
 public static class Game {
@@ -62,4 +64,5 @@ public static class Game {
     public static Queue getQueue() {
         return battle.getQueue();
     }
+}
 }

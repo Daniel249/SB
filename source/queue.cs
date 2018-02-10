@@ -4,6 +4,7 @@ using GameLibrary;
 using GameLibrary.User.Interface;
 using GameLibrary.Graphics.Printer;
 
+namespace SB {
 public class Queue {
     // list of units, bullets and weapons
     readonly List<IChronometric> chronoQueue;
@@ -58,4 +59,5 @@ public class Queue {
         chronoQueue = new List<IChronometric>();
         watch = new Watch();
     }
+}
 }

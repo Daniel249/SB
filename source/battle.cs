@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+namespace SB {
 public class Battle {
     // references
     readonly Map map;
@@ -45,4 +46,5 @@ public class Battle {
         // toggle shooting to true
         player = new Player(true);
     }
+}
 }

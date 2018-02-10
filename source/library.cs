@@ -1,5 +1,5 @@
 using System;
-
+namespace SB {
 // interface to control units. player and AI inherit
 interface IAgent {
     bool getConstantMove();
@@ -17,7 +17,7 @@ static class Test {
     static int counter = 0;
     // enemies left in current phase
     static int left = 0;
-     // minigame. spawn 5 enemies
+    // minigame. spawn 5 enemies
     public static void miniGame() {
         wave w = levels[counter];
         left = w.num;
@@ -80,4 +80,5 @@ class wave {
         attackSpeed = AS;
         hp = _hp;
     }
+}
 }
