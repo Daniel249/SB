@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using GameLibrary;
+using GameLibrary.User.Interface;
+using GameLibrary.Graphics.Printer;
 
 // can be referenced in map
 // inherited by Unit and Bullet

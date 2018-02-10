@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+
 using GameLibrary;
+using GameLibrary.User.Interface;
+using GameLibrary.Graphics.Printer;
 
 public class Unit : Entity {
     int healthPoints;

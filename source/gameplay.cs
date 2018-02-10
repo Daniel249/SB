@@ -1,5 +1,8 @@
 using System;
 using GameLibrary;
+using GameLibrary.User.Interface;
+using GameLibrary.IO.Reader;
+using GameLibrary.Graphics.Printer;
 // holds map battle and queue references
 // sets up  and ends the game. runs gameplay skripts
 public static class Game {

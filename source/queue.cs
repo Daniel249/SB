@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using GameLibrary;
+using GameLibrary.User.Interface;
+using GameLibrary.Graphics.Printer;
 
 public class Queue {
     // list of units, bullets and weapons

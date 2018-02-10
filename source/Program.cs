@@ -1,4 +1,6 @@
 ﻿using GameLibrary;
+using GameLibrary.User.Interface;
+using GameLibrary.Graphics.Printer;
 
 namespace SB 
 {
