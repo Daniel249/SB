@@ -1,7 +1,7 @@
 using GameLibrary.Services.Chronometrics;
 
 namespace SB {
-public class Weapon : IChronometric {
+public class Weapon : TimeAware {
     // position in unit
     readonly int position_x;
     readonly int position_y;

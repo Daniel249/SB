@@ -1,11 +1,6 @@
 using System;
 using GameLibrary.Platform.Game;
 namespace SB {
-// interface to control units. player and AI inherit
-interface IAgent {
-    bool getConstantMove();
-    bool getcConstantFire();
-}
 
 static class Test {
     // initialize phases

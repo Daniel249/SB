@@ -8,7 +8,7 @@ using GameLibrary.Platform.Game;
 namespace SB {
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Entity : IChronometric{
+public abstract class Entity : TimeAware{
     // position in map
     protected int position_x;
     protected int position_y;
