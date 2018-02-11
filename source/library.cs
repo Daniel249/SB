@@ -1,4 +1,5 @@
 using System;
+using GameLibrary.Platform.Game;
 namespace SB {
 // interface to control units. player and AI inherit
 interface IAgent {

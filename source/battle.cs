@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using GameLibrary.Platform.Game;
+using GameLibrary.Services.Chronometrics;
+
 namespace SB {
 public class Battle {
     // references

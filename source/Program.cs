@@ -1,6 +1,6 @@
 ﻿using GameLibrary;
-using GameLibrary.User.Interface;
 using GameLibrary.Graphics.Printer;
+using GameLibrary.Platform.Game;
 
 namespace SB {
 static class Program {

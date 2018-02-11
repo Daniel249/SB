@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using GameLibrary;
-using GameLibrary.User.Interface;
 using GameLibrary.Graphics.Printer;
+using GameLibrary.Services.Chronometrics;
+using GameLibrary.Platform.Game;
 
 namespace SB {
 // can be referenced in map

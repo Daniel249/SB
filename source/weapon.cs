@@ -1,5 +1,6 @@
+using GameLibrary.Services.Chronometrics;
+
 namespace SB {
-    
 public class Weapon : IChronometric {
     // position in unit
     readonly int position_x;
