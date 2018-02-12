@@ -1,5 +1,6 @@
 using System;
-using GameLibrary.Graphics.Printer;
+using GameLibrary.Graphics.Display;
+using GameLibrary.Graphics.Render;
 using GameLibrary.Platform.Game;
 //using SB.Objects;
 

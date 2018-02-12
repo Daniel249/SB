@@ -1,5 +1,5 @@
 ﻿using GameLibrary;
-using GameLibrary.Graphics.Printer;
+using GameLibrary.Graphics.Display;
 using GameLibrary.Platform.Game;
 
 namespace SB {

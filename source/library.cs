@@ -54,7 +54,7 @@ static class Test {
         int x = generator.Next(10, limit_x);
         int y = generator.Next(0, limit_y);
 
-        Unit u = new Unit(x, y, 1, false, type, hp);
+        Unit u = new Unit(x, y, 50, false, type, hp);
         Weapon.loadUnit(u, damage, AS, false, wave.type);
     }
     // not used 
