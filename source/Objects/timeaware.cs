@@ -1,6 +1,6 @@
 using GameLibrary.Platform.Game;
 using GameLibrary.Services.Chronometrics;
-namespace SB {
+namespace SB.Objects {
 
 
 // has a chronometer with a certain interval

@@ -1,6 +1,5 @@
-using GameLibrary.Services.Chronometrics;
 
-namespace SB {
+namespace SB.Objects {
 public class Weapon : TimeAware {
     // position in unit
     readonly int position_x;

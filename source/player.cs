@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GameLibrary.Platform.Game;
+using SB.Objects;
 
 namespace SB {
 public class Player {

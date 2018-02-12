@@ -1,14 +1,12 @@
 using System;
-using System.Collections.Generic;
-using GameLibrary;
 using GameLibrary.Graphics.Printer;
-using GameLibrary.Services.Chronometrics;
 using GameLibrary.Platform.Game;
+//using SB.Objects;
 
-namespace SB {
+namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Entity : TimeAware{
+public abstract class Entity : TimeAware {
     // position in map
     protected int position_x;
     protected int position_y;

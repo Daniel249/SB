@@ -1,5 +1,6 @@
 using System;
 using GameLibrary.Platform.Game;
+using SB.Objects;
 namespace SB {
 
 static class Test {
