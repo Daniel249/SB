@@ -1,6 +1,6 @@
 # SB SpaceBattle
 Console based shooter arcade game  
-[Latest release. Contains executable and texture file](https://github.com/Daniel249/SB/releases "Current Release")  
+[Latest release. Contains windows executable and texture file](https://github.com/Daniel249/SB/releases "Current Release")  
 
  ### Keybindings
 
@@ -108,66 +108,5 @@ The textures(.txt) file can be used as a virtually unlimited storing place for i
   - Determine key and store in texture book
 - Gameplay
   - Endless cycling minigame
-&nbsp;
 
-
-&nbsp;  
-## TO DO
-rework travel() en Bullet to either,  
-be as is   
-or base it completely on (non positive only) coordinate direction
-
-bullet printing pattern based on direction. this will make bullet heads (hitbox) more accurate
-
-support either individual color per pixel or per horizontal line
-
-### HP
-
-- HS
-
-  - rework printing to console to be frame based   
-somehow fix framerate
-
-  - implement event handler  
-hold for firing and moving
-
-  - design GUI  
-includes: health, damage, attack speed, tickrate  
-list of current enemies, some of their stats and visual feedback when hit connects
-
-- LS
-
-  - Weapon Loading  
-adjust fire rate or damage to not be op  
-alternate fire
-
-### LP  
-
-- HS
-
-  - modify texture ingame  
-write swap keys with other image  
-add weapon marks  
-write to .txt
-
-  - eventually add game states   
-game menu, running, pause
-
-- LS 
-
-  - maybe add classes
-
-  - refactor processFileData in filereader
-
-  - Player.runturn probar con y sin if(console.KeyAvailable)
-
-### AI
-
-either chronometric or fired by an event
-
-when run, set a direction based on a target location  
-arriving can be an event. if chronometric, call and recalc direction
-
-friendly bullets go through friends, but still try to not be behind them
-
-control fire, similar to burst fire
+  # [Development Notes](https://github.com/Daniel249/SB/projects/1 "Development")
