@@ -109,4 +109,4 @@ The textures(.txt) file can be used as a virtually unlimited storing place for i
 - Gameplay
   - Endless cycling minigame
 
-  # [Development Notes](https://github.com/Daniel249/SB/projects/1 "Development")
+  # [Development Notes](https://github.com/Daniel249/SB/projects "Development")
