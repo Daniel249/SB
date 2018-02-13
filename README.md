@@ -1,8 +1,9 @@
 # SB SpaceBattle
 Console based shooter arcade game  
 [Latest release. Contains windows executable and texture file](https://github.com/Daniel249/SB/releases "Current Release")  
+[Development Notes](https://github.com/Daniel249/SB/projects "Development")
 
- ### Keybindings
+### Keybindings
 
 Move with up down keys, stop with left key  
 Toggle fire with F key
@@ -108,5 +109,3 @@ The textures(.txt) file can be used as a virtually unlimited storing place for i
   - Determine key and store in texture book
 - Gameplay
   - Endless cycling minigame
-
-  # [Development Notes](https://github.com/Daniel249/SB/projects "Development")
