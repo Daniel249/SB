@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using GameLibrary.Graphics.Display;
-using GameLibrary.Graphics.LegacyRender;
+using GameLibrary.Graphics;
 using GameLibrary.Services.Chronometrics;
 using GameLibrary.Platform.Game;
 
@@ -59,7 +59,6 @@ public class Unit : Entity {
     public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey, int health) : 
     base(pos_x, pos_y, delay, team, textureKey) {
         weapons = new List<Weapon>();
-        Printer.printEntity(this);
         healthPoints = health;
 
     }

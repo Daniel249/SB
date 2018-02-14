@@ -1,5 +1,6 @@
 ﻿using GameLibrary;
 using GameLibrary.Graphics.Display;
+using GameLibrary.Graphics;
 using GameLibrary.Platform.Game;
 
 namespace SB {
@@ -8,6 +9,8 @@ static class Program {
 
         Terminal.setSize();
         Game.setUp();
+        Game.setScreen(
+            new Screen(new LegacyPrinter()));
         
         Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
         Test.check();

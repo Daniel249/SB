@@ -1,13 +1,12 @@
 using System;
 using GameLibrary.Graphics.Display;
-using GameLibrary.Graphics.LegacyRender;
+using GameLibrary.Graphics;
 using GameLibrary.Platform.Game;
-using SB.Assets;
 
 namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Entity : TimeAware {
+public abstract class Entity : TimeAware, IPrintable {
     // position in map
     protected int position_x;
     protected int position_y;
@@ -51,10 +50,10 @@ public abstract class Entity : TimeAware {
         //if(horizontalSpeed != 0 || verticalSpeed != 0) {
             // if inside bounds
             if(checkBounded()) {
-                Printer.deleteEntity(this);
+                Game.getMainScreen().Printer.delete(this);
                 position_x += horizontalSpeed;
                 position_y += verticalSpeed;
-                Printer.printEntity(this);
+                Game.getMainScreen().Printer.print(this);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
@@ -77,7 +76,7 @@ public abstract class Entity : TimeAware {
     }
     // end references
     public void delete() {
-        Printer.deleteEntity(this);
+        Game.getMainScreen().Printer.delete(this);
         removeFromQueue();
     }
 
@@ -116,6 +115,7 @@ public abstract class Entity : TimeAware {
         // initialize texture based on key and parameter colors
         texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
+        Game.getMainScreen().Printer.print(this);
     }
 }
 }
