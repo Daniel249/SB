@@ -8,15 +8,9 @@ namespace SB.Objects {
 // inherited by Unit and Bullet
 public abstract class Entity : TimeAware, IPrintable {
     // position in map
-    public int Location_x {get; set;}
-    public int Location_y {get; set;}
+    public int Position_x {get; set;}
+    public int Position_y {get; set;}
     // get set
-    public int getPos_x() {
-        return Location_x;
-    }
-    public int getPos_y() {
-        return Location_y;
-    }
     
     // pointing direction. true to the right for player
     readonly bool direction = false;
@@ -27,12 +21,7 @@ public abstract class Entity : TimeAware, IPrintable {
 
     // ascii image
     // stored in 2d char array
-    protected Texture texture; 
-
-    // get set
-    public Texture getTexture() {
-        return texture;
-    }
+    public Texture Texture { get; protected set;} 
 
     
     // movement
@@ -51,8 +40,8 @@ public abstract class Entity : TimeAware, IPrintable {
             // if inside bounds
             if(checkBounded()) {
                 Game.getMainScreen().Printer.delete(this);
-                Location_x += horizontalSpeed;
-                Location_y += verticalSpeed;
+                Position_x += horizontalSpeed;
+                Position_y += verticalSpeed;
                 Game.getMainScreen().Printer.print(this);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
@@ -62,12 +51,12 @@ public abstract class Entity : TimeAware, IPrintable {
     }
     // return false and move if it wouldnt leave map
     bool checkBounded() {
-        int new_x = Location_x + horizontalSpeed;
-        int new_y = Location_y + verticalSpeed;
-        int dimension_y = texture.GetLength(false);
-        if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
+        int new_x = Position_x + horizontalSpeed;
+        int new_y = Position_y + verticalSpeed;
+        int dimension_y = Texture.GetLength(false);
+        if(new_x < 0 || new_x >= Game.getMap().Size_x) {
             return false;
-        } else if(new_y < 0 || new_y + dimension_y > Game.getMap().getSize_y()) {
+        } else if(new_y < 0 || new_y + dimension_y > Game.getMap().Size_y) {
             // main ship will stop before lower part of texture
             return false;
         } else {
@@ -103,8 +92,8 @@ public abstract class Entity : TimeAware, IPrintable {
     // with texture
     protected Entity(int pos_x, int pos_y, int moveDelay, bool team, string textureKey) :
     base(moveDelay) {
-        Location_x = pos_x;
-        Location_y = pos_y;
+        Position_x = pos_x;
+        Position_y = pos_y;
         ConsoleColor fcolor;
         ConsoleColor bcolor = ConsoleColor.Black;
         if(team) {
@@ -113,7 +102,7 @@ public abstract class Entity : TimeAware, IPrintable {
             fcolor = ConsoleColor.Magenta;
         }
         // initialize texture based on key and parameter colors
-        texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
+        Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
         Game.getMainScreen().Printer.print(this);
     }

@@ -48,8 +48,8 @@ static class Test {
         int AS = wave.attackSpeed;
         int hp = wave.hp;
 
-        int limit_x = Game.getMap().getSize_x() - 5;
-        int limit_y = Game.getMap().getSize_y() - 5;
+        int limit_x = Game.getMap().Size_x - 5;
+        int limit_y = Game.getMap().Size_y - 5;
 
         int x = generator.Next(10, limit_x);
         int y = generator.Next(0, limit_y);
@@ -60,7 +60,7 @@ static class Test {
     // not used 
     // spawn a single enemy
     public static void spawn(string textureKey) {
-        Unit u = new Unit(Game.getMap().getSize_x() - 50, Game.getMap().getSize_y()/2, 1, false, "major", 2000);
+        Unit u = new Unit(Game.getMap().Size_x - 50, Game.getMap().Size_y/2, 1, false, "major", 2000);
     }
 }
 // wave properties

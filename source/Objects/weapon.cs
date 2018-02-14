@@ -23,7 +23,7 @@ public class Weapon : TimeAware {
     
     // spawn bullet. can be accessed directly altough build for checkFire with cronometer
     void fire() {
-        Bullet bl = new Bullet(position_x + ship.getPos_x(), position_y + ship.getPos_y(),
+        Bullet bl = new Bullet(position_x + ship.Position_x, position_y + ship.Position_y,
                                 attackDamage, direction, "bullet");
     }
 
@@ -33,7 +33,7 @@ public class Weapon : TimeAware {
         // if enemy unit place weapon on left side
         int horizontalPosition = -3;
         if(direction) {
-            horizontalPosition = u.getTexture().GetLength(verticalPosition);
+            horizontalPosition = u.Texture.GetLength(verticalPosition);
         }
         Weapon w = new Weapon(horizontalPosition, verticalPosition, attackDelay, direction);
         w.attackDamage = attackDamage;
@@ -43,14 +43,14 @@ public class Weapon : TimeAware {
     // main load weapon to unit. based on texture key
     public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction, string key) {
         // location book is static in Texture
-        foreach(int verticalLocation in Database.assignWeaponLocation(key)) {
+        foreach(int verticalPosition in Database.assignWeaponLocation(key)) {
             // enemies spawn bullets away. not necessary
             int horizontalPosition = -3;
             if(direction) {
                 // player unit spawn furthest to the right on selected row
-                horizontalPosition = u.getTexture().GetLength(verticalLocation);
+                horizontalPosition = u.Texture.GetLength(verticalPosition);
             }
-            Weapon w = new Weapon(horizontalPosition, verticalLocation, attackDelay, direction);
+            Weapon w = new Weapon(horizontalPosition, verticalPosition, attackDelay, direction);
             w.attackDamage = attackDamage;
             u.setWeapon(w);
             w.ship = u;

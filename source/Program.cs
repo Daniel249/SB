@@ -12,7 +12,7 @@ static class Program {
         Game.setScreen(
             new Screen(new LegacyPrinter()));
         
-        Battle bat = new Battle(Terminal.getSize_x() - 75, Terminal.getSize_y() - 10);
+        Battle bat = new Battle(Terminal.Size_x - 75, Terminal.Size_y - 10);
         Test.check();
         bat.run();
     }

@@ -8,15 +8,13 @@ using GameLibrary.Platform.Game;
 
 namespace SB.Objects {
 public class Unit : Entity {
-    int healthPoints;
-    public int getHealth() {
-        return healthPoints;
-    }
-    // reference toeither player or AI
-    
+    public int Health {get; private set;}
+
+
+    // receive an ammount of damage. if enough to kill try to end references for GC
     public void receiveDamage(int damage) {
-        healthPoints -= damage;
-        if(healthPoints <= 0) {
+        Health -= damage;
+        if(Health <= 0) {
             die();
         }
     }
@@ -59,7 +57,7 @@ public class Unit : Entity {
     public Unit(int pos_x, int pos_y, int delay, bool team, string textureKey, int health) : 
     base(pos_x, pos_y, delay, team, textureKey) {
         weapons = new List<Weapon>();
-        healthPoints = health;
+        Health = health;
 
     }
 }
