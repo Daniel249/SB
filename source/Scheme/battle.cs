@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using GameLibrary.Platform.Game;
-using GameLibrary.Services.Chronometrics;
+using GameLibrary.Services;
+using GameLibrary.Platform;
 
 namespace SB {
-public class Battle {
+public class Battle : IPlayable {
     // references
     readonly Map map;
     readonly Queue queue;
@@ -30,11 +31,12 @@ public class Battle {
             // run player and AI turn
             player.runTurn();
             turn();
+            Game.printScreen(0);
         }
     }
     // run queue
-    public bool turn() {
-        return queue.run();
+    public void turn() {
+        queue.run();
     }
 
     void endGame() {

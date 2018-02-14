@@ -8,14 +8,14 @@ namespace SB.Objects {
 // inherited by Unit and Bullet
 public abstract class Entity : TimeAware, IPrintable {
     // position in map
-    protected int position_x;
-    protected int position_y;
+    public int Location_x {get; set;}
+    public int Location_y {get; set;}
     // get set
     public int getPos_x() {
-        return position_x;
+        return Location_x;
     }
     public int getPos_y() {
-        return position_y;
+        return Location_y;
     }
     
     // pointing direction. true to the right for player
@@ -51,8 +51,8 @@ public abstract class Entity : TimeAware, IPrintable {
             // if inside bounds
             if(checkBounded()) {
                 Game.getMainScreen().Printer.delete(this);
-                position_x += horizontalSpeed;
-                position_y += verticalSpeed;
+                Location_x += horizontalSpeed;
+                Location_y += verticalSpeed;
                 Game.getMainScreen().Printer.print(this);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
@@ -62,8 +62,8 @@ public abstract class Entity : TimeAware, IPrintable {
     }
     // return false and move if it wouldnt leave map
     bool checkBounded() {
-        int new_x = position_x + horizontalSpeed;
-        int new_y = position_y + verticalSpeed;
+        int new_x = Location_x + horizontalSpeed;
+        int new_y = Location_y + verticalSpeed;
         int dimension_y = texture.GetLength(false);
         if(new_x < 0 || new_x >= Game.getMap().getSize_x()) {
             return false;
@@ -103,8 +103,8 @@ public abstract class Entity : TimeAware, IPrintable {
     // with texture
     protected Entity(int pos_x, int pos_y, int moveDelay, bool team, string textureKey) :
     base(moveDelay) {
-        position_x = pos_x;
-        position_y = pos_y;
+        Location_x = pos_x;
+        Location_y = pos_y;
         ConsoleColor fcolor;
         ConsoleColor bcolor = ConsoleColor.Black;
         if(team) {

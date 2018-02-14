@@ -15,7 +15,7 @@ public class Bullet : Entity {
     readonly int attackDamage;
     // check for reference in map
     public bool checkCollision() {
-        Entity target = Game.getMap().getMap(position_x, position_y);
+        Entity target = Game.getMap().getMap(Location_x, Location_y);
         // map populated only by units, no bullets
         if(target != null && target.getTeam() != this.getTeam()) {
             ((Unit)target).receiveDamage(attackDamage);
