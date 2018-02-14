@@ -2,7 +2,7 @@ using GameLibrary.Platform.Game;
 using GameLibrary.Services.Chronometrics;
 namespace SB.Objects {
 
-
+// Interface implementation + add and remove from queue
 // has a chronometer with a certain interval
 // aplicable to Entitys and weapons. all of which are referenced in Queue.List<IChronometric>
 public abstract class TimeAware : IChronometric {

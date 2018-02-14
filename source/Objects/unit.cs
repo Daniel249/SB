@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using GameLibrary.Graphics.Display;
-using GameLibrary.Graphics.Render;
+using GameLibrary.Graphics.LegacyRender;
 using GameLibrary.Services.Chronometrics;
 using GameLibrary.Platform.Game;
 

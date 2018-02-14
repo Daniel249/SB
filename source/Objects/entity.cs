@@ -1,8 +1,8 @@
 using System;
 using GameLibrary.Graphics.Display;
-using GameLibrary.Graphics.Render;
+using GameLibrary.Graphics.LegacyRender;
 using GameLibrary.Platform.Game;
-//using SB.Objects;
+using SB.Assets;
 
 namespace SB.Objects {
 // can be referenced in map
