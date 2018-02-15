@@ -16,9 +16,9 @@ static class Test {
     static int left = 0;
     // minigame. spawn 5 enemies
     public static void miniGame() {
-        wave w = levels[counter];
-        left = w.num;
-        test(left, w);
+        wave wave = levels[counter];
+        // spawn num ammount of enemies with properties stored in w
+        test(wave);
     }
     // used in Main
     // checks left enemies and moves to next phase
@@ -33,8 +33,8 @@ static class Test {
         }
     }
     // loop enemy spawn
-    public static void test(int num, wave wave) {
-        for(int i = 0; i < num; i++) {
+    public static void test(wave wave) {
+        for(int i = 0; i < wave.num; i++) {
             spawn(wave);
         }
     }
