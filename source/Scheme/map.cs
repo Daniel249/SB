@@ -8,14 +8,14 @@ namespace SB {
 public class Map {
     // map size
     // readonly
-    public int Size_x {get;}
-    public int Size_y {get;}
+    public int Size_x {get; private set;}
+    public int Size_y {get; private set;}
 
 
     // map location
     // readonly
-    public int Position_x {get;}
-    public int Position_y {get;}
+    public int Position_x {get; private set;}
+    public int Position_y {get; private set;}
 
 
     // 2d array first dimension y. second dimension x
