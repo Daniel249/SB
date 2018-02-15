@@ -34,6 +34,7 @@ static class Test {
     }
     // loop enemy spawn
     public static void test(wave wave) {
+        left = wave.num;
         for(int i = 0; i < wave.num; i++) {
             spawn(wave);
         }
