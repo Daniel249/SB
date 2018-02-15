@@ -6,21 +6,29 @@ namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet
 public abstract class Entity : TimeAware, IPrintable {
+    
+    // IPrintable implementation
     // position in map
     public int Position_x {get; set;}
     public int Position_y {get; set;}
-    // get set
-    
-    // pointing direction. true to the right for player
-    readonly bool direction = false;
-    public bool getTeam() {
-        return direction;
-    }
-
 
     // ascii image
     // stored in 2d char array
     public Texture Texture { get; protected set;} 
+
+    // screen reference
+    public Screen Screen {get; private set;}
+
+    
+    // pointing direction. true to the right for player
+    readonly bool direction = false;
+    public bool Team {
+        get {
+            return direction;
+        }
+    }
+
+
 
     
     // movement
@@ -38,10 +46,10 @@ public abstract class Entity : TimeAware, IPrintable {
         //if(horizontalSpeed != 0 || verticalSpeed != 0) {
             // if inside bounds
             if(checkBounded()) {
-                Game.getMainScreen().Printer.delete(this);
+                Game.getMainScreen().Printer.delete(this, Screen);
                 Position_x += horizontalSpeed;
                 Position_y += verticalSpeed;
-                Game.getMainScreen().Printer.print(this);
+                Game.getMainScreen().Printer.print(this, Screen);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
@@ -64,7 +72,7 @@ public abstract class Entity : TimeAware, IPrintable {
     }
     // end references
     public void delete() {
-        Game.getMainScreen().Printer.delete(this);
+        Game.getMainScreen().Printer.delete(this, Screen);
         removeFromQueue();
     }
 
@@ -103,7 +111,8 @@ public abstract class Entity : TimeAware, IPrintable {
         // initialize texture based on key and parameter colors
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
-        Game.getMainScreen().Printer.print(this);
+        Screen = Game.getMainScreen();
+        Game.getMainScreen().Printer.print(this, Screen);
     }
 }
 }

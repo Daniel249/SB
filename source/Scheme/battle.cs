@@ -41,7 +41,7 @@ public class Battle : IPlayable { // can run
         queue.run();
     }
 
-    void endGame() {
+    public void endGame() {
         // run at end game
     }
 

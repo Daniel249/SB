@@ -17,7 +17,7 @@ public class Bullet : Entity {
     public bool checkCollision() {
         Entity target = Game.getMap().getMap(Position_x, Position_y);
         // map populated only by units, no bullets
-        if(target != null && target.getTeam() != this.getTeam()) {
+        if(target != null && target.Team != this.Team) {
             ((Unit)target).receiveDamage(attackDamage);
             delete();
             return true;

@@ -8,14 +8,14 @@ namespace SB {
 public class Map {
     // map size
     // readonly
-    public int Size_x {get; private set;}
-    public int Size_y {get; private set;}
+    public readonly int Size_x;
+    public readonly int Size_y;
 
 
     // map location
     // readonly
-    public int Position_x {get; private set;}
-    public int Position_y {get; private set;}
+    public readonly int Position_x;
+    public readonly int Position_y;
 
 
     // 2d array first dimension y. second dimension x
@@ -58,7 +58,7 @@ public class Map {
         Size_y = _size_y;
         Position_x = loc_x;
         Position_y = loc_y;
-        mapp = MapInitializer.CreateArray<Entity>(Size_y, Size_x);
+        mapp = MapInitializer.CreateArray<Entity>(Size_x, Size_y);
     }
 }
 }

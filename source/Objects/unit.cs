@@ -24,7 +24,7 @@ public class Unit : Entity {
         }
         weapons.Clear();
         delete();
-        if(!getTeam()) {
+        if(!this.Team) {
             Test.check();
         }
     }
