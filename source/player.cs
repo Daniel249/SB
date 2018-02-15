@@ -26,7 +26,7 @@ public class Player : IAgent {
     // main player method. runs once per battle cycle
     public void runTurn() {
         if(Console.KeyAvailable) {
-            ConsoleKeyInfo letter;
+            ConsoleKeyInfo letter = new ConsoleKeyInfo();
             // get last of all accumulated keys
             while (Console.KeyAvailable) {
                 letter = Console.ReadKey(true);
