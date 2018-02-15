@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using SB.Objects;
+using GameLibrary.Services;
 
 namespace SB {
 
@@ -18,14 +19,14 @@ public class Map {
 
 
     // 2d array first dimension y. second dimension x
-    readonly Entity[,] mapp;
+    readonly Entity[][] mapp;
 
     // get unit in map
     public Entity getMap(int pos_x, int pos_y) {
         if(!checkPosition(pos_x, pos_y)) {
             return null;
         }
-        return mapp[pos_x, pos_y];
+        return mapp[pos_y][pos_x];
     }
 
     // set unit in map
@@ -33,7 +34,7 @@ public class Map {
         if(!checkPosition(pos_x, pos_y)) {
             return;
         }
-        mapp[pos_x, pos_y] = u;
+        mapp[pos_y][pos_x] = u;
     }
 
 
@@ -57,7 +58,7 @@ public class Map {
         Size_y = _size_y;
         Position_x = loc_x;
         Position_y = loc_y;
-        mapp = new Entity[Size_x, Size_y];
+        mapp = MapInitializer.CreateArray<Entity>(Size_y, Size_x);
     }
 }
 }
