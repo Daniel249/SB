@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using GameLibrary.Platform;
 using GameLibrary.Services;
-using GameLibrary.Platform;
 
 namespace SB {
-public class Battle : IPlayable {
+
+// constains other parts of the game 
+// and initializes them on contruction
+public class Battle : IPlayable { // can run
     // references
     readonly Map map;
     readonly Queue queue;
@@ -17,7 +19,7 @@ public class Battle : IPlayable {
     public Map getMap() {
         return map;
     }
-    public Player GetPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -45,6 +47,8 @@ public class Battle : IPlayable {
 
     // constructor
     public Battle(int size_x, int size_y) {
+        // initialize map, queue 
+        // set global reference before Player initialization
         map = new Map(size_x, size_y, 5, 5);
         queue = new Queue();
         Game.setBattle(this);
