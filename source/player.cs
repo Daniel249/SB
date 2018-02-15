@@ -1,23 +1,36 @@
 using System;
 using System.Collections.Generic;
-using GameLibrary.Platform.Game;
+
+using GameLibrary.Platform;
+using GameLibrary.Agents;
 using SB.Objects;
 
 namespace SB {
-public class Player {
+public class Player : IAgent {
     readonly Unit ship;
     public int getHealth() {
         return ship.Health;
     }
+
+
     // save movement direction until movement method
     int vertDirection;
     int horDirection;
+
+    // set directions in ship for next succesful tick
+    void moveShip() {
+        ship.move(horDirection, vertDirection);
+    }
     
     
     // main player method. runs once per battle cycle
     public void runTurn() {
         if(Console.KeyAvailable) {
-            ConsoleKeyInfo letter = Console.ReadKey(true);
+            ConsoleKeyInfo letter;
+            // get last of all accumulated keys
+            while (Console.KeyAvailable) {
+                letter = Console.ReadKey(true);
+            }
             proKey(letter);
         }
             moveShip();
@@ -60,11 +73,6 @@ public class Player {
                 // Terminal.PrintString("unsupportd key", 80, 0, ConsoleColor.Black, ConsoleColor.White);
                 break;
         }
-    }
-
-
-    void moveShip() {
-        ship.move(horDirection, vertDirection);
     }
 
 

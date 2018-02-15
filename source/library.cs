@@ -1,5 +1,5 @@
 using System;
-using GameLibrary.Platform.Game;
+using GameLibrary.Platform;
 using SB.Objects;
 namespace SB {
 

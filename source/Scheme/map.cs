@@ -37,7 +37,8 @@ public class Map {
     }
 
 
-    // check coordinates
+    // avoid not in array exception
+    // checks existance of coordinates
     bool checkPosition(int pos_x, int pos_y) {
         if(pos_x < 0 || pos_x >= Size_x) {
             return false;

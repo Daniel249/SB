@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using GameLibrary.Platform.Game;
+using GameLibrary.Platform;
 using GameLibrary.Services;
 using GameLibrary.Platform;
 

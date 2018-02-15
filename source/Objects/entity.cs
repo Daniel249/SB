@@ -1,8 +1,7 @@
 using System;
 using GameLibrary.Graphics.Display;
 using GameLibrary.Graphics;
-using GameLibrary.Platform.Game;
-
+using GameLibrary.Platform;
 namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet

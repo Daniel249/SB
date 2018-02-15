@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using GameLibrary.Graphics.Display;
 using GameLibrary.Graphics;
 using GameLibrary.Services.Chronometrics;
-using GameLibrary.Platform.Game;
+using GameLibrary.Platform;
 
-namespace SB.Objects {
-public class Unit : Entity {
+namespace SB.Objects {public class Unit : Entity {
     public int Health {get; private set;}
 
 
