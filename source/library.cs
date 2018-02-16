@@ -6,9 +6,9 @@ namespace SB {
 static class Test {
     // initialize phases
     static wave[] levels = new wave[] {
-        new wave(8, "minor", 2, 80, 60),
-        new wave(5, "middle", 5, 40, 160),
-        new wave(2, "major", 10, 60, 300)
+        new wave(10, "minor", 3, 80, 60),
+        new wave(5, "middle", 5, 50, 160),
+        new wave(2, "major", 10, 60, 400)
     };
     // current phase. resets at levels.Length
     static int counter = 0;
