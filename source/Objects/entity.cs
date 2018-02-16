@@ -9,15 +9,15 @@ public abstract class Entity : TimeAware, IPrintable {
     
     // IPrintable implementation
     // position in map
-    public int Position_x {get; private set;}
-    public int Position_y {get; private set;}
+    public int Position_x { get; private set; }
+    public int Position_y { get; private set; }
 
     // ascii image
     // stored in 2d char array
-    public Texture Texture { get; protected set;} 
+    public Texture Texture { get; protected set; } 
 
     // screen reference
-    public Screen Screen {get; private set;}
+    public Screen Screen { get; private set; }
 
     
     // pointing direction. true to the right for player
