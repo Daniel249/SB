@@ -9,8 +9,8 @@ public abstract class Entity : TimeAware, IPrintable {
     
     // IPrintable implementation
     // position in map
-    public int Position_x {get; set;}
-    public int Position_y {get; set;}
+    public int Position_x {get; private set;}
+    public int Position_y {get; private set;}
 
     // ascii image
     // stored in 2d char array
@@ -43,18 +43,19 @@ public abstract class Entity : TimeAware, IPrintable {
 
 
     public void printMove() {
-        //if(horizontalSpeed != 0 || verticalSpeed != 0) {
+        // if(horizontalSpeed != 0 || verticalSpeed != 0) {
             // if inside bounds
             if(checkBounded()) {
-                Game.getMainScreen().Printer.delete(this, Screen);
+                // delete, move, and print
+                Screen.delete(this);
                 Position_x += horizontalSpeed;
                 Position_y += verticalSpeed;
-                Game.getMainScreen().Printer.print(this, Screen);
+                Screen.print(this);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
             }
-    // }
+        // }
     }
     // return false and move if it wouldnt leave map
     bool checkBounded() {
@@ -70,15 +71,13 @@ public abstract class Entity : TimeAware, IPrintable {
             return true;
         }
     }
+
     // end references
     public void delete() {
-        Game.getMainScreen().Printer.delete(this, Screen);
+        Screen.delete(this);
         removeFromQueue();
     }
 
-    public void turn() {
-        
-    }
 
     // IChronometric implementation
     public override bool tick() {
@@ -96,7 +95,6 @@ public abstract class Entity : TimeAware, IPrintable {
 
 
     //constructor
-    // with texture
     protected Entity(int pos_x, int pos_y, int moveDelay, bool team, string textureKey) :
     base(moveDelay) {
         Position_x = pos_x;
@@ -112,7 +110,7 @@ public abstract class Entity : TimeAware, IPrintable {
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
         Screen = Game.getMainScreen();
-        Game.getMainScreen().Printer.print(this, Screen);
+        Screen.print(this);
     }
 }
 }

@@ -9,7 +9,9 @@ static class Program {
         Terminal.setSize();
         Game.setUp();
         Game.setScreen(
-            new Screen(new LegacyPrinter()));
+            new Screen(Terminal.Size_x - 75, Terminal.Size_y - 10, 
+                new LegacyPrinter())
+        );
         
         Battle bat = new Battle(Terminal.Size_x - 75, Terminal.Size_y - 10);
         Test.check();

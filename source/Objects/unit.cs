@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-using GameLibrary.Graphics.Display;
 using GameLibrary.Graphics;
 using GameLibrary.Services.Chronometrics;
 using GameLibrary.Platform;
