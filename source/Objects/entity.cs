@@ -100,7 +100,7 @@ public abstract class Entity : TimeAware, IPrintable {
         Position_x = pos_x;
         Position_y = pos_y;
         ConsoleColor fcolor;
-        ConsoleColor bcolor = ConsoleColor.Black;
+        ConsoleColor bcolor = Terminal.DefaultBackColor;
         if(team) {
             fcolor = ConsoleColor.Cyan;
         } else {
