@@ -7,7 +7,7 @@ using GameLibrary.Platform;
 
 namespace SB.Objects {
 public class Unit : Entity {
-    public int Health {get; private set;}
+    public int Health { get; private set; }
 
 
     // receive an ammount of damage. if enough to kill try to end references for GC

@@ -6,9 +6,10 @@ namespace SB {
 static class Test {
     // initialize phases
     static wave[] levels = new wave[] {
-        new wave(10, "minor", 3, 80, 60),
-        new wave(5, "middle", 5, 50, 160),
-        new wave(2, "major", 10, 60, 400)
+        // new wave(num, type, hp, dmg, as)
+        new wave(10, "minor", 60, 3, 80),
+        new wave(5, "middle", 160, 5, 50),
+        new wave(2, "major", 400, 10, 60)
     };
     // current phase. resets at levels.Length
     static int counter = 0;
@@ -71,7 +72,7 @@ class wave {
     public int damage;
     public int attackSpeed;
     public int hp;
-    public wave(int _num, string _type, int _dmg, int AS, int _hp) {
+    public wave(int _num, string _type, int _hp, int _dmg, int AS) {
         num = _num;
         type = _type;
         damage = _dmg;
