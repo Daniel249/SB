@@ -1,7 +1,7 @@
 
 namespace SB.Objects {
 public class Weapon : TimeAware {
-    // position in unit
+    // relative position in unit
     readonly int position_x;
     readonly int position_y;
     // reference to unit
@@ -23,8 +23,10 @@ public class Weapon : TimeAware {
     
     // spawn bullet. can be accessed directly altough build for checkFire with cronometer
     void fire() {
-        Bullet bl = new Bullet(position_x + ship.Position_x, position_y + ship.Position_y,
-                                attackDamage, direction, "bullet");
+        new Bullet(
+            position_x + ship.Position_x, position_y + ship.Position_y,
+            attackDamage, direction, "bullet"
+        );
     }
 
 
@@ -42,7 +44,7 @@ public class Weapon : TimeAware {
     }
     // main load weapon to unit. based on texture key
     public static void loadUnit(Unit u, int attackDamage, int attackDelay, bool direction, string key) {
-        // location book is static in Texture
+        // location book is static in Database
         foreach(int verticalPosition in Database.assignWeaponLocation(key)) {
             // enemies spawn bullets away. not necessary
             int horizontalPosition = -3;
