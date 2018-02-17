@@ -1,11 +1,13 @@
 using System;
 using GameLibrary.Graphics.Display;
+using GameLibrary.Interface;
 using GameLibrary.Graphics;
 using GameLibrary.Platform;
+using SB;
 namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Entity : TimeAware, IPrintable {
+public abstract class Entity : TimeAware, IElement {
     
     // IPrintable implementation
     // position in map
@@ -16,7 +18,8 @@ public abstract class Entity : TimeAware, IPrintable {
     // stored in 2d char array
     public Texture Texture { get; protected set; } 
 
-    // screen reference
+    // map reference as GUInterface to print
+    public GUInterface GUInterface { get; private set; }
     public Screen Screen { get; private set; }
 
     
@@ -47,10 +50,10 @@ public abstract class Entity : TimeAware, IPrintable {
             // if inside bounds
             if(checkBounded()) {
                 // delete, move, and print
-                Screen.delete(this);
+                GUInterface.delete(this);
                 Position_x += horizontalSpeed;
                 Position_y += verticalSpeed;
-                Screen.print(this);
+                GUInterface.print(this);
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
@@ -74,7 +77,7 @@ public abstract class Entity : TimeAware, IPrintable {
 
     // end references
     public void delete() {
-        Screen.delete(this);
+        GUInterface.delete(this);
         removeFromQueue();
     }
 
@@ -110,7 +113,8 @@ public abstract class Entity : TimeAware, IPrintable {
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
         Screen = Game.getMainScreen();
-        Screen.print(this);
+        GUInterface = Game.getBattle().guinterface;
+        GUInterface.print(this);
     }
 }
 }
