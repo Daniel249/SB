@@ -23,7 +23,12 @@ public class Map : ISnapshot<Entity> {
     // 2d array first dimension y. second dimension x
     public Entity[][] state { get; private set; }
 
-
+    public List<int> flaggedRows { get; private set; }
+    public void flagRow(int rowNum) {
+        if(!flaggedRows.Contains(rowNum)) {
+            flaggedRows.Add(rowNum);
+        }
+    }
 
     // get unit in map
     public Entity getMap(int pos_x, int pos_y) {
@@ -63,6 +68,7 @@ public class Map : ISnapshot<Entity> {
         Position_x = loc_x;
         Position_y = loc_y;
         state = TextureInitializer.CreateArray<Entity>(Size_x, Size_y);
+        flaggedRows = new List<int>();
     }
 }
 }

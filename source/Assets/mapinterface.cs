@@ -3,7 +3,7 @@ using GameLibrary.Graphics;
 using SB.Objects;
 
 namespace SB {
-class MapInterface : GUInterface {
+public class MapInterface : GUInterface {
     Map map;
 
     // overrides to print as Entity too
@@ -13,15 +13,16 @@ class MapInterface : GUInterface {
 
         // cast to unit to print hitbox
         Unit u = printable as Unit;
-        if(u != null) {
+        if(u != null && u.hitbox != null) {
             Render.print(u.hitbox, printable.Position_x, printable.Position_y, map);
+            map.flaggedRows.Clear();
         }
     }
     public override void delete(IPrintable printable) {
         base.delete(printable);
 
         Unit u = printable as Unit;
-        if(u != null) {
+        if(u != null && u.hitbox != null) {
             Render.delete(u.hitbox, printable.Position_x, printable.Position_y, map);
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GameLibrary.Platform;
 using GameLibrary.Services;
+using GameLibrary.Interface;
 
 namespace SB {
 
@@ -10,7 +11,7 @@ public class Battle : IPlayable { // can run
     // references
     readonly Map map;
     readonly Queue queue;
-    readonly Player player;
+    Player player;
 
     // get set
     public Queue getQueue() {
@@ -21,6 +22,9 @@ public class Battle : IPlayable { // can run
     }
     public Player getPlayer() {
         return player;
+    }
+    public void setPlayer(Player pl) {
+        player = pl;
     }
 
     // main battle method on loop
@@ -33,6 +37,7 @@ public class Battle : IPlayable { // can run
             // run player and AI turn
             player.runTurn();
             turn();
+            guinterface.updateFrame();
             Game.printScreen(0);
         }
     }
@@ -45,16 +50,14 @@ public class Battle : IPlayable { // can run
         // run at end game
     }
 
+    public GUInterface guinterface;
     // constructor
     public Battle(int size_x, int size_y) {
         // initialize map, queue 
         // set global reference before Player initialization
         map = new Map(size_x, size_y, 5, 5);
-        new MapInterface(map, Game.getMainScreen(), 5, 5, size_x, size_y);
         queue = new Queue();
         Game.setBattle(this);
-        // toggle shooting to true
-        player = new Player(true);
     }
 }
 }
