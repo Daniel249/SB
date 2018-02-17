@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using GameLibrary.Graphics;
+using GameLibrary.Services;
 using GameLibrary.Services.Chronometrics;
 using GameLibrary.Platform;
 
@@ -47,6 +48,11 @@ public class Unit : Entity {
         }
     }
 
+    // hitbox
+    public ITexture<Entity> hitbox { get; protected set; }
+
+    
+
     // IChronometric implementation
     protected override void everyTime() {}
     protected override void everyTick() {}
@@ -57,6 +63,15 @@ public class Unit : Entity {
     base(pos_x, pos_y, delay, team, textureKey) {
         weapons = new List<Weapon>();
         Health = health;
+
+        // derive hitbox from texture
+        int size_y = Texture.GetLength(false);
+        Entity [][] _hitbox = new Entity[size_y][];
+        for(int y = 0; y < size_y; y++) {
+            _hitbox[y] = new Entity[Texture.GetLength(y)];
+            _hitbox[y].Fill(this);
+        }
+        hitbox = new ITexture<Entity>(_hitbox);
 
     }
 }

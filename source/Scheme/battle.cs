@@ -50,6 +50,7 @@ public class Battle : IPlayable { // can run
         // initialize map, queue 
         // set global reference before Player initialization
         map = new Map(size_x, size_y, 5, 5);
+        new MapInterface(map, Game.getMainScreen(), 5, 5, size_x, size_y);
         queue = new Queue();
         Game.setBattle(this);
         // toggle shooting to true
