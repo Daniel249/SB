@@ -7,7 +7,7 @@ using SB;
 namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet
-public abstract class Entity : TimeAware, IElement {
+abstract class Entity : TimeAware, IElement {
     
     // IPrintable implementation
     // position in map
@@ -65,9 +65,9 @@ public abstract class Entity : TimeAware, IElement {
         int new_x = Position_x + horizontalSpeed;
         int new_y = Position_y + verticalSpeed;
         int dimension_y = Texture.GetLength(false);
-        if(new_x < 0 || new_x >= Game.getMap().Size_x) {
+        if(new_x < 0 || new_x >= SBGame.getMap().Size_x) {
             return false;
-        } else if(new_y < 0 || new_y + dimension_y > Game.getMap().Size_y) {
+        } else if(new_y < 0 || new_y + dimension_y > SBGame.getMap().Size_y) {
             // main ship will stop before lower part of texture
             return false;
         } else {
@@ -113,7 +113,7 @@ public abstract class Entity : TimeAware, IElement {
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
         Screen = Game.getMainScreen();
-        GUInterface = Game.getBattle().guinterface;
+        GUInterface = SBGame.getBattle().guinterface;
         GUInterface.print(this);
     }
 }

@@ -3,11 +3,11 @@ using GameLibrary.Graphics;
 using SB.Objects;
 
 namespace SB {
-public class MapInterface : GUInterface {
+class MapInterface : GUInterface {
     Map map;
 
-    // overrides to print as Entity too
-    // already prints to interface frame
+    // overrides to print in map too
+    // already prints to guinterface's frame
     public override void print(IPrintable printable) {
         base.print(printable);
 

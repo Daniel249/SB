@@ -2,36 +2,52 @@
 using GameLibrary.Graphics;
 using GameLibrary.Platform;
 using GameLibrary.Interface;
+using SB.MiniGame;
 
 namespace SB {
 static class Program {
     static void Main(string[] args) {
 
         Terminal.setSize();
+        SBGame Game = new SBGame();
         Game.setUp();
 
-        // define printer in main screen
-        // Printer MainPrinter = new LegacyPrinter();
-        Printer MainPrinter = new LinePrinter();
+
+        // define between legacy- and lineprinter
+
+        bool definer = false;
+        Printer MainPrinter;
+        if(definer) {
+            MainPrinter = new LegacyPrinter();
+
+        } else {
+            MainPrinter = new LinePrinter();
+        }
         
-        Game.setScreen(
+        // set screen
+        // map interface is created at 0,0
+        SBGame.setScreen(
             new Screen(Terminal.Size_x - 75, Terminal.Size_y - 10, 
                 MainPrinter)
         );
         
         Battle bat = new Battle(Terminal.Size_x - 75, Terminal.Size_y - 10);
-
-        // set GUI. choose one based on LegacyPrinter or standard
-        gUInterface = new MapInterface(Game.getMap(), Game.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
-        // gUInterface = new LegacyInterface(Game.getMap(), Game.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
-
+        
+        // guinterface must be defined after battle, becuse 
+        GUInterface gUInterface;
+        if(definer) {
+            gUInterface = new LegacyInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
+        } else {
+            gUInterface = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
+        }
         bat.guinterface = gUInterface;
+
+        // set player and print it 
         bat.setPlayer(new Player(true));
 
         Test.check();
         bat.run();
     }
-    public static GUInterface gUInterface;
 }
     
 }

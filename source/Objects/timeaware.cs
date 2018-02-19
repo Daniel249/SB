@@ -24,10 +24,10 @@ public abstract class TimeAware : IChronometric {
 
     // Queue.List<IChronometric> interaction
     public void addToQueue() {
-        Game.getQueue().addToQueue(this);
+        SBGame.getQueue().addToQueue(this);
     }
     public bool removeFromQueue() {
-        return Game.getQueue().removeFromQueue(this);
+        return SBGame.getQueue().removeFromQueue(this);
     }
 
     // constructor

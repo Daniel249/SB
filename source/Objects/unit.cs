@@ -5,9 +5,10 @@ using GameLibrary.Graphics;
 using GameLibrary.Services;
 using GameLibrary.Services.Chronometrics;
 using GameLibrary.Platform;
+using SB.MiniGame;
 
 namespace SB.Objects {
-public class Unit : Entity {
+class Unit : Entity {
     public int Health { get; private set; }
 
 

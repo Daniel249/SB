@@ -11,11 +11,11 @@ namespace SB.Objects {
 // bullets are Entitys in constant movement
 // they are printed but not referenced in map, so nothing interacts with them
 // they do interact with other things through references in map
-public class Bullet : Entity {
+class Bullet : Entity {
     readonly int attackDamage;
     // check for reference in map
     public bool checkCollision() {
-        Entity target = Game.getMap().getMap(Position_x, Position_y);
+        Entity target = SBGame.getMap().getMap(Position_x, Position_y);
         // map populated only by units, no bullets
         if(target != null && target.Team != this.Team) {
             ((Unit)target).receiveDamage(attackDamage);

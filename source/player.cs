@@ -79,7 +79,7 @@ public class Player : IAgent {
     // constructor
     public Player(bool fire) {
         // instantiate ship and load a weapon to it
-        ship = new Unit(0, Game.getMap().Size_y/2, 5, true, "main", 500);
+        ship = new Unit(0, SBGame.getMap().Size_y/2, 5, true, "main", 500);
         // load weapon to ship. shoots every 15 cronometer ticks
         Weapon.loadUnit(ship, 20, 15, true, "main");
         // start shooting

@@ -1,6 +1,6 @@
 
 namespace SB.Objects {
-public class Weapon : TimeAware {
+class Weapon : TimeAware {
     // relative position in unit
     readonly int position_x;
     readonly int position_y;

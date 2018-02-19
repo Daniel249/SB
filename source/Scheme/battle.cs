@@ -7,7 +7,7 @@ namespace SB {
 
 // constains other parts of the game 
 // and initializes them on contruction
-public class Battle : IPlayable { // can run
+class Battle : IPlayable { // can run
     // references
     readonly Map map;
     readonly Queue queue;
@@ -38,7 +38,7 @@ public class Battle : IPlayable { // can run
             player.runTurn();
             turn();
             guinterface.updateFrame();
-            Game.printScreen(0);
+            Game.getMainScreen().updateFrame();
         }
     }
     // run queue
@@ -57,7 +57,7 @@ public class Battle : IPlayable { // can run
         // set global reference before Player initialization
         map = new Map(size_x, size_y, 5, 5);
         queue = new Queue();
-        Game.setBattle(this);
+        SBGame.setBattle(this);
     }
 }
 }

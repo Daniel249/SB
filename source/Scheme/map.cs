@@ -6,7 +6,7 @@ using GameLibrary.Services;
 
 namespace SB {
 
-public class Map : ISnapshot<Entity> {
+class Map : ISnapshot<Entity> {
     // map location
     // readonly
     public readonly int Position_x;
