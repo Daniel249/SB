@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using GameLibrary.Platform;
 using GameLibrary.Services;
-using GameLibrary.Interface;
+using GameLibrary.Graphics;
 
 namespace SB {
 
