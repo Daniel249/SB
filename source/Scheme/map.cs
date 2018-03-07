@@ -25,9 +25,10 @@ class Map : ISnapshot<Entity> {
 
     public List<int> flaggedRows { get; private set; }
     public void flagRow(int rowNum) {
-        if(!flaggedRows.Contains(rowNum)) {
+        // if uncommented, add clear list in mapinterface 
+        /*if(!flaggedRows.Contains(rowNum)) {
             flaggedRows.Add(rowNum);
-        }
+        }*/
     }
 
     // get unit in map
