@@ -35,12 +35,16 @@ static class Program {
         
         // guinterface must be defined after battle, becuse 
         GUInterface gUInterface;
+        AbstractForm abstractForm;
         if(definer) {
             gUInterface = new LegacyInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
+            abstractForm = null;
         } else {
             gUInterface = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
+            abstractForm = new newMapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
         }
         bat.guinterface = gUInterface;
+        bat.guiMap = abstractForm;
 
         // set player and print it 
         bat.setPlayer(new Player(true));

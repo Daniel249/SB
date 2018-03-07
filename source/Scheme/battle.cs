@@ -51,6 +51,7 @@ class Battle : IPlayable { // can run
     }
 
     public GUInterface guinterface;
+    public AbstractForm guiMap;
     // constructor
     public Battle(int size_x, int size_y) {
         // initialize map, queue 

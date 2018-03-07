@@ -24,12 +24,7 @@ abstract class Entity : TimeAware, IPrintable {
 
     
     // pointing direction. true to the right for player
-    readonly bool direction = false;
-    public bool Team {
-        get {
-            return direction;
-        }
-    }
+    public bool Team {get; private set; }
 
 
 
@@ -44,16 +39,25 @@ abstract class Entity : TimeAware, IPrintable {
         verticalSpeed = dir_y;
     }
 
-
+    // test setup
+    bool test = false;
     public void printMove() {
         // if(horizontalSpeed != 0 || verticalSpeed != 0) {
             // if inside bounds
             if(checkBounded()) {
                 // delete, move, and print
-                GUInterface.delete(this);
+                if(test) {
+                    GUInterface.delete(this);
+                } else {
+                    Parent.updatedelete(this, Position_x, Position_y);
+                }
                 Position_x += horizontalSpeed;
                 Position_y += verticalSpeed;
-                GUInterface.print(this);
+                if(test) {
+                    GUInterface.print(this);
+                } else {
+                    Parent.updateprint(this, Position_x, Position_y);
+                }
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
@@ -77,7 +81,11 @@ abstract class Entity : TimeAware, IPrintable {
 
     // end references
     public void delete() {
-        GUInterface.delete(this);
+        if(test) {
+            GUInterface.delete(this);
+        } else {
+            Parent.updatedelete(this, Position_x, Position_y);
+        }
         removeFromQueue();
     }
 
@@ -111,9 +119,14 @@ abstract class Entity : TimeAware, IPrintable {
         }
         // initialize texture based on key and parameter colors
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
-        direction = team;
-        GUInterface = SBGame.getBattle().guinterface;
-        GUInterface.print(this);
+        Team = team;
+        if(test) {
+            GUInterface = SBGame.getBattle().guinterface;
+            GUInterface.print(this);
+        } else {
+            Parent = SBGame.getBattle().guiMap;
+            Parent.updateprint(this, Position_x, Position_y);
+        }
     }
 }
 }
