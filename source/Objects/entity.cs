@@ -16,10 +16,8 @@ abstract class Entity : TimeAware, IPrintable {
     // stored in 2d char array
     public Texture Texture { get; protected set; } 
 
-    // map reference as GUInterface to print
-    public GUInterface GUInterface { get; private set; }
 
-    // IForm implementation
+    // IForm implementation. reference to mapinterface
     public IUpdateable Parent { get; private set; }
 
     
@@ -39,25 +37,16 @@ abstract class Entity : TimeAware, IPrintable {
         verticalSpeed = dir_y;
     }
 
-    // test setup
-    bool test = false;
+
     public void printMove() {
         // if(horizontalSpeed != 0 || verticalSpeed != 0) {
             // if inside bounds
             if(checkBounded()) {
-                // delete, move, and print
-                if(test) {
-                    GUInterface.delete(this);
-                } else {
-                    Parent.updatedelete(this, Position_x, Position_y);
-                }
+                // delete, move, and print    
+                Parent.updatedelete(this, Position_x, Position_y); 
                 Position_x += horizontalSpeed;
                 Position_y += verticalSpeed;
-                if(test) {
-                    GUInterface.print(this);
-                } else {
-                    Parent.updateprint(this, Position_x, Position_y);
-                }
+                Parent.updateprint(this, Position_x, Position_y);             
             } else if(this is Bullet) {
                 // if it would fall off map. and is a bullet destroy
                 delete();
@@ -81,11 +70,7 @@ abstract class Entity : TimeAware, IPrintable {
 
     // end references
     public void delete() {
-        if(test) {
-            GUInterface.delete(this);
-        } else {
-            Parent.updatedelete(this, Position_x, Position_y);
-        }
+        Parent.updatedelete(this, Position_x, Position_y);
         removeFromQueue();
     }
 
@@ -120,13 +105,9 @@ abstract class Entity : TimeAware, IPrintable {
         // initialize texture based on key and parameter colors
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         Team = team;
-        if(test) {
-            GUInterface = SBGame.getBattle().guinterface;
-            GUInterface.print(this);
-        } else {
-            Parent = SBGame.getBattle().guiMap;
-            Parent.updateprint(this, Position_x, Position_y);
-        }
+        Parent = SBGame.getBattle().guiMap;
+        Parent.updateprint(this, Position_x, Position_y);
+
     }
 }
 }

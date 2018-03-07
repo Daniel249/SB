@@ -37,7 +37,6 @@ class Battle : IPlayable { // can run
             // run player and AI turn
             player.runTurn();
             turn();
-            guinterface.updateFrame();
             Game.getMainScreen().updateFrame();
         }
     }
@@ -50,7 +49,6 @@ class Battle : IPlayable { // can run
         // run at end game
     }
 
-    public GUInterface guinterface;
     public AbstractForm guiMap;
     // constructor
     public Battle(int size_x, int size_y) {

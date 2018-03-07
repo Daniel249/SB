@@ -1,7 +1,6 @@
 ﻿using GameLibrary.Graphics.Display;
 using GameLibrary.Graphics;
 using GameLibrary.Platform;
-using GameLibrary.Interface;
 using SB.MiniGame;
 
 namespace SB {
@@ -33,17 +32,13 @@ static class Program {
         
         Battle bat = new Battle(Terminal.Size_x - 75, Terminal.Size_y - 10);
         
-        // guinterface must be defined after battle, becuse 
-        GUInterface gUInterface;
+
         AbstractForm abstractForm;
         if(definer) {
-            gUInterface = new LegacyInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
             abstractForm = null;
         } else {
-            gUInterface = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0, Terminal.Size_x - 75, Terminal.Size_y - 10);
             abstractForm = new newMapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
         }
-        bat.guinterface = gUInterface;
         bat.guiMap = abstractForm;
 
         // set player and print it 
