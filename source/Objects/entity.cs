@@ -1,13 +1,11 @@
 using System;
 using GameLibrary.Graphics.Display;
-using GameLibrary.Interface;
 using GameLibrary.Graphics;
 using GameLibrary.Platform;
-using SB;
 namespace SB.Objects {
 // can be referenced in map
 // inherited by Unit and Bullet
-abstract class Entity : TimeAware, IElement {
+abstract class Entity : TimeAware, IPrintable {
     
     // IPrintable implementation
     // position in map
@@ -20,7 +18,9 @@ abstract class Entity : TimeAware, IElement {
 
     // map reference as GUInterface to print
     public GUInterface GUInterface { get; private set; }
-    public Screen Screen { get; private set; }
+
+    // IForm implementation
+    public IUpdateable Parent { get; private set; }
 
     
     // pointing direction. true to the right for player
@@ -112,7 +112,6 @@ abstract class Entity : TimeAware, IElement {
         // initialize texture based on key and parameter colors
         Texture = new Texture(Database.assignTexture(textureKey), bcolor, fcolor); 
         direction = team;
-        Screen = Game.getMainScreen();
         GUInterface = SBGame.getBattle().guinterface;
         GUInterface.print(this);
     }
