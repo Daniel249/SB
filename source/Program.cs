@@ -37,7 +37,7 @@ static class Program {
         if(definer) {
             abstractForm = null;
         } else {
-            abstractForm = new newMapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
+            abstractForm = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
         }
         bat.guiMap = abstractForm;
 

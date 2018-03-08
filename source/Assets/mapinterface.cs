@@ -1,7 +1,7 @@
 using GameLibrary.Graphics;
 using SB.Objects;
 namespace SB {
-class newMapInterface : AbstractForm {
+class MapInterface : AbstractForm {
     Map map;
 
 
@@ -25,7 +25,7 @@ class newMapInterface : AbstractForm {
         }
     }
     // constructor
-    public newMapInterface(Map mapp, IUpdateable screen, int pos_x, int pos_y)
+    public MapInterface(Map mapp, IUpdateable screen, int pos_x, int pos_y)
     : base(screen, pos_x, pos_y) {
         map = mapp;
     }
