@@ -11,14 +11,13 @@ static class Program {
         SBGame Game = new SBGame();
         Game.setUp();
 
-
+        // test
         // define between legacy- and lineprinter
 
-        bool definer = false;
+        bool definer = true;
         Printer MainPrinter;
         if(definer) {
             MainPrinter = new LegacyPrinter();
-
         } else {
             MainPrinter = new LinePrinter();
         }
@@ -34,11 +33,8 @@ static class Program {
         
 
         AbstractForm abstractForm;
-        if(definer) {
-            abstractForm = null;
-        } else {
-            abstractForm = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
-        }
+        abstractForm = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
+        
         bat.guiMap = abstractForm;
 
         // set player and print it 
