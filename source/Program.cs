@@ -14,7 +14,7 @@ static class Program {
         // test
         // define between legacy- and lineprinter
 
-        bool definer = true;
+        bool definer = false;
         Printer MainPrinter;
         if(definer) {
             MainPrinter = new LegacyPrinter();
@@ -24,18 +24,15 @@ static class Program {
         
         // set screen
         // map interface is created at 0,0
-        SBGame.setScreen(
-            new Screen(Terminal.Size_x - 75, Terminal.Size_y - 10, 
-                MainPrinter)
-        );
+        Screen screen = new Screen(Terminal.Size_x - 75, Terminal.Size_y - 10, MainPrinter);
+        SBGame.setScreen(screen);
         
-        Battle bat = new Battle(Terminal.Size_x - 75, Terminal.Size_y - 10);
-        
+        Map map = new Map(Terminal.Size_x - 75, Terminal.Size_y - 10, 5, 5);
+        Battle bat = new Battle(map);
 
-        AbstractForm abstractForm;
-        abstractForm = new MapInterface(SBGame.getMap(), SBGame.getMainScreen(), 0, 0);
-        
+        AbstractForm abstractForm = new MapInterface(map, screen, 0, 0);
         bat.guiMap = abstractForm;
+        
 
         // set player and print it 
         bat.setPlayer(new Player(true));

@@ -49,12 +49,12 @@ class Battle : IPlayable { // can run
         // run at end game
     }
 
-    public AbstractForm guiMap;
+    public AbstractForm guiMap { get; set; }
     // constructor
-    public Battle(int size_x, int size_y) {
+    public Battle(Map mapp) {
         // initialize map, queue 
         // set global reference before Player initialization
-        map = new Map(size_x, size_y, 5, 5);
+        map = mapp;
         queue = new Queue();
         SBGame.setBattle(this);
     }
