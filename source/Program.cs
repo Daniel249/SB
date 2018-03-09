@@ -16,6 +16,4 @@ static class Program {
         SBGame.getBattle().run();
     }
 }
-    
 }
-
