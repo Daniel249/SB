@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using GameLibrary.Graphics.Display;
 using GameLibrary.Externals;
-//using GameLibrary.Graphics;
+using GameLibrary.Graphics;
 using GameLibrary.Services;
 using GameLibrary.Platform;
 
@@ -11,14 +11,44 @@ namespace SB {
 // holds map battle and queue references
 // sets up  and ends the game. runs gameplay skripts
 class SBGame : Game {
-    public override void setUp() {
-        loadGraphics("./textures.txt");
+
+    // main set up
+    public void setUp(bool printerdefiner) {
+        loadGraphics(@"./textures.txt");
+
+        //
+        Printer MainPrinter;
+        if(printerdefiner) {
+            MainPrinter = new LegacyPrinter();
+        } else {
+            MainPrinter = new LinePrinter();
+        }
+        // set screen
+        // screen position is 5,5 at screen constructor
+        // map interface is created at 0,0
+        Screen screen = new Screen(Terminal.Size_x - 10, Terminal.Size_y - 10, MainPrinter);
+        SBGame.setScreen(screen);
+
+        Map map = new Map(Terminal.Size_x - 75, Terminal.Size_y - 10, 5, 5);
+        Battle bat = new Battle(map);
+
+        AbstractForm abstractForm = new MapInterface(map, screen, 0, 0);
+        bat.guiMap = abstractForm;
+        
+
+        // set player and print it 
+        bat.setPlayer(new Player(true));
+        //
+
+        setInterface();
         // print instructions
         Terminal.PrintString(
             "move: up down keys, left key to stop    toggle fire: F    exit: esc", 
             5, 0
         );
     }
+
+    //helpers 
 
     // read textures.txt and process data
     static bool loadGraphics(string address) {
@@ -27,7 +57,10 @@ class SBGame : Game {
         return true;
     }
 
+    // set up interface
+    static void setInterface() {
 
+    }
     
     // map battle queue references
     static Battle battle;
