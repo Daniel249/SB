@@ -43,12 +43,6 @@ class SBGame : Game {
         //
 
         setInterface();
-
-        // print instructions
-        Terminal.PrintString(
-            "move: up down keys, left key to stop    toggle fire: F    exit: esc", 
-            5, 0
-        );
     }
 
     //helpers 
@@ -63,7 +57,10 @@ class SBGame : Game {
     // set up interface
     static void setInterface() {
         AbstractForm userInterface = new AbstractForm(getMainScreen(), getMainScreen().Size_x - 50, 0);
-        Label label1 = new Label("Test", userInterface, 5, 5);
+        Label label1 = new Label(userInterface, 5, 5, 
+            "move: up down keys, left key to stop", 
+            "toggle fire: F",
+            "exit esc");
 
         // initialize in frame
         label1.Parent.updateprint(label1, label1.Position_x, label1.Position_y);
