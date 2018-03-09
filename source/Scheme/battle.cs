@@ -37,7 +37,7 @@ class Battle : IPlayable { // can run
             // run player and AI turn
             player.runTurn();
             turn();
-            Game.getMainScreen().updateFrame();
+            SBGame.printScreen();
         }
     }
     // run queue
