@@ -25,7 +25,7 @@ class Map : ISnapshot<Entity> {
 
     public List<int> flaggedRows { get; private set; }
     public void flagRow(int rowNum) {
-        // if uncommented, add clear list in mapinterface 
+        // if uncommented, add clear list
         /*if(!flaggedRows.Contains(rowNum)) {
             flaggedRows.Add(rowNum);
         }*/

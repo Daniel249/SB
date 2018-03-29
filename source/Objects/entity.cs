@@ -1,5 +1,4 @@
 using System;
-using GameLibrary.Graphics.Display;
 using GameLibrary.Graphics;
 using GameLibrary.Platform;
 namespace SB.Objects {
