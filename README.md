@@ -79,15 +79,7 @@ XX<=
 ```
 The placing of a mark (W) is always to the right of the image, even for enemy ships (which shoot to the left)  
 The spacing between a mark and the image is not important
-### Things to consider
-In the current game mode, one name/key is called in each of the 3 phases in this order: minor, middle, major, minor, ...
 
-Empty lines will be visually included in images
-
-The last image in textures.txt must be followed by a '//' or else it won't be loaded (and assigned to a name/key) 
-
-There is a limited number of name/keys, and images not assigned to one will simply be ignored  
-The textures(.txt) file can be used as a virtually unlimited storing place for images
 
 
 ## Simplified Game Architecture

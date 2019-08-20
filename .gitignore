@@ -12,9 +12,12 @@ $RECYCLE.BIN/
 *.json
 /bin/*
 /obj/*
+/.vs/*
 /.vscode/*
 *.csproj
 *exe
+*.dgml
+
 # Windows Installer files
 *.cab
 *.msi
