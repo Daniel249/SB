@@ -15,8 +15,6 @@ There are 3 rotating phases with increasing enemy strength and decreasing quanti
 The player's ship can be destroyed by it's health dropping to or below 0 and there won't be any ship for the player to control  
 This won't automatically exit the game  
 
-Balance suggestions regarding player and enemy health, damage, rate of fire,  
-as well as texture image proposals to be released with the textures file are appreciated
 ## Texture customization
 *Textures.txt needs to be on the same folder as the executable  
 Otherwise textures will reset to defaults*
