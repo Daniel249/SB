@@ -12,7 +12,7 @@ Toggle fire with F key
 
 There are 3 rotating phases with increasing enemy strength and decreasing quantity  
 
-The player's ship can be destroyed by it's health dropping to or below 0 and there won't be any ship for the player to control  
+The player's ship can be destroyed by it's health dropping to or below 0 as there won't be any ship for the player to control  
 This won't automatically exit the game  
 
 ## Texture customization
@@ -20,7 +20,7 @@ This won't automatically exit the game
 Otherwise textures will reset to defaults*
 
 A texture consists of an ASCII Art image, and a name or key  
-Images are delimited by a '//' (double slash) above and below them, and are customizable without restraint  
+Images are delimited by a '//' (double slash) above and below them, and are customizable without constraint  
 Names/keys are hard coded into the game and only their assigned image can be changed  
 
 To change the image assigned to a name/key, simply transport the name/key to the right of the '//' above the desired image
